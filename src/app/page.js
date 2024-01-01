@@ -2,112 +2,111 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get INdra Mahesa&nbsp;
-          <code className="font-mono font-bold">src/app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main className="container mx-auto">
+      <header className="flex flex-row items-center justify-between my-5">
+        <div>
+          <Image
+            src="/svg/terrax.svg"
+            width={117}
+            height={42}
+            alt="TerraX Logo"
+          />
         </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
+        <nav>
+          <ul className="flex flex-row items-center justify-center space-x-16 text-white">
+            <li className="font-bold border-b-white border-b-2">Home</li>
+            <li className="text-gray-300">Buy</li>
+            <li className="text-gray-300">Sell</li>
+            <li className="text-gray-300">Asset Manager</li>
+          </ul>
+        </nav>
+        <div>
+          <button className="w-24 h-12 text-white font-bold rounded-lg bg-gradient-to-r from-cyan-400 to-orange-400 p-1">
+            <div
+              className="h-full rounded-lg py-2"
+              style={{ backgroundColor: "#000a14" }}
+            >
+              Sign In
+            </div>
+          </button>
+        </div>
+      </header>
+      <section className="flex flex-row items-center justify-between relative">
         <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+          src="/svg/pattern.svg"
+          width={800}
+          height={700}
+          alt="Pattern"
+          className="absolute -top-10 -right-10 z-0"
         />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
+        <div className="flex-1">
+          <h1 className="text-white font-bold text-7xl">
+            <span className="bg-gradient-to-r from-cyan-400 to-orange-400 bg-clip-text text-transparent">
+              Secure and Easy
+            </span>{" "}
+            Property Transactions
+            <div className="relative h-20">
+              <Image
+                src="/svg/line.svg"
+                width={400}
+                height={100}
+                alt="Line"
+                className="absolute top-0 -right-5"
+              />
+            </div>
+          </h1>
+          <p className="text-gray-500 text-lg">
+            With blockchain technology, now you can do property transactions
+            effortlessly and completed within 7 days or less.
           </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+          <div className="mt-10">
+            <button className="bg-cyan-400 px-5 py-3 rounded-lg mr-10">
+              Explore
+            </button>
+            <button className="text-white relative">
+              Go To Market{" "}
+              <Image
+                src="/svg/arrow-btn.svg"
+                width={50}
+                height={10}
+                alt="Line"
+                className="absolute top-2 -right-16"
+              />
+            </button>
+          </div>
+        </div>
+        <div className="flex-1">
+          <div className="relative">
+            <Image
+              src="/svg/card-promotion.svg"
+              width={600}
+              height={500}
+              alt="Card Promotion"
+              className="z-10"
+            />
+          </div>
+          <div className="flex flex-row items-center justify-center space-x-20">
+            <div>
+              <h2 className="text-white font-bold text-4xl">
+                56K<span className="text-cyan-300">+</span>
+              </h2>
+              <p className="text-white">Listings</p>
+            </div>
+            <div>
+              <h2 className="text-white font-bold text-4xl">
+                18K<span className="text-cyan-300">+</span>
+              </h2>
+              <p className="text-white">Property Sold</p>
+            </div>
+            <div>
+              <h2 className="text-white font-bold text-4xl">
+                10K<span className="text-cyan-300">+</span>
+              </h2>
+              <p className="text-white">Customer Satisfied</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

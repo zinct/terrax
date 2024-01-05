@@ -13,6 +13,11 @@
 /.next/
 /out/
 
+# Internet Computer
+/.azle/
+/.dfx/
+/out/
+
 # production
 /build
 

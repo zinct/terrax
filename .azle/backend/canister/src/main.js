@@ -10,7 +10,7 @@ function _export(target, all) {
 }
 _export(exports, {
     Principal: function() {
-        return Principal;
+        return Principal4;
     },
     canisterMethods: function() {
         return canisterMethods;
@@ -30,7 +30,7 @@ function _extends() {
     };
     return _extends.apply(this, arguments);
 }
-var _class, _class1, _class2, _class3, _class4, _class5, _class6;
+var _class, _class1, _class2, _class3, _class4, _class5, _class6, _class7;
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -1762,12 +1762,12 @@ var require_buffer = __commonJS({
             return obj !== obj;
         }
         var hexSliceLookupTable = function() {
-            const alphabet2 = "0123456789abcdef";
+            const alphabet3 = "0123456789abcdef";
             const table = new Array(256);
             for(let i = 0; i < 16; ++i){
                 const i16 = i * 16;
                 for(let j = 0; j < 16; ++j){
-                    table[i16 + j] = alphabet2[i] + alphabet2[j];
+                    table[i16 + j] = alphabet3[i] + alphabet3[j];
                 }
             }
             return table;
@@ -94651,7 +94651,7 @@ var require_encoding = __commonJS({
                     }
                 });
             }
-            TextDecoder2.prototype.decode = function decode4(input, options) {
+            TextDecoder2.prototype.decode = function decode5(input, options) {
                 var bytes2;
                 if (typeof input === "object" && input instanceof ArrayBuffer) {
                     bytes2 = new Uint8Array(input);
@@ -94740,7 +94740,7 @@ var require_encoding = __commonJS({
                     }
                 });
             }
-            TextEncoder2.prototype.encode = function encode4(opt_string, options) {
+            TextEncoder2.prototype.encode = function encode5(opt_string, options) {
                 opt_string = opt_string === void 0 ? "" : String(opt_string);
                 options = ToDictionary(options);
                 if (!this._do_not_flush) this._encoder = encoders[this._encoding.name]({
@@ -95580,7 +95580,7 @@ function argDataRaw() {
 function argDataRawSize() {
     return globalThis._azleIc ? globalThis._azleIc.argDataRawSize() : void 0;
 }
-// node_modules/@dfinity/candid/lib/esm/idl.js
+// node_modules/azle/node_modules/@dfinity/candid/lib/esm/idl.js
 var idl_exports = {};
 __export(idl_exports, {
     Bool: ()=>Bool,
@@ -95637,7 +95637,7 @@ __export(idl_exports, {
     decode: ()=>decode2,
     encode: ()=>encode2
 });
-// node_modules/@dfinity/principal/lib/esm/utils/base32.js
+// node_modules/azle/node_modules/@dfinity/principal/lib/esm/utils/base32.js
 var alphabet = "abcdefghijklmnopqrstuvwxyz234567";
 var lookupTable = /* @__PURE__ */ Object.create(null);
 for(let i = 0; i < alphabet.length; i++){
@@ -95698,7 +95698,7 @@ function decode(input) {
     }
     return output2.slice(0, o);
 }
-// node_modules/@dfinity/principal/lib/esm/utils/getCrc.js
+// node_modules/azle/node_modules/@dfinity/principal/lib/esm/utils/getCrc.js
 var lookUpTable = new Uint32Array([
     0,
     1996959894,
@@ -96285,11 +96285,11 @@ var SHA224 = class extends SHA256 {
     }
 };
 var sha224 = /* @__PURE__ */ wrapConstructor(()=>new SHA224());
-// node_modules/@dfinity/principal/lib/esm/utils/sha224.js
+// node_modules/azle/node_modules/@dfinity/principal/lib/esm/utils/sha224.js
 function sha2242(data) {
     return sha224.create().update(new Uint8Array(data)).digest();
 }
-// node_modules/@dfinity/principal/lib/esm/index.js
+// node_modules/azle/node_modules/@dfinity/principal/lib/esm/index.js
 var JSON_KEY_PRINCIPAL = "__principal__";
 var SELF_AUTHENTICATING_SUFFIX = 2;
 var ANONYMOUS_SUFFIX = 4;
@@ -96420,7 +96420,7 @@ var Principal = class _Principal {
         this._isPrincipal = true;
     }
 };
-// node_modules/@dfinity/candid/lib/esm/utils/buffer.js
+// node_modules/azle/node_modules/@dfinity/candid/lib/esm/utils/buffer.js
 function concat(...buffers) {
     const result = new Uint8Array(buffers.reduce((acc, curr)=>acc + curr.byteLength, 0));
     let index = 0;
@@ -96487,7 +96487,7 @@ var PipeArrayBuffer = class {
         this._view = new Uint8Array(this._buffer, 0, length);
     }
 };
-// node_modules/@dfinity/candid/lib/esm/utils/hash.js
+// node_modules/azle/node_modules/@dfinity/candid/lib/esm/utils/hash.js
 function idlHash(s) {
     const utf8encoder = new TextEncoder();
     const array = utf8encoder.encode(s);
@@ -96506,7 +96506,7 @@ function idlLabelToId(label) {
     }
     return idlHash(label);
 }
-// node_modules/@dfinity/candid/lib/esm/utils/leb128.js
+// node_modules/azle/node_modules/@dfinity/candid/lib/esm/utils/leb128.js
 function eob() {
     throw new Error("unexpected end of buffer");
 }
@@ -96658,7 +96658,7 @@ function readIntLE(pipe, byteLength) {
     }
     return val;
 }
-// node_modules/@dfinity/candid/lib/esm/utils/bigint-math.js
+// node_modules/azle/node_modules/@dfinity/candid/lib/esm/utils/bigint-math.js
 function iexp2(n) {
     const nBig = BigInt(n);
     if (n < 0) {
@@ -96666,7 +96666,7 @@ function iexp2(n) {
     }
     return BigInt(1) << nBig;
 }
-// node_modules/@dfinity/candid/lib/esm/idl.js
+// node_modules/azle/node_modules/@dfinity/candid/lib/esm/idl.js
 var magicNumber = "DIDL";
 var toReadableString_max = 400;
 function zipWith(xs, ys, f) {
@@ -98367,8 +98367,62 @@ function Some(value) {
 var None = {
     None: null
 };
+function Opt2(t) {
+    return new AzleOpt(t);
+}
+var AzleOpt = (_class1 = class {
+    toBytes(data) {
+        return encode3(this, data);
+    }
+    fromBytes(bytes2) {
+        return decode3(this, bytes2);
+    }
+    getIdl(parents) {
+        return idl_exports.Opt(toIdl(this.innerType, parents));
+    }
+    constructor(t){
+        this.tsType = {};
+        this._azleKind = "AzleOpt";
+        this.innerType = t;
+    }
+}, _class1._azleKind = "AzleOpt", _class1);
+// node_modules/azle/src/lib/candid/types/constructed/record.ts
+function Record2(obj) {
+    return _extends({}, obj, {
+        tsType: {},
+        toBytes (data) {
+            return encode3(this, data);
+        },
+        fromBytes (bytes2) {
+            return decode3(this, bytes2);
+        },
+        getIdl (parents) {
+            return idl_exports.Record(toIdlMap(obj, parents));
+        }
+    });
+}
+// node_modules/azle/src/lib/candid/types/constructed/vec.ts
+var AzleVec = (_class2 = class {
+    toBytes(data) {
+        return encode3(this, data);
+    }
+    fromBytes(bytes2) {
+        return decode3(this, bytes2);
+    }
+    getIdl(parents) {
+        return idl_exports.Vec(toIdl(this.innerType, parents));
+    }
+    constructor(t){
+        this.tsType = {};
+        this._azleKind = "AzleVec";
+        this.innerType = t;
+    }
+}, _class2._azleKind = "AzleVec", _class2);
+function Vec2(t) {
+    return new AzleVec(t);
+}
 // node_modules/azle/src/lib/candid/types/primitive/nats/nat.ts
-var AzleNat = (_class1 = class {
+var AzleNat = (_class3 = class {
     static toBytes(data) {
         return encode3(this, data);
     }
@@ -98381,10 +98435,10 @@ var AzleNat = (_class1 = class {
     constructor(){
         this._azleKind = "AzleNat";
     }
-}, _class1._azleKind = "AzleNat", _class1);
+}, _class3._azleKind = "AzleNat", _class3);
 var nat = AzleNat;
 // node_modules/azle/src/lib/candid/types/primitive/null.ts
-var AzleNull = (_class2 = class {
+var AzleNull = (_class4 = class {
     static toBytes(data) {
         return encode3(this, data);
     }
@@ -98397,10 +98451,10 @@ var AzleNull = (_class2 = class {
     constructor(){
         this._azleKind = "AzleNull";
     }
-}, _class2._azleKind = "AzleNull", _class2);
+}, _class4._azleKind = "AzleNull", _class4);
 var Null2 = AzleNull;
 // node_modules/azle/src/lib/candid/types/primitive/text.ts
-var AzleText = (_class3 = class {
+var AzleText = (_class5 = class {
     static toBytes(data) {
         return encode3(this, data);
     }
@@ -98413,24 +98467,8 @@ var AzleText = (_class3 = class {
     constructor(){
         this._azleKind = "AzleText";
     }
-}, _class3._azleKind = "AzleText", _class3);
+}, _class5._azleKind = "AzleText", _class5);
 var text = AzleText;
-// node_modules/azle/src/lib/candid/types/primitive/void.ts
-var AzleVoid = (_class4 = class {
-    static toBytes(data) {
-        return encode3(this, data);
-    }
-    static fromBytes(bytes2) {
-        return decode3(this, bytes2);
-    }
-    static getIdl() {
-        return [];
-    }
-    constructor(){
-        this._azleKind = "AzleVoid";
-    }
-}, _class4._azleKind = "AzleVoid", _class4);
-var Void = AzleVoid;
 // node_modules/azle/src/lib/candid/types/reference/service/canister_function/query_update.ts
 function createQueryMethods(canisterOptions) {
     return Object.entries(canisterOptions).filter(([_name, canisterMethod])=>canisterMethod.mode === "query").map(([methodName2, canisterMethod])=>createQueryMethod(methodName2, canisterMethod.async, canisterMethod.guard));
@@ -98585,7 +98623,7 @@ function Canister(canisterOptions) {
     return result;
 }
 // node_modules/azle/src/lib/candid/types/reference/principal.ts
-var Principal3 = (_class5 = class extends Principal {
+var Principal3 = (_class6 = class extends Principal {
     static toBytes(data) {
         return encode3(this, data);
     }
@@ -98595,7 +98633,7 @@ var Principal3 = (_class5 = class extends Principal {
     static getIdl(_parents) {
         return idl_exports.Principal;
     }
-}, _class5._azleKind = "Principal", _class5);
+}, _class6._azleKind = "Principal", _class6);
 // node_modules/azle/src/lib/candid/serde/decode.ts
 function decode3(candidType, data) {
     if (Array.isArray(candidType)) {
@@ -98813,7 +98851,7 @@ function encodeMultiple(candidTypes, data) {
     return new Uint8Array(idl_exports.encode(idls, values));
 }
 // node_modules/azle/src/lib/candid/types/primitive/nats/nat64.ts
-var AzleNat64 = (_class6 = class {
+var AzleNat64 = (_class7 = class {
     static toBytes(data) {
         return encode3(this, data);
     }
@@ -98826,7 +98864,7 @@ var AzleNat64 = (_class6 = class {
     constructor(){
         this._azleKind = "AzleNat64";
     }
-}, _class6._azleKind = "AzleNat64", _class6);
+}, _class7._azleKind = "AzleNat64", _class7);
 var nat64 = AzleNat64;
 // node_modules/azle/src/lib/ic/call_raw.ts
 function callRaw(canisterId, method, argsRaw, payment) {
@@ -99091,8 +99129,8 @@ function print(...args) {
     return globalThis._azleIc ? globalThis._azleIc.print(...args) : void 0;
 }
 // node_modules/azle/src/lib/ic/reject.ts
-function reject(message2) {
-    return globalThis._azleIc ? globalThis._azleIc.reject(message2) : void 0;
+function reject(message) {
+    return globalThis._azleIc ? globalThis._azleIc.reject(message) : void 0;
 }
 // node_modules/azle/src/lib/ic/reject_code.ts
 function rejectCode() {
@@ -99263,11 +99301,11 @@ function time() {
     return BigInt(globalThis._azleIc.time());
 }
 // node_modules/azle/src/lib/ic/trap.ts
-function trap(message2) {
+function trap(message) {
     if (globalThis._azleIc === void 0) {
         return void 0;
     }
-    return globalThis._azleIc.trap(message2);
+    return globalThis._azleIc.trap(message);
 }
 // node_modules/azle/src/lib/ic/index.ts
 var ic = {
@@ -99544,19 +99582,676 @@ function update(paramCandidTypes, returnCandidType, callback, methodArgs) {
         guard: methodArgs == null ? void 0 : methodArgs.guard
     };
 }
+// node_modules/azle/src/lib/stable_structures/stable_b_tree_map.ts
+function StableBTreeMap(memoryIdNumber, keySerializable = stableJson, valueSerializable = stableJson) {
+    const memoryId = memoryIdNumber.toString();
+    if (globalThis._azleIc !== void 0) {
+        globalThis._azleIc.stableBTreeMapInit(memoryId);
+    }
+    isSerializable(keySerializable);
+    isSerializable(valueSerializable);
+    return {
+        /**
+     * Checks if the given key exists in the map.
+     * @param key the key to check.
+     * @returns `true` if the key exists in the map, `false` otherwise.
+     */ containsKey (key) {
+            if (globalThis._azleIc === void 0) {
+                return void 0;
+            }
+            const encodedKey = keySerializable.toBytes(key).buffer;
+            return globalThis._azleIc.stableBTreeMapContainsKey(memoryId, encodedKey);
+        },
+        /**
+     * Retrieves the value stored at the provided key.
+     * @param key the location from which to retrieve.
+     * @returns the value associated with the given key, if it exists.
+     */ get (key) {
+            if (globalThis._azleIc === void 0) {
+                return void 0;
+            }
+            const encodedKey = keySerializable.toBytes(key).buffer;
+            const encodedResult = globalThis._azleIc.stableBTreeMapGet(memoryId, encodedKey);
+            if (encodedResult === void 0) {
+                return None;
+            } else {
+                return Some(valueSerializable.fromBytes(new Uint8Array(encodedResult)));
+            }
+        },
+        /**
+     * Inserts a value into the map at the provided key.
+     * @param key the location at which to insert.
+     * @param value the value to insert.
+     * @returns the previous value of the key, if present.
+     */ insert (key, value) {
+            if (globalThis._azleIc === void 0) {
+                return void 0;
+            }
+            const encodedKey = keySerializable.toBytes(key).buffer;
+            const encodedValue = valueSerializable.toBytes(value).buffer;
+            const encodedResult = globalThis._azleIc.stableBTreeMapInsert(memoryId, encodedKey, encodedValue);
+            if (encodedResult === void 0) {
+                return None;
+            } else {
+                return Some(valueSerializable.fromBytes(new Uint8Array(encodedResult)));
+            }
+        },
+        /**
+     * Checks if the map is empty.
+     * @returns `true` if the map contains no elements, `false` otherwise.
+     */ isEmpty () {
+            if (globalThis._azleIc === void 0) {
+                return void 0;
+            }
+            return globalThis._azleIc.stableBTreeMapIsEmpty(memoryId);
+        },
+        /**
+     * Retrieves the items in the map in sorted order.
+     * @param startIndex the starting index to begin retrieval
+     * @param length the number of items to retrieve
+     * @returns tuples representing key/value pairs.
+     */ items (startIndex, length) {
+            if (globalThis._azleIc === void 0) {
+                return void 0;
+            }
+            var _startIndex_toString, _length_toString;
+            const encodedItems = globalThis._azleIc.stableBTreeMapItems(memoryId, (_startIndex_toString = startIndex == null ? void 0 : startIndex.toString()) != null ? _startIndex_toString : "0", (_length_toString = length == null ? void 0 : length.toString()) != null ? _length_toString : "NOT_SET");
+            return encodedItems.map(([encodedKey, encodedValue])=>{
+                return [
+                    keySerializable.fromBytes(new Uint8Array(encodedKey)),
+                    valueSerializable.fromBytes(new Uint8Array(encodedValue))
+                ];
+            });
+        },
+        /**
+     * The keys for each element in the map in sorted order.
+     * @param startIndex the starting index to begin retrieval
+     * @param length the number of keys to retrieve
+     * @returns they keys in the map.
+     */ keys (startIndex, length) {
+            if (globalThis._azleIc === void 0) {
+                return void 0;
+            }
+            var _startIndex_toString, _length_toString;
+            const encodedKeys = globalThis._azleIc.stableBTreeMapKeys(memoryId, (_startIndex_toString = startIndex == null ? void 0 : startIndex.toString()) != null ? _startIndex_toString : "0", (_length_toString = length == null ? void 0 : length.toString()) != null ? _length_toString : "NOT_SET");
+            return encodedKeys.map((encodedKey)=>{
+                return keySerializable.fromBytes(new Uint8Array(encodedKey));
+            });
+        },
+        /**
+     * Checks to see how many elements are in the map.
+     * @returns the number of elements in the map.
+     */ len () {
+            if (globalThis._azleIc === void 0) {
+                return void 0;
+            }
+            const candidEncodedLen = globalThis._azleIc.stableBTreeMapLen(memoryId);
+            return decode3(nat64, candidEncodedLen);
+        },
+        /**
+     * Removes a key from the map.
+     * @param key the location from which to remove.
+     * @returns the previous value at the key if it exists, `null` otherwise.
+     */ remove (key) {
+            if (globalThis._azleIc === void 0) {
+                return void 0;
+            }
+            const encodedKey = keySerializable.toBytes(key).buffer;
+            const encodedValue = globalThis._azleIc.stableBTreeMapRemove(memoryId, encodedKey);
+            if (encodedValue === void 0) {
+                return None;
+            } else {
+                return Some(valueSerializable.fromBytes(new Uint8Array(encodedValue)));
+            }
+        },
+        /**
+     * The values in the map in sorted order.
+     * @param startIndex the starting index to begin retrieval
+     * @param length the number of values to retrieve
+     * @returns the values in the map.
+     */ values (startIndex, length) {
+            if (globalThis._azleIc === void 0) {
+                return void 0;
+            }
+            var _startIndex_toString, _length_toString;
+            const encodedValues = globalThis._azleIc.stableBTreeMapValues(memoryId, (_startIndex_toString = startIndex == null ? void 0 : startIndex.toString()) != null ? _startIndex_toString : "0", (_length_toString = length == null ? void 0 : length.toString()) != null ? _length_toString : "NOT_SET");
+            return encodedValues.map((encodedValue)=>{
+                return valueSerializable.fromBytes(new Uint8Array(encodedValue));
+            });
+        }
+    };
+}
+function isSerializable(obj) {
+    if (obj.toBytes === void 0) {
+        throw new Error(`value must have a toBytes method`);
+    }
+    if (obj.fromBytes === void 0) {
+        throw new Error(`value must have a fromBytes method`);
+    }
+}
+// node_modules/@dfinity/principal/lib/esm/utils/base32.js
+var alphabet2 = "abcdefghijklmnopqrstuvwxyz234567";
+var lookupTable2 = /* @__PURE__ */ Object.create(null);
+for(let i = 0; i < alphabet2.length; i++){
+    lookupTable2[alphabet2[i]] = i;
+}
+lookupTable2["0"] = lookupTable2.o;
+lookupTable2["1"] = lookupTable2.i;
+function encode4(input) {
+    let skip = 0;
+    let bits = 0;
+    let output2 = "";
+    function encodeByte(byte) {
+        if (skip < 0) {
+            bits |= byte >> -skip;
+        } else {
+            bits = byte << skip & 248;
+        }
+        if (skip > 3) {
+            skip -= 8;
+            return 1;
+        }
+        if (skip < 4) {
+            output2 += alphabet2[bits >> 3];
+            skip += 5;
+        }
+        return 0;
+    }
+    for(let i = 0; i < input.length;){
+        i += encodeByte(input[i]);
+    }
+    return output2 + (skip < 0 ? alphabet2[bits >> 3] : "");
+}
+function decode4(input) {
+    let skip = 0;
+    let byte = 0;
+    const output2 = new Uint8Array(input.length * 4 / 3 | 0);
+    let o = 0;
+    function decodeChar(char) {
+        let val = lookupTable2[char.toLowerCase()];
+        if (val === void 0) {
+            throw new Error(`Invalid character: ${JSON.stringify(char)}`);
+        }
+        val <<= 3;
+        byte |= val >>> skip;
+        skip += 5;
+        if (skip >= 8) {
+            output2[o++] = byte;
+            skip -= 8;
+            if (skip > 0) {
+                byte = val << 5 - skip & 255;
+            } else {
+                byte = 0;
+            }
+        }
+    }
+    for (const c of input){
+        decodeChar(c);
+    }
+    return output2.slice(0, o);
+}
+// node_modules/@dfinity/principal/lib/esm/utils/getCrc.js
+var lookUpTable2 = new Uint32Array([
+    0,
+    1996959894,
+    3993919788,
+    2567524794,
+    124634137,
+    1886057615,
+    3915621685,
+    2657392035,
+    249268274,
+    2044508324,
+    3772115230,
+    2547177864,
+    162941995,
+    2125561021,
+    3887607047,
+    2428444049,
+    498536548,
+    1789927666,
+    4089016648,
+    2227061214,
+    450548861,
+    1843258603,
+    4107580753,
+    2211677639,
+    325883990,
+    1684777152,
+    4251122042,
+    2321926636,
+    335633487,
+    1661365465,
+    4195302755,
+    2366115317,
+    997073096,
+    1281953886,
+    3579855332,
+    2724688242,
+    1006888145,
+    1258607687,
+    3524101629,
+    2768942443,
+    901097722,
+    1119000684,
+    3686517206,
+    2898065728,
+    853044451,
+    1172266101,
+    3705015759,
+    2882616665,
+    651767980,
+    1373503546,
+    3369554304,
+    3218104598,
+    565507253,
+    1454621731,
+    3485111705,
+    3099436303,
+    671266974,
+    1594198024,
+    3322730930,
+    2970347812,
+    795835527,
+    1483230225,
+    3244367275,
+    3060149565,
+    1994146192,
+    31158534,
+    2563907772,
+    4023717930,
+    1907459465,
+    112637215,
+    2680153253,
+    3904427059,
+    2013776290,
+    251722036,
+    2517215374,
+    3775830040,
+    2137656763,
+    141376813,
+    2439277719,
+    3865271297,
+    1802195444,
+    476864866,
+    2238001368,
+    4066508878,
+    1812370925,
+    453092731,
+    2181625025,
+    4111451223,
+    1706088902,
+    314042704,
+    2344532202,
+    4240017532,
+    1658658271,
+    366619977,
+    2362670323,
+    4224994405,
+    1303535960,
+    984961486,
+    2747007092,
+    3569037538,
+    1256170817,
+    1037604311,
+    2765210733,
+    3554079995,
+    1131014506,
+    879679996,
+    2909243462,
+    3663771856,
+    1141124467,
+    855842277,
+    2852801631,
+    3708648649,
+    1342533948,
+    654459306,
+    3188396048,
+    3373015174,
+    1466479909,
+    544179635,
+    3110523913,
+    3462522015,
+    1591671054,
+    702138776,
+    2966460450,
+    3352799412,
+    1504918807,
+    783551873,
+    3082640443,
+    3233442989,
+    3988292384,
+    2596254646,
+    62317068,
+    1957810842,
+    3939845945,
+    2647816111,
+    81470997,
+    1943803523,
+    3814918930,
+    2489596804,
+    225274430,
+    2053790376,
+    3826175755,
+    2466906013,
+    167816743,
+    2097651377,
+    4027552580,
+    2265490386,
+    503444072,
+    1762050814,
+    4150417245,
+    2154129355,
+    426522225,
+    1852507879,
+    4275313526,
+    2312317920,
+    282753626,
+    1742555852,
+    4189708143,
+    2394877945,
+    397917763,
+    1622183637,
+    3604390888,
+    2714866558,
+    953729732,
+    1340076626,
+    3518719985,
+    2797360999,
+    1068828381,
+    1219638859,
+    3624741850,
+    2936675148,
+    906185462,
+    1090812512,
+    3747672003,
+    2825379669,
+    829329135,
+    1181335161,
+    3412177804,
+    3160834842,
+    628085408,
+    1382605366,
+    3423369109,
+    3138078467,
+    570562233,
+    1426400815,
+    3317316542,
+    2998733608,
+    733239954,
+    1555261956,
+    3268935591,
+    3050360625,
+    752459403,
+    1541320221,
+    2607071920,
+    3965973030,
+    1969922972,
+    40735498,
+    2617837225,
+    3943577151,
+    1913087877,
+    83908371,
+    2512341634,
+    3803740692,
+    2075208622,
+    213261112,
+    2463272603,
+    3855990285,
+    2094854071,
+    198958881,
+    2262029012,
+    4057260610,
+    1759359992,
+    534414190,
+    2176718541,
+    4139329115,
+    1873836001,
+    414664567,
+    2282248934,
+    4279200368,
+    1711684554,
+    285281116,
+    2405801727,
+    4167216745,
+    1634467795,
+    376229701,
+    2685067896,
+    3608007406,
+    1308918612,
+    956543938,
+    2808555105,
+    3495958263,
+    1231636301,
+    1047427035,
+    2932959818,
+    3654703836,
+    1088359270,
+    936918e3,
+    2847714899,
+    3736837829,
+    1202900863,
+    817233897,
+    3183342108,
+    3401237130,
+    1404277552,
+    615818150,
+    3134207493,
+    3453421203,
+    1423857449,
+    601450431,
+    3009837614,
+    3294710456,
+    1567103746,
+    711928724,
+    3020668471,
+    3272380065,
+    1510334235,
+    755167117
+]);
+function getCrc322(buf) {
+    const b = new Uint8Array(buf);
+    let crc = -1;
+    for(let i = 0; i < b.length; i++){
+        const byte = b[i];
+        const t = (byte ^ crc) & 255;
+        crc = lookUpTable2[t] ^ crc >>> 8;
+    }
+    return (crc ^ -1) >>> 0;
+}
+// node_modules/@dfinity/principal/lib/esm/utils/sha224.js
+function sha2243(data) {
+    return sha224.create().update(new Uint8Array(data)).digest();
+}
+// node_modules/@dfinity/principal/lib/esm/index.js
+var JSON_KEY_PRINCIPAL2 = "__principal__";
+var SELF_AUTHENTICATING_SUFFIX2 = 2;
+var ANONYMOUS_SUFFIX2 = 4;
+var MANAGEMENT_CANISTER_PRINCIPAL_HEX_STR2 = "aaaaa-aa";
+var fromHexString2 = (hexString)=>{
+    var _a;
+    return new Uint8Array(((_a = hexString.match(/.{1,2}/g)) !== null && _a !== void 0 ? _a : []).map((byte)=>parseInt(byte, 16)));
+};
+var toHexString2 = (bytes2)=>bytes2.reduce((str, byte)=>str + byte.toString(16).padStart(2, "0"), "");
+var Principal4 = class _Principal {
+    static anonymous() {
+        return new this(new Uint8Array([
+            ANONYMOUS_SUFFIX2
+        ]));
+    }
+    /**
+   * Utility method, returning the principal representing the management canister, decoded from the hex string `'aaaaa-aa'`
+   * @returns {Principal} principal of the management canister
+   */ static managementCanister() {
+        return this.fromHex(MANAGEMENT_CANISTER_PRINCIPAL_HEX_STR2);
+    }
+    static selfAuthenticating(publicKey) {
+        const sha = sha2243(publicKey);
+        return new this(new Uint8Array([
+            ...sha,
+            SELF_AUTHENTICATING_SUFFIX2
+        ]));
+    }
+    static from(other) {
+        if (typeof other === "string") {
+            return _Principal.fromText(other);
+        } else if (Object.getPrototypeOf(other) === Uint8Array.prototype) {
+            return new _Principal(other);
+        } else if (typeof other === "object" && other !== null && other._isPrincipal === true) {
+            return new _Principal(other._arr);
+        }
+        throw new Error(`Impossible to convert ${JSON.stringify(other)} to Principal.`);
+    }
+    static fromHex(hex) {
+        return new this(fromHexString2(hex));
+    }
+    static fromText(text2) {
+        let maybePrincipal = text2;
+        if (text2.includes(JSON_KEY_PRINCIPAL2)) {
+            const obj = JSON.parse(text2);
+            if (JSON_KEY_PRINCIPAL2 in obj) {
+                maybePrincipal = obj[JSON_KEY_PRINCIPAL2];
+            }
+        }
+        const canisterIdNoDash = maybePrincipal.toLowerCase().replace(/-/g, "");
+        let arr = decode4(canisterIdNoDash);
+        arr = arr.slice(4, arr.length);
+        const principal = new this(arr);
+        if (principal.toText() !== maybePrincipal) {
+            throw new Error(`Principal "${principal.toText()}" does not have a valid checksum (original value "${maybePrincipal}" may not be a valid Principal ID).`);
+        }
+        return principal;
+    }
+    static fromUint8Array(arr) {
+        return new this(arr);
+    }
+    isAnonymous() {
+        return this._arr.byteLength === 1 && this._arr[0] === ANONYMOUS_SUFFIX2;
+    }
+    toUint8Array() {
+        return this._arr;
+    }
+    toHex() {
+        return toHexString2(this._arr).toUpperCase();
+    }
+    toText() {
+        const checksumArrayBuf = new ArrayBuffer(4);
+        const view = new DataView(checksumArrayBuf);
+        view.setUint32(0, getCrc322(this._arr));
+        const checksum = new Uint8Array(checksumArrayBuf);
+        const bytes2 = Uint8Array.from(this._arr);
+        const array = new Uint8Array([
+            ...checksum,
+            ...bytes2
+        ]);
+        const result = encode4(array);
+        const matches = result.match(/.{1,5}/g);
+        if (!matches) {
+            throw new Error();
+        }
+        return matches.join("-");
+    }
+    toString() {
+        return this.toText();
+    }
+    /**
+   * Serializes to JSON
+   * @returns {JsonnablePrincipal} a JSON object with a single key, {@link JSON_KEY_PRINCIPAL}, whose value is the principal as a string
+   */ toJSON() {
+        return {
+            [JSON_KEY_PRINCIPAL2]: this.toText()
+        };
+    }
+    /**
+   * Utility method taking a Principal to compare against. Used for determining canister ranges in certificate verification
+   * @param {Principal} other - a {@link Principal} to compare
+   * @returns {'lt' | 'eq' | 'gt'} `'lt' | 'eq' | 'gt'` a string, representing less than, equal to, or greater than
+   */ compareTo(other) {
+        for(let i = 0; i < Math.min(this._arr.length, other._arr.length); i++){
+            if (this._arr[i] < other._arr[i]) return "lt";
+            else if (this._arr[i] > other._arr[i]) return "gt";
+        }
+        if (this._arr.length < other._arr.length) return "lt";
+        if (this._arr.length > other._arr.length) return "gt";
+        return "eq";
+    }
+    /**
+   * Utility method checking whether a provided Principal is less than or equal to the current one using the {@link Principal.compareTo} method
+   * @param other a {@link Principal} to compare
+   * @returns {boolean} boolean
+   */ ltEq(other) {
+        const cmp = this.compareTo(other);
+        return cmp == "lt" || cmp == "eq";
+    }
+    /**
+   * Utility method checking whether a provided Principal is greater than or equal to the current one using the {@link Principal.compareTo} method
+   * @param other a {@link Principal} to compare
+   * @returns {boolean} boolean
+   */ gtEq(other) {
+        const cmp = this.compareTo(other);
+        return cmp == "gt" || cmp == "eq";
+    }
+    constructor(_arr){
+        this._arr = _arr;
+        this._isPrincipal = true;
+    }
+};
+// backend/types.ts
+var User = Record2({
+    id: text,
+    principal: Principal3,
+    name: text,
+    email: text,
+    address: text,
+    birth: nat64,
+    phone: text,
+    idCard: blob,
+    createdAt: nat64,
+    updatedAt: Opt2(nat64)
+});
+var UserPayload = Record2({
+    name: text,
+    email: text,
+    address: text,
+    birth: nat64,
+    phone: text,
+    idCard: blob
+});
 // backend/index.ts
-var message = "";
+var usersStore = StableBTreeMap(1);
 var backend_default = Canister({
-    // Query calls complete quickly because they do not go through consensus
-    getMessage: query([], text, ()=>{
-        return message;
+    connectUser: update([
+        UserPayload
+    ], Result(User, text), (payload)=>{
+        try {
+            if (ic.caller().isAnonymous()) {
+                return Result.Err("caller is anonymous");
+            }
+            const duplicatedUser = usersStore.values().filter((c)=>c.principal === ic.caller() || c.email === payload.email)[0];
+            if (duplicatedUser.principal === ic.caller()) {
+                return Result.Ok(duplicatedUser);
+            }
+            if (duplicatedUser.email === payload.email) {
+                return Result.Err("Email already registered!");
+            }
+            const newUser = _extends({
+                id: v4_default(),
+                principal: ic.caller(),
+                createdAt: ic.time(),
+                updatedAt: None
+            }, payload);
+            usersStore.insert(newUser.id, newUser);
+            return Result.Ok(newUser);
+        } catch (err) {
+            return Result.Err("Somethin went wrong with message [" + err + "]");
+        }
     }),
-    // Update calls take a few seconds to complete
-    // This is because they persist state changes and go through consensus
-    setMessage: update([
-        text
-    ], Void, (newMessage)=>{
-        message = newMessage;
+    getUsers: query([], Result(Vec2(User), text), ()=>{
+        const users = usersStore.values();
+        if (users.length == 0) {
+            return Result.Err("Software is empty");
+        }
+        return Result.Ok(users);
     })
 });
 // <stdin>

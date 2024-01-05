@@ -1,1 +1,1 @@
-{"canister_methods":{"queries":[{"name":"getMessage","composite":false}],"updates":[{"name":"setMessage"}],"callbacks":{}}}
+{"canister_methods":{"queries":[{"name":"getUsers","composite":false}],"updates":[{"name":"connectUser"}],"callbacks":{}}}

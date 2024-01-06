@@ -253,7 +253,7 @@ export default function Home() {
         </section>{" "}
         <section>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-            <div className="bg-gray-900 shadow-md shadow-black rounded-lg p-5">
+            <div className="bg-zinc-900 rounded-lg p-5">
               <div className="relative h-56 w-full">
                 <Image
                   className="rounded-lg"
@@ -293,7 +293,7 @@ export default function Home() {
               </p>
               <p className="text-cyan-400 text-2xl">30.20 ETH</p>
             </div>
-            <div className="bg-gray-900 shadow-md shadow-black rounded-lg p-5">
+            <div className="bg-zinc-900 rounded-lg p-5">
               <div className="relative h-56 w-full">
                 <Image
                   className="rounded-lg"
@@ -333,7 +333,7 @@ export default function Home() {
               </p>
               <p className="text-cyan-400 text-2xl">30.20 ETH</p>
             </div>
-            <div className="bg-gray-900 shadow-md shadow-black rounded-lg p-5">
+            <div className="bg-zinc-900 rounded-lg p-5">
               <div className="relative h-56 w-full">
                 <Image
                   className="rounded-lg"
@@ -373,7 +373,7 @@ export default function Home() {
               </p>
               <p className="text-cyan-400 text-2xl">30.20 ETH</p>
             </div>
-            <div className="bg-gray-900 shadow-md shadow-black rounded-lg p-5">
+            <div className="bg-zinc-900 rounded-lg p-5">
               <div className="relative h-56 w-full">
                 <Image
                   className="rounded-lg"
@@ -413,7 +413,7 @@ export default function Home() {
               </p>
               <p className="text-cyan-400 text-2xl">30.20 ETH</p>
             </div>
-            <div className="bg-gray-900 shadow-md shadow-black rounded-lg p-5">
+            <div className="bg-zinc-900 rounded-lg p-5">
               <div className="relative h-56 w-full">
                 <Image
                   className="rounded-lg"
@@ -453,7 +453,7 @@ export default function Home() {
               </p>
               <p className="text-cyan-400 text-2xl">30.20 ETH</p>
             </div>
-            <div className="bg-gray-900 shadow-md shadow-black rounded-lg p-5">
+            <div className="bg-zinc-900 rounded-lg p-5">
               <div className="relative h-56 w-full">
                 <Image
                   className="rounded-lg"
@@ -493,7 +493,7 @@ export default function Home() {
               </p>
               <p className="text-cyan-400 text-2xl">30.20 ETH</p>
             </div>
-            <div className="bg-gray-900 shadow-md shadow-black rounded-lg p-5">
+            <div className="bg-zinc-900 rounded-lg p-5">
               <div className="relative h-56 w-full">
                 <Image
                   className="rounded-lg"
@@ -533,7 +533,7 @@ export default function Home() {
               </p>
               <p className="text-cyan-400 text-2xl">30.20 ETH</p>
             </div>
-            <div className="bg-gray-900 shadow-md shadow-black rounded-lg p-5">
+            <div className="bg-zinc-900 rounded-lg p-5">
               <div className="relative h-56 w-full">
                 <Image
                   className="rounded-lg"

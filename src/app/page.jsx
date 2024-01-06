@@ -170,8 +170,11 @@ export default function Home() {
                 className="rounded-lg"
                 src="/images/img1.png"
                 alt="Image"
-                layout="fill"
+                fill
               />
+              <span className="absolute top-3 left-3 bg-orange-400 py-1 px-3 rounded-lg text-white">
+                Used Home
+              </span>
             </div>
             <h3 className="text-white text-2xl mt-3 mb-2">
               Rumah Full-Furnish di Jaksel
@@ -207,8 +210,11 @@ export default function Home() {
                 className="rounded-lg"
                 src="/images/img1.png"
                 alt="Image"
-                layout="fill"
+                fill
               />
+              <span className="absolute top-3 left-3 bg-orange-400 py-1 px-3 rounded-lg text-white">
+                Used Home
+              </span>
             </div>
             <h3 className="text-white text-2xl mt-3 mb-2">
               Rumah Full-Furnish di Jaksel
@@ -244,8 +250,11 @@ export default function Home() {
                 className="rounded-lg"
                 src="/images/img1.png"
                 alt="Image"
-                layout="fill"
+                fill
               />
+              <span className="absolute top-3 left-3 bg-orange-400 py-1 px-3 rounded-lg text-white">
+                Used Home
+              </span>
             </div>
             <h3 className="text-white text-2xl mt-3 mb-2">
               Rumah Full-Furnish di Jaksel
@@ -281,8 +290,11 @@ export default function Home() {
                 className="rounded-lg"
                 src="/images/img1.png"
                 alt="Image"
-                layout="fill"
+                fill
               />
+              <span className="absolute top-3 left-3 bg-orange-400 py-1 px-3 rounded-lg text-white">
+                Used Home
+              </span>
             </div>
             <h3 className="text-white text-2xl mt-3 mb-2">
               Rumah Full-Furnish di Jaksel
@@ -318,8 +330,11 @@ export default function Home() {
                 className="rounded-lg"
                 src="/images/img1.png"
                 alt="Image"
-                layout="fill"
+                fill
               />
+              <span className="absolute top-3 left-3 bg-orange-400 py-1 px-3 rounded-lg text-white">
+                Used Home
+              </span>
             </div>
             <h3 className="text-white text-2xl mt-3 mb-2">
               Rumah Full-Furnish di Jaksel
@@ -355,8 +370,11 @@ export default function Home() {
                 className="rounded-lg"
                 src="/images/img1.png"
                 alt="Image"
-                layout="fill"
+                fill
               />
+              <span className="absolute top-3 left-3 bg-orange-400 py-1 px-3 rounded-lg text-white">
+                Used Home
+              </span>
             </div>
             <h3 className="text-white text-2xl mt-3 mb-2">
               Rumah Full-Furnish di Jaksel
@@ -392,8 +410,51 @@ export default function Home() {
                 className="rounded-lg"
                 src="/images/img1.png"
                 alt="Image"
-                layout="fill"
+                fill
               />
+              <span className="absolute top-3 left-3 bg-orange-400 py-1 px-3 rounded-lg text-white">
+                Used Home
+              </span>
+            </div>
+            <h3 className="text-white text-2xl mt-3 mb-2">
+              Rumah Full-Furnish di Jaksel
+            </h3>
+            <p className="text-gray-500 flex flex-row mb-3">
+              <Image
+                className="mr-2"
+                src="/svg/point.svg"
+                alt="Point"
+                width={15}
+                height={15}
+              />
+              JL.Jeruk, Jakarta Selatan
+            </p>
+            <Image
+              src="/svg/break-line.svg"
+              alt="Break Line"
+              width={500}
+              height={25}
+            />
+            <p className="text-gray-500 flex flex-row items-center my-3">
+              <span>3842 sq ft</span>
+              <span class="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
+              <span>4 Beds</span>
+              <span class="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
+              <span>3 Baths</span>
+            </p>
+            <p className="text-cyan-400 text-2xl">30.20 ETH</p>
+          </div>
+          <div className="bg-gray-900 shadow-md shadow-black rounded-lg p-5">
+            <div className="relative h-56 w-full">
+              <Image
+                className="rounded-lg"
+                src="/images/img1.png"
+                alt="Image"
+                fill
+              />
+              <span className="absolute top-3 left-3 bg-orange-400 py-1 px-3 rounded-lg text-white">
+                Used Home
+              </span>
             </div>
             <h3 className="text-white text-2xl mt-3 mb-2">
               Rumah Full-Furnish di Jaksel

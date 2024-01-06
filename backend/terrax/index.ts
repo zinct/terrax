@@ -1,25 +1,32 @@
 import { v4 as uuidv4 } from "uuid";
-import { Canister, ic, None, Null, Opt, Principal, query, Result, Some, StableBTreeMap, text, update, Vec, Void } from "azle";
+import { Canister, ic, nat8, None, Null, Opt, Principal, query, Result, Some, StableBTreeMap, text, update, Vec, Void } from "azle";
 
-import { User, UserPayload } from "./types";
+import { ErrorResponse, User, UserPayload } from "./types";
 
 const usersStore = StableBTreeMap<text, User>(1);
 
 export default Canister({
-  connectUser: update([UserPayload], Result(User, text), (payload) => {
+  whoAmI: query([], text, () => {
+    return ic.caller().toString();
+  }),
+
+  registerUser: update([UserPayload], Result(User, ErrorResponse), (payload) => {
     try {
       if (ic.caller().isAnonymous()) {
+        return Result.Err({
+          code: 400,
+          message: "Anonymous is not allowed!",
+        });
       }
 
-      // const duplicatedUser: User = usersStore.values().filter((c: User) => c.principal === ic.caller() || c.email === payload.email)[0];
+      const duplicatedUser: User = usersStore.values().filter((c: User) => c.principal === ic.caller())[0];
 
-      // if (duplicatedUser.principal === ic.caller()) {
-      //   return Result.Ok(duplicatedUser);
-      // }
-
-      // if (duplicatedUser.email === payload.email) {
-      //   return Result.Err("Email already registered!");
-      // }
+      if (duplicatedUser) {
+        return Result.Err({
+          code: 400,
+          message: "User already registered!",
+        });
+      }
 
       const newUser: User = {
         id: uuidv4(),
@@ -30,19 +37,51 @@ export default Canister({
       };
 
       usersStore.insert(newUser.id, newUser);
-
       return Result.Ok(newUser);
     } catch (err) {
-      return Result.Err("Somethin went wrong with message [" + err + "]");
+      return Result.Err({
+        code: 500,
+        message: "Internal server error with message " + err,
+      });
     }
   }),
 
-  getUsers: query([], Result(Vec(User), text), () => {
-    const users = usersStore.values();
-    if (users.length == 0) {
-      return Result.Err("Software is empty");
-    }
+  connectUser: query([], Result(User, ErrorResponse), () => {
+    try {
+      if (ic.caller().isAnonymous()) {
+        return Result.Err({
+          code: 400,
+          message: "Anonymous is not allowed!",
+        });
+      }
 
-    return Result.Ok(users);
+      const user: User = usersStore.values().filter((c: User) => c.principal === ic.caller())[0];
+
+      if (user) {
+        return Result.Ok(user);
+      }
+
+      return Result.Err({
+        code: 400,
+        message: "Principal not registered!",
+      });
+    } catch (err) {
+      return Result.Err({
+        code: 500,
+        message: "Internal server error with message " + err,
+      });
+    }
+  }),
+
+  getUsers: query([], Result(Vec(User), ErrorResponse), () => {
+    try {
+      const users = usersStore.values();
+      return Result.Ok(users);
+    } catch (err) {
+      return Result.Err({
+        code: 500,
+        message: "Internal server error with message " + err,
+      });
+    }
   }),
 });

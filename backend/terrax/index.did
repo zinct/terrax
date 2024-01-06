@@ -1,4 +1,6 @@
 service: () -> {
-    connectUser: (record {name:text; email:text; address:text; birth:nat64; idCard:vec nat8; phone:text}) -> (variant {Ok:record {id:text; "principal":principal; name:text; createdAt:nat64; email:text; updatedAt:opt nat64; address:text; birth:nat64; idCard:vec nat8; phone:text}; Err:text});
-    getUsers: () -> (variant {Ok:vec record {id:text; "principal":principal; name:text; createdAt:nat64; email:text; updatedAt:opt nat64; address:text; birth:nat64; idCard:vec nat8; phone:text}; Err:text}) query;
+    connectUser: () -> (variant {Ok:record {id:text; "principal":principal; name:text; createdAt:nat64; email:text; updatedAt:opt nat64; address:text; birth:nat64; idCard:vec nat8; phone:text}; Err:record {code:nat16; message:text}}) query;
+    getUsers: () -> (variant {Ok:vec record {id:text; "principal":principal; name:text; createdAt:nat64; email:text; updatedAt:opt nat64; address:text; birth:nat64; idCard:vec nat8; phone:text}; Err:record {code:nat16; message:text}}) query;
+    registerUser: (record {name:text; email:text; address:text; birth:nat64; idCard:vec nat8; phone:text}) -> (variant {Ok:record {id:text; "principal":principal; name:text; createdAt:nat64; email:text; updatedAt:opt nat64; address:text; birth:nat64; idCard:vec nat8; phone:text}; Err:record {code:nat16; message:text}});
+    whoAmI: () -> (text) query;
 }

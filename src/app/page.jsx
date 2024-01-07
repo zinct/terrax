@@ -3,65 +3,25 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main className="relative">
-      <div className="absolute z-0 -top-32">
+      <div className="absolute z-0 top-96">
         <svg
-          className="max-w-full"
           xmlns="http://www.w3.org/2000/svg"
-          width="1410"
-          height="1267"
-          viewBox="0 0 1410 1267"
+          width="1365"
+          height="1785"
+          viewBox="0 0 1365 1785"
           fill="none"
         >
-          <g filter="url(#filter0_f_58_1586)">
+          <g filter="url(#filter0_f_58_1103)">
             <path
-              d="M519.161 337.533C710.263 212.862 710.799 422.508 708.927 515.081L149.438 566.382C125.529 446.535 154.631 222.204 221.317 225.751C392.176 234.841 348.118 449.119 519.161 337.533Z"
+              d="M444.333 862.685C697.293 746.314 670.57 981.129 656.158 1084.56L-43.4536 1074C-57.4074 936.891 7.93945 689.233 90.0648 701.312C300.481 732.26 217.925 966.841 444.333 862.685Z"
               fill="#007397"
             />
           </g>
           <defs>
             <filter
-              id="filter0_f_58_1586"
-              x="-558.836"
-              y="-474.29"
-              width="1968.07"
-              height="1740.67"
-              filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
-            >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
-              <feBlend
-                mode="normal"
-                in="SourceGraphic"
-                in2="BackgroundImageFix"
-                result="shape"
-              />
-              <feGaussianBlur
-                stdDeviation="350"
-                result="effect1_foregroundBlur_58_1586"
-              />
-            </filter>
-          </defs>
-        </svg>
-      </div>
-      <div className="absolute z-0 -bottom-10">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="1280"
-          height="1280"
-          viewBox="0 0 1280 1280"
-          fill="none"
-        >
-          <g filter="url(#filter0_f_58_1424)">
-            <path
-              d="M532.333 862.685C785.293 746.314 758.57 981.129 744.158 1084.56L44.5466 1074C30.5928 936.891 95.9397 689.233 178.065 701.312C388.482 732.26 305.925 966.841 532.333 862.685Z"
-              fill="#007397"
-            />
-          </g>
-          <defs>
-            <filter
-              id="filter0_f_58_1424"
-              x="-657.34"
-              y="0.886169"
+              id="filter0_f_58_1103"
+              x="-745.34"
+              y="0.88623"
               width="2110.12"
               height="1783.67"
               filterUnits="userSpaceOnUse"
@@ -76,7 +36,46 @@ export default function Home() {
               />
               <feGaussianBlur
                 stdDeviation="350"
-                result="effect1_foregroundBlur_58_1424"
+                result="effect1_foregroundBlur_58_1103"
+              />
+            </filter>
+          </defs>
+        </svg>
+      </div>
+      <div className="absolute z-0 bottom-16 right-0">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="1428"
+          height="1473"
+          viewBox="0 0 1428 1473"
+          fill="none"
+        >
+          <g filter="url(#filter0_f_58_1106)">
+            <path
+              d="M949.25 822.204C843.304 627.46 1125.7 715.165 1249.72 755.463L1137.6 1193.78C968.515 1161.23 675.945 1045.27 702.317 997.089C769.884 873.637 1044.08 996.506 949.25 822.204Z"
+              fill="#007397"
+            />
+          </g>
+          <defs>
+            <filter
+              id="filter0_f_58_1106"
+              x="0.648438"
+              y="0.520996"
+              width="1949.07"
+              height="1893.26"
+              filterUnits="userSpaceOnUse"
+              color-interpolation-filters="sRGB"
+            >
+              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feBlend
+                mode="normal"
+                in="SourceGraphic"
+                in2="BackgroundImageFix"
+                result="shape"
+              />
+              <feGaussianBlur
+                stdDeviation="350"
+                result="effect1_foregroundBlur_58_1106"
               />
             </filter>
           </defs>
@@ -94,8 +93,8 @@ export default function Home() {
           </div>
           <nav>
             <ul className="flex flex-row items-center justify-center space-x-16 text-white">
-              <li className="text-gray-300">Home</li>
-              <li className="font-bold text-white border-b-2">Buy</li>
+              <li className="font-bold border-b-white border-b-2">Home</li>
+              <li className="text-gray-300">Buy</li>
               <li className="text-gray-300">Sell</li>
               <li className="text-gray-300">Asset Manager</li>
             </ul>
@@ -111,57 +110,147 @@ export default function Home() {
             </button>
           </div>
         </header>
-        <section className="flex flex-row items-center justify-between relative my-24">
+        <section className="flex flex-row items-center justify-between relative">
+          <Image
+            src="/svg/pattern.svg"
+            width={800}
+            height={700}
+            alt="Pattern"
+            className="absolute -top-10 -right-10 z-0"
+          />
           <div className="flex-1">
             <h1 className="text-white font-bold text-7xl">
               <span className="bg-gradient-to-r from-cyan-400 to-orange-400 bg-clip-text text-transparent">
-                Search and Buy
+                Secure and Easy
               </span>{" "}
-              Secure
-              <br /> Property or Land Here!
+              Property Transactions
+              <div className="relative h-20">
+                <Image
+                  src="/svg/line.svg"
+                  width={400}
+                  height={100}
+                  alt="Line"
+                  className="absolute top-0 -right-5"
+                />
+              </div>
             </h1>
             <p className="text-gray-500 text-lg">
               With blockchain technology, now you can do property transactions
               effortlessly and completed within 7 days or less.
             </p>
-            <div className="mt-10 space-x-5 flex">
-              <div className="flex">
-                <input
-                  className="py-3 px-5 w-80 rounded-l-lg"
-                  type="text"
-                  placeholder="What are you looking for?"
-                ></input>
-                <button className="font-bold rounded-r-lg bg-white p-3 px-5">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="25"
-                    viewBox="0 0 24 25"
-                    fill="none"
-                  >
-                    <path
-                      d="M11.552 22.25C5.9254 22.25 1.34448 17.65 1.34448 12C1.34448 6.35 5.9254 1.75 11.552 1.75C17.1785 1.75 21.7594 6.35 21.7594 12C21.7594 17.65 17.1785 22.25 11.552 22.25ZM11.552 3.25C6.74199 3.25 2.83826 7.18 2.83826 12C2.83826 16.82 6.74199 20.75 11.552 20.75C16.3619 20.75 20.2656 16.82 20.2656 12C20.2656 7.18 16.3619 3.25 11.552 3.25Z"
-                      fill="#6F6F73"
-                    />
-                    <path
-                      d="M22.0088 23.2499C21.8196 23.2499 21.6304 23.1799 21.481 23.0299L19.4893 21.0299C19.2005 20.7399 19.2005 20.2599 19.4893 19.9699C19.7781 19.6799 20.2561 19.6799 20.5449 19.9699L22.5366 21.9699C22.8254 22.2599 22.8254 22.7399 22.5366 23.0299C22.3872 23.1799 22.198 23.2499 22.0088 23.2499Z"
-                      fill="#6F6F73"
-                    />
-                  </svg>
-                </button>
-              </div>
-              <button className="text-white font-bold rounded-lg bg-gradient-to-r from-cyan-400 to-orange-400 py-3 px-5">
-                Used Home
+            <div className="mt-10">
+              <button className="bg-cyan-400 px-5 py-3 rounded-lg mr-10">
+                Explore
               </button>
-              <button className="text-white font-bold rounded-lg border-2 border-cyan-400 p-3 px-5">
-                New Home
-              </button>
-              <button className="text-white font-bold rounded-lg border-2 border-cyan-400 p-3 px-5">
-                Land
+              <button className="text-white relative">
+                Go To Market{" "}
+                <Image
+                  src="/svg/arrow-btn.svg"
+                  width={50}
+                  height={10}
+                  alt="Line"
+                  className="absolute top-2 -right-16"
+                />
               </button>
             </div>
           </div>
+          <div className="flex-1">
+            <div className="relative">
+              <Image
+                src="/svg/card-promotion.svg"
+                width={600}
+                height={500}
+                alt="Card Promotion"
+                className="z-10"
+              />
+            </div>
+            <div className="flex flex-row items-center justify-center space-x-20">
+              <div>
+                <h2 className="text-white font-bold text-4xl">
+                  56K<span className="text-cyan-300">+</span>
+                </h2>
+                <p className="text-white">Listings</p>
+              </div>
+              <div>
+                <h2 className="text-white font-bold text-4xl">
+                  18K<span className="text-cyan-300">+</span>
+                </h2>
+                <p className="text-white">Property Sold</p>
+              </div>
+              <div>
+                <h2 className="text-white font-bold text-4xl">
+                  10K<span className="text-cyan-300">+</span>
+                </h2>
+                <p className="text-white">Customer Satisfied</p>
+              </div>
+            </div>
+          </div>
         </section>
+        <section>
+          <div className="flex flex-row items-center justify-between">
+            <div className="flex flex-row items-center justify-center space-x-6">
+              <Image
+                src="/svg/lock.svg"
+                width={25}
+                height={25}
+                alt="Lock Icon"
+              />
+              <h2 className="text-white text-3xl">Blockchain Security</h2>
+              <p className="text-gray-500 text-lg">
+                Our platform has a strict security <br />
+                system that is safe from name theft.
+              </p>
+            </div>
+            <div className="flex-1">
+              <Image
+                className="m-auto"
+                src="/svg/star-light.svg"
+                width={300}
+                height={150}
+                alt="Start Light"
+              />
+            </div>
+          </div>
+          <div className="flex flex-row items-center justify-between">
+            <div className="flex-1">
+              <Image
+                className="m-auto "
+                src="/svg/star-light.svg"
+                width={300}
+                height={150}
+                alt="Start Light"
+              />
+            </div>
+            <div className="flex flex-row items-center justify-center space-x-6">
+              <Image
+                src="/svg/lock.svg"
+                width={25}
+                height={25}
+                alt="Lock Icon"
+              />
+              <h2 className="text-white text-3xl">E-Certificate</h2>
+              <p className="text-gray-500 text-lg">
+                We ensures ease and trust through e-certificates,
+                <br /> making transactions straightforward and worry-free
+              </p>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div className="flex flex-row items-center justify-between my-28">
+            <h2 className="text-white font-bold text-5xl">Near You</h2>
+            <button className="bg-cyan-400 px-5 py-3 rounded-lg flex flex-row items-center">
+              Explore{" "}
+              <Image
+                className="ml-5"
+                src="/svg/arrow-btn-dark.svg"
+                width={50}
+                height={10}
+                alt="Line"
+              />{" "}
+            </button>
+          </div>
+        </section>{" "}
         <section>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
             <div className="bg-zinc-900 rounded-lg p-5">
@@ -486,7 +575,48 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="mt-24">
+        <section className="flex flex-row items-center justify-between relative my-28">
+          <div className="flex-1">
+            <h1 className="text-white font-bold text-7xl">
+              Easy Process,
+              <br />
+              Easy Deal
+              <br />
+              <span className="bg-gradient-to-r from-cyan-400 to-orange-400 bg-clip-text text-transparent">
+                Easy Money
+              </span>
+              <div className="relative h-20">
+                <Image
+                  src="/svg/line.svg"
+                  width={400}
+                  height={100}
+                  alt="Line"
+                  className="absolute -top-3 left-26"
+                />
+              </div>
+            </h1>
+            <p className="text-gray-500 text-lg">
+              Sell your property and land with an easy and fast process.
+            </p>
+            <div className="mt-10">
+              <button className="bg-cyan-400 px-5 py-3 rounded-lg mr-10">
+                Sell Property Now
+              </button>
+            </div>
+          </div>
+          <div className="flex-1">
+            <div className="relative">
+              <Image
+                src="/svg/easy-setup.svg"
+                width={600}
+                height={500}
+                alt="Card Promotion"
+                className="z-10"
+              />
+            </div>
+          </div>
+        </section>
+        <section>
           <hr className="border-gray-800" />
           <p className="text-gray-500 my-10">
             (c) 2023 TerraX. all Right Reserved

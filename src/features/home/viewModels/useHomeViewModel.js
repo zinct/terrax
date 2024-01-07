@@ -14,9 +14,9 @@ export default function useHomeViewModel() {
         return;
       }
       await authClient.login({
-        identityProvider: "http://127.0.0.1:4943/?canisterId=be2us-64aaa-aaaaa-qaabq-cai",
+        identityProvider: "http://127.0.0.1:4943/?canisterId=bkyz2-fmaaa-aaaaa-qaaaq-cai",
         onSuccess: () => {
-          // handleAuthenticated(authClient);
+          handleAuthenticated(authClient);
         },
         onError: (err) => {
           // console.log("ERROR", err);
@@ -28,7 +28,6 @@ export default function useHomeViewModel() {
   async function handleAuthenticated(authClient) {
     try {
       const identity = await authClient.getIdentity();
-      const agent = new HttpAgent({ identity });
 
       const terraxActor = makeTerraxActor(identity);
 

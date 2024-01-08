@@ -1,11 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import useHomeViewModel from "@/features/home/viewModels/useHomeViewModel";
+import PrimaryNavbar from "@/core/components/navbar/PrimaryNavbar";
 
 const Page = () => {
-  const viewModel = useHomeViewModel();
-
   return (
     <main className="relative">
       <div className="absolute z-0 top-96">
@@ -37,28 +35,9 @@ const Page = () => {
         </svg>
       </div>
       <article className="container mx-auto">
-        <header className="flex flex-row items-center justify-between my-5">
-          <div>
-            <Image src="/svg/terrax.svg" width={117} height={42} alt="TerraX Logo" />
-          </div>
-          <nav>
-            <ul className="flex flex-row items-center justify-center space-x-16 text-white">
-              <li className="font-bold border-b-white border-b-2">Home</li>
-              <li className="text-gray-300">Buy</li>
-              <li className="text-gray-300">Sell</li>
-              <li className="text-gray-300">Asset Manager</li>
-            </ul>
-          </nav>
-          <div>
-            <button className="w-24 h-12 text-white font-bold rounded-lg bg-gradient-to-r from-cyan-400 to-orange-400 p-1">
-              <div className="h-full rounded-lg py-2" style={{ backgroundColor: "#000a14" }}>
-                Sign In
-              </div>
-            </button>
-          </div>
-        </header>
-        <section className="flex flex-row items-center justify-between relative">
-          <Image src="/svg/pattern.svg" width={800} height={700} alt="Pattern" className="absolute -top-10 -right-10 z-0" />
+        <PrimaryNavbar />
+        <Image src="/svg/pattern.svg" width={800} height={700} alt="Pattern" className="absolute right-[15rem]" />
+        <section className="flex flex-row items-center justify-between relative mt-14">
           <div className="flex-1">
             <h1 className="text-white font-bold text-7xl">
               <span className="bg-gradient-to-r from-cyan-400 to-orange-400 bg-clip-text text-transparent">Secure and Easy</span> Property Transactions
@@ -137,10 +116,10 @@ const Page = () => {
           </div>
         </section>{" "}
         <section>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-            <div className="bg-gray-900 shadow-md shadow-black rounded-lg p-5">
-              <div className="relative h-56 w-full">
-                <Image className="rounded-lg" src="/images/img1.png" alt="Image" fill />
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5">
+            <div className="bg-zinc-900 rounded-lg p-5">
+              <div className="relative h-[20rem] w-full">
+                <Image className="rounded-lg object-cover" src="/images/img1.png" alt="Image" fill />
                 <span className="absolute top-3 left-3 bg-orange-400 py-1 px-3 rounded-lg text-white">Used Home</span>
               </div>
               <h3 className="text-white text-2xl mt-3 mb-2">Rumah Full-Furnish di Jaksel</h3>
@@ -158,9 +137,9 @@ const Page = () => {
               </p>
               <p className="text-cyan-400 text-2xl">30.20 ETH</p>
             </div>
-            <div className="bg-gray-900 shadow-md shadow-black rounded-lg p-5">
-              <div className="relative h-56 w-full">
-                <Image className="rounded-lg" src="/images/img1.png" alt="Image" fill />
+            <div className="bg-zinc-900 rounded-lg p-5">
+              <div className="relative h-[20rem] w-full">
+                <Image className="rounded-lg object-cover" src="/images/img1.png" alt="Image" fill />
                 <span className="absolute top-3 left-3 bg-orange-400 py-1 px-3 rounded-lg text-white">Used Home</span>
               </div>
               <h3 className="text-white text-2xl mt-3 mb-2">Rumah Full-Furnish di Jaksel</h3>
@@ -178,9 +157,9 @@ const Page = () => {
               </p>
               <p className="text-cyan-400 text-2xl">30.20 ETH</p>
             </div>
-            <div className="bg-gray-900 shadow-md shadow-black rounded-lg p-5">
-              <div className="relative h-56 w-full">
-                <Image className="rounded-lg" src="/images/img1.png" alt="Image" fill />
+            <div className="bg-zinc-900 rounded-lg p-5">
+              <div className="relative h-[20rem] w-full">
+                <Image className="rounded-lg object-cover" src="/images/img1.png" alt="Image" fill />
                 <span className="absolute top-3 left-3 bg-orange-400 py-1 px-3 rounded-lg text-white">Used Home</span>
               </div>
               <h3 className="text-white text-2xl mt-3 mb-2">Rumah Full-Furnish di Jaksel</h3>
@@ -198,9 +177,9 @@ const Page = () => {
               </p>
               <p className="text-cyan-400 text-2xl">30.20 ETH</p>
             </div>
-            <div className="bg-gray-900 shadow-md shadow-black rounded-lg p-5">
-              <div className="relative h-56 w-full">
-                <Image className="rounded-lg" src="/images/img1.png" alt="Image" fill />
+            <div className="bg-zinc-900 rounded-lg p-5">
+              <div className="relative h-[20rem] w-full">
+                <Image className="rounded-lg object-cover" src="/images/img1.png" alt="Image" fill />
                 <span className="absolute top-3 left-3 bg-orange-400 py-1 px-3 rounded-lg text-white">Used Home</span>
               </div>
               <h3 className="text-white text-2xl mt-3 mb-2">Rumah Full-Furnish di Jaksel</h3>
@@ -218,9 +197,9 @@ const Page = () => {
               </p>
               <p className="text-cyan-400 text-2xl">30.20 ETH</p>
             </div>
-            <div className="bg-gray-900 shadow-md shadow-black rounded-lg p-5">
-              <div className="relative h-56 w-full">
-                <Image className="rounded-lg" src="/images/img1.png" alt="Image" fill />
+            <div className="bg-zinc-900 rounded-lg p-5">
+              <div className="relative h-[20rem] w-full">
+                <Image className="rounded-lg object-cover" src="/images/img1.png" alt="Image" fill />
                 <span className="absolute top-3 left-3 bg-orange-400 py-1 px-3 rounded-lg text-white">Used Home</span>
               </div>
               <h3 className="text-white text-2xl mt-3 mb-2">Rumah Full-Furnish di Jaksel</h3>
@@ -238,49 +217,9 @@ const Page = () => {
               </p>
               <p className="text-cyan-400 text-2xl">30.20 ETH</p>
             </div>
-            <div className="bg-gray-900 shadow-md shadow-black rounded-lg p-5">
-              <div className="relative h-56 w-full">
-                <Image className="rounded-lg" src="/images/img1.png" alt="Image" fill />
-                <span className="absolute top-3 left-3 bg-orange-400 py-1 px-3 rounded-lg text-white">Used Home</span>
-              </div>
-              <h3 className="text-white text-2xl mt-3 mb-2">Rumah Full-Furnish di Jaksel</h3>
-              <p className="text-gray-500 flex flex-row mb-3">
-                <Image className="mr-2" src="/svg/point.svg" alt="Point" width={15} height={15} />
-                JL.Jeruk, Jakarta Selatan
-              </p>
-              <Image src="/svg/break-line.svg" alt="Break Line" width={500} height={25} />
-              <p className="text-gray-500 flex flex-row items-center my-3">
-                <span>3842 sq ft</span>
-                <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
-                <span>4 Beds</span>
-                <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
-                <span>3 Baths</span>
-              </p>
-              <p className="text-cyan-400 text-2xl">30.20 ETH</p>
-            </div>
-            <div className="bg-gray-900 shadow-md shadow-black rounded-lg p-5">
-              <div className="relative h-56 w-full">
-                <Image className="rounded-lg" src="/images/img1.png" alt="Image" fill />
-                <span className="absolute top-3 left-3 bg-orange-400 py-1 px-3 rounded-lg text-white">Used Home</span>
-              </div>
-              <h3 className="text-white text-2xl mt-3 mb-2">Rumah Full-Furnish di Jaksel</h3>
-              <p className="text-gray-500 flex flex-row mb-3">
-                <Image className="mr-2" src="/svg/point.svg" alt="Point" width={15} height={15} />
-                JL.Jeruk, Jakarta Selatan
-              </p>
-              <Image src="/svg/break-line.svg" alt="Break Line" width={500} height={25} />
-              <p className="text-gray-500 flex flex-row items-center my-3">
-                <span>3842 sq ft</span>
-                <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
-                <span>4 Beds</span>
-                <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
-                <span>3 Baths</span>
-              </p>
-              <p className="text-cyan-400 text-2xl">30.20 ETH</p>
-            </div>
-            <div className="bg-gray-900 shadow-md shadow-black rounded-lg p-5">
-              <div className="relative h-56 w-full">
-                <Image className="rounded-lg" src="/images/img1.png" alt="Image" fill />
+            <div className="bg-zinc-900 rounded-lg p-5">
+              <div className="relative h-[20rem] w-full">
+                <Image className="rounded-lg object-cover" src="/images/img1.png" alt="Image" fill />
                 <span className="absolute top-3 left-3 bg-orange-400 py-1 px-3 rounded-lg text-white">Used Home</span>
               </div>
               <h3 className="text-white text-2xl mt-3 mb-2">Rumah Full-Furnish di Jaksel</h3>

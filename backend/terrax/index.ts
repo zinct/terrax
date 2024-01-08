@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { Canister, ic, nat16, query, Result, Some, StableBTreeMap, text, update, Vec } from "azle";
+import { Canister, ic, nat16, None, Null, query, Result, Some, StableBTreeMap, text, update, Vec } from "azle";
 
 import { ErrorResponse, Property, PropertyParams, PropertyPayload, User, UserPayload } from "./types";
 
@@ -11,7 +11,7 @@ export default Canister({
     return ic.caller().toString();
   }),
 
-  registerUser: update([UserPayload], Result(User, ErrorResponse), (payload) => {
+  connectUser: update([], Result(User, ErrorResponse), () => {
     try {
       if (ic.caller().isAnonymous()) {
         return Result.Err({
@@ -20,21 +20,25 @@ export default Canister({
         });
       }
 
-      const duplicatedUser: User = usersStore.values().filter((c: User) => c.principal === ic.caller())[0];
+      const user: User = usersStore.values().filter((c: User) => c.principal.toString() === ic.caller().toString())[0];
 
-      if (duplicatedUser) {
-        return Result.Err({
-          code: 400,
-          message: "User already registered",
-        });
+      if (user) {
+        return Result.Ok(user);
       }
 
       const newUser: User = {
         id: uuidv4(),
         principal: ic.caller(),
-        createdAt: ic.time(),
+        isRegistered: false,
+        createdAt: Some(ic.time()),
         updatedAt: Some(ic.time()),
-        ...payload,
+        name: None,
+        email: None,
+        address: None,
+        birth: None,
+        phone: None,
+        idCardImageURL: None,
+        profileImageURL: None,
       };
 
       usersStore.insert(newUser.id, newUser);
@@ -47,25 +51,43 @@ export default Canister({
     }
   }),
 
-  connectUser: query([], Result(User, ErrorResponse), () => {
+  registerUser: update([UserPayload], Result(User, ErrorResponse), (payload) => {
     try {
       if (ic.caller().isAnonymous()) {
         return Result.Err({
           code: 400,
-          message: "Anonymous is not allowed!",
+          message: "Anonymous is not allowed",
         });
       }
 
       const user: User = usersStore.values().filter((c: User) => c.principal === ic.caller())[0];
 
-      if (user) {
-        return Result.Ok(user);
+      if (user.isRegistered) {
+        return Result.Err({
+          code: 400,
+          message: "User already registered",
+        });
       }
 
-      return Result.Err({
-        code: 400,
-        message: "Principal not registered!",
-      });
+      const newUser: User = {
+        id: user.id,
+        isRegistered: true,
+        principal: ic.caller(),
+        createdAt: Some(ic.time()),
+        updatedAt: Some(ic.time()),
+
+        // Payload
+        name: Some(payload.name),
+        email: Some(payload.email),
+        address: Some(payload.address),
+        birth: Some(payload.birth),
+        phone: Some(payload.phone),
+        idCardImageURL: Some(payload.idCardImageURL),
+        profileImageURL: Some(payload.profileImageURL),
+      };
+
+      usersStore.insert(user.id, newUser);
+      return Result.Ok(newUser);
     } catch (err) {
       return Result.Err({
         code: 500,
@@ -148,6 +170,15 @@ export default Canister({
     const arr = propertiesStore.keys();
     for (let i = 0; i < arr.length; i++) {
       propertiesStore.remove(arr[i]);
+    }
+
+    return "ok";
+  }),
+
+  emptyUsers: update([], text, () => {
+    const arr = usersStore.keys();
+    for (let i = 0; i < arr.length; i++) {
+      usersStore.remove(arr[i]);
     }
 
     return "ok";

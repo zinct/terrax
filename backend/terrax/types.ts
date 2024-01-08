@@ -8,13 +8,15 @@ export const ErrorResponse = Record({
 export const User = Record({
   id: text,
   principal: Principal,
-  name: text,
-  email: text,
-  address: text,
-  birth: nat64,
-  phone: text,
-  idCard: blob,
-  createdAt: nat64,
+  name: Opt(text),
+  email: Opt(text),
+  address: Opt(text),
+  birth: Opt(nat64),
+  phone: Opt(text),
+  idCardImageURL: Opt(text),
+  profileImageURL: Opt(text),
+  isRegistered: bool,
+  createdAt: Opt(nat64),
   updatedAt: Opt(nat64),
 });
 
@@ -24,7 +26,8 @@ export const UserPayload = Record({
   address: text,
   birth: nat64,
   phone: text,
-  idCard: blob,
+  idCardImageURL: text,
+  profileImageURL: text,
 });
 
 const PropertyCategory = Variant({

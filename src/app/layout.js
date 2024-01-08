@@ -1,6 +1,8 @@
+import { AuthProvider } from "@/core/contexts/AuthContext";
 import "./globals.css";
 
 import localFont from "next/font/local";
+import NextTopLoader from "nextjs-toploader";
 
 // Font files can be colocated inside of `app`
 const Gilroy = localFont({
@@ -25,12 +27,17 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
-      </head>
-      <body className={Gilroy.className}>{children}</body>
-    </html>
+    <AuthProvider>
+      <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width" />
+        </head>
+        <body className={Gilroy.className}>
+          <NextTopLoader color="#FFFFFF" showSpinners={false} />
+          {children}
+        </body>
+      </html>
+    </AuthProvider>
   );
 }

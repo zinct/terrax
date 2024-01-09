@@ -1,10 +1,89 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function Home() {
+  const [show, setShow] = useState(false);
+
   return (
     <main className="relative">
+      <div
+        className={`fixed z-20 top-0 w-full h-full flex items-center justify-center backdrop-blur-sm ${
+          !show && "hidden"
+        }`}
+      >
+        <div className="bg-zinc-900 rounded-lg w-96 p-10 space-y-5 text-center relative">
+          <button
+            onClick={() => setShow(!show)}
+            className="absolute top-5 right-5"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M18 6L6 18"
+                stroke="#CCD2E3"
+                stroke-width="2"
+                stroke-linecap="square"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M6 6L18 18"
+                stroke="#CCD2E3"
+                stroke-width="2"
+                stroke-linecap="square"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          <div className="w-full flex justify-center">
+            <Image
+              src="/svg/terrax.svg"
+              width={100}
+              height={35}
+              alt="TerraX Logo"
+            />
+          </div>
+          <p className="text-white text-2xl font-bold">Start Offering</p>
+          <p className="text-gray-500">
+            Submit Your Best Offer for a Premium Deal!
+          </p>
+          <div className="flex flex-row items-center">
+            <div className="bg-zinc-800 px-5 py-3 rounded-l-lg text-white hover:bg-zinc-700">
+              <Image
+                className="inline-block mr-3"
+                src="/images/icp.png"
+                width={25}
+                height={25}
+                alt="ICP Logo"
+              />
+            </div>
+            <input
+              className="py-3 px-5 w-full rounded-r-lg bg-zinc-800 text-white"
+              type="number"
+              placeholder="Enter amount"
+            ></input>
+          </div>
+          <button
+            onClick={() => alert("buy")}
+            className="bg-gradient-to-r from-cyan-400 to-orange-400 px-5 py-3 rounded-lg w-full"
+          >
+            Submit Offering
+          </button>
+          <p className="text-gray-500 text-sm">
+            By continuing you agree to our{" "}
+            <Link href="https://www.google.com" className="text-cyan-500">
+              Terms and Condition
+            </Link>
+          </p>
+        </div>
+      </div>
       <article className="container mx-auto">
         <header className="flex flex-row items-center justify-between my-5">
           <div>
@@ -103,7 +182,10 @@ export default function Home() {
             <div className="bg-zinc-900 rounded-lg p-5 w-full mt-10">
               <h4 className="text-white text-xl mb-5">Price</h4>
               <p className="text-cyan-400 text-2xl mb-5">30.20 ETH</p>{" "}
-              <button className="bg-cyan-400 hover:bg-cyan-500 px-5 py-3 rounded-lg flex flex-row items-center justify-center w-full">
+              <button
+                onClick={() => setShow(!show)}
+                className="bg-cyan-400 hover:bg-cyan-500 px-5 py-3 rounded-lg flex flex-row items-center justify-center w-full"
+              >
                 Start offer{" "}
                 <Image
                   className="ml-5"

@@ -1,88 +1,10 @@
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Home() {
   return (
     <main className="relative">
-      <div className="absolute z-0 -top-32">
-        <svg
-          className="max-w-full"
-          xmlns="http://www.w3.org/2000/svg"
-          width="1410"
-          height="1267"
-          viewBox="0 0 1410 1267"
-          fill="none"
-        >
-          <g filter="url(#filter0_f_58_1586)">
-            <path
-              d="M519.161 337.533C710.263 212.862 710.799 422.508 708.927 515.081L149.438 566.382C125.529 446.535 154.631 222.204 221.317 225.751C392.176 234.841 348.118 449.119 519.161 337.533Z"
-              fill="#007397"
-            />
-          </g>
-          <defs>
-            <filter
-              id="filter0_f_58_1586"
-              x="-558.836"
-              y="-474.29"
-              width="1968.07"
-              height="1740.67"
-              filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
-            >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
-              <feBlend
-                mode="normal"
-                in="SourceGraphic"
-                in2="BackgroundImageFix"
-                result="shape"
-              />
-              <feGaussianBlur
-                stdDeviation="350"
-                result="effect1_foregroundBlur_58_1586"
-              />
-            </filter>
-          </defs>
-        </svg>
-      </div>
-      <div className="absolute z-0 -bottom-10 right-0">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="1258"
-          height="1485"
-          viewBox="0 0 1258 1485"
-          fill="none"
-        >
-          <g filter="url(#filter0_f_118_587)">
-            <path
-              d="M1190.33 862.685C1443.29 746.314 1416.57 981.129 1402.16 1084.56L702.546 1074C688.593 936.891 753.94 689.233 836.065 701.312C1046.48 732.26 963.925 966.841 1190.33 862.685Z"
-              fill="#007397"
-            />
-          </g>
-          <defs>
-            <filter
-              id="filter0_f_118_587"
-              x="0.660034"
-              y="0.88623"
-              width="2110.12"
-              height="1783.67"
-              filterUnits="userSpaceOnUse"
-              color-interpolation-filters="sRGB"
-            >
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
-              <feBlend
-                mode="normal"
-                in="SourceGraphic"
-                in2="BackgroundImageFix"
-                result="shape"
-              />
-              <feGaussianBlur
-                stdDeviation="350"
-                result="effect1_foregroundBlur_118_587"
-              />
-            </filter>
-          </defs>
-        </svg>
-      </div>
       <article className="container mx-auto">
         <header className="flex flex-row items-center justify-between my-5">
           <div>
@@ -101,14 +23,34 @@ export default function Home() {
               <li className="text-gray-300">Asset Manager</li>
             </ul>
           </nav>
-          <div>
-            <button className="w-24 h-12 text-white font-bold rounded-lg bg-gradient-to-r from-cyan-400 to-orange-400 p-1">
-              <div
-                className="h-full rounded-lg py-2"
-                style={{ backgroundColor: "#000a14" }}
+          <div className="flex justify-center items-center space-x-5">
+            <button onClick={() => alert("notif")}>
+              <svg
+                width="48"
+                height="48"
+                viewBox="0 0 48 48"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                Sign In
-              </div>
+                <circle cx="24" cy="24" r="24" fill="#1B1B21" />
+                <path
+                  d="M30.2914 26.1344L29.4342 24.7116C29.2542 24.3944 29.0914 23.7944 29.0914 23.443V21.2744C29.0914 19.2601 27.9085 17.5201 26.2028 16.7059C25.7571 15.9173 24.9342 15.4287 23.9914 15.4287C23.0571 15.4287 22.2171 15.9344 21.7714 16.7316C20.0999 17.563 18.9428 19.2859 18.9428 21.2744V23.443C18.9428 23.7944 18.7799 24.3944 18.5999 24.703L17.7342 26.1344C17.3914 26.7087 17.3142 27.343 17.5285 27.9259C17.7342 28.5001 18.2228 28.9459 18.8571 29.1601C20.5199 29.7259 22.2685 30.0001 24.0171 30.0001C25.7657 30.0001 27.5142 29.7259 29.1771 29.1687C29.7771 28.9716 30.2399 28.5173 30.4628 27.9259C30.6857 27.3344 30.6257 26.683 30.2914 26.1344Z"
+                  fill="#7A797D"
+                />
+                <path
+                  d="M26.4258 30.866C26.0658 31.8603 25.1143 32.5717 24 32.5717C23.3229 32.5717 22.6543 32.2974 22.1829 31.8089C21.9086 31.5517 21.7029 31.2089 21.5829 30.8574C21.6943 30.8746 21.8058 30.8831 21.9258 30.9003C22.1229 30.926 22.3286 30.9517 22.5343 30.9688C23.0229 31.0117 23.52 31.0374 24.0172 31.0374C24.5058 31.0374 24.9943 31.0117 25.4743 30.9688C25.6543 30.9517 25.8343 30.9431 26.0058 30.9174C26.1429 30.9003 26.28 30.8831 26.4258 30.866Z"
+                  fill="#7A797D"
+                />
+              </svg>
+            </button>
+            <button onClick={() => alert("user")}>
+              <Image
+                className="rounded-lg"
+                width={48}
+                height={48}
+                src="/images/no-user.png"
+                alt="Image"
+              />
             </button>
           </div>
         </header>
@@ -203,13 +145,13 @@ export default function Home() {
                   <div className="flex flex-row items-center mt-5">
                     <Image
                       className="rounded-lg"
-                      width={72}
-                      height={72}
+                      width={56}
+                      height={56}
                       src="/images/user.png"
                       alt="Image"
                     />
                     <div className="ml-5">
-                      <p className="bg-gradient-to-r from-cyan-400 to-orange-400 bg-clip-text text-transparent text-2xl">
+                      <p className="bg-gradient-to-r from-cyan-400 to-orange-400 bg-clip-text text-transparent text-lg">
                         Andi Kurniadi
                       </p>
                       <p className="text-gray-500">24 Dec 2020 - Now</p>
@@ -246,13 +188,13 @@ export default function Home() {
                   <div className="flex flex-row items-center mt-5">
                     <Image
                       className="rounded-lg"
-                      width={72}
-                      height={72}
+                      width={56}
+                      height={56}
                       src="/images/no-user.png"
                       alt="Image"
                     />
                     <div className="ml-5">
-                      <p className="text-white text-2xl">Andi Kurniadi</p>
+                      <p className="text-white text-lg">Andi Kurniadi</p>
                       <p className="text-gray-500">24 Dec 2020 - Now</p>
                     </div>
                   </div>
@@ -308,7 +250,7 @@ export default function Home() {
                 providing a private oasis. With contemporary finishes
                 throughout, this home is move-in ready. Conveniently located
                 near schools, parks, and shopping centers, it offers an ideal
-                lifestyle for families. Don't miss the chance to make this
+                lifestyle for families. Dont miss the chance to make this
                 delightful house your new home. Schedule a viewing today!
               </p>
               <div className="flex flex-row justify-center items-center mt-10">

@@ -7,6 +7,11 @@ export function arrayBufferToImgSrc(arrayBuffer, imgType = "jpeg") {
   return picSrc;
 }
 
+export function getFileExtension(file) {
+  const filename = file.name;
+  return filename.substring(filename.lastIndexOf(".") + 1, filename.length) || filename;
+}
+
 export function blobToBase64(blob) {
   return new Promise((resolve, _) => {
     const reader = new FileReader();

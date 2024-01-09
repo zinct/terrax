@@ -18,16 +18,15 @@
         }
       },
       "frontend": {}
-    }
-  },
-  "comment": {
+    },
     "frontend": {
-      "dependencies": ["backend"],
+      "dependencies": ["terrax"],
       "frontend": {
         "entrypoint": "out/index.html"
       },
       "source": ["out"],
       "type": "assets"
     }
-  }
+  },
+  "comment": {}
 }

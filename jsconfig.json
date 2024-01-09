@@ -5,7 +5,7 @@
       "@/public/*": ["./public/*"],
       "@/features/*": ["./src/features/*"],
       "@/core/*": ["./src/core/*"],
-      "@/declaration/*": ["./src/declarations/*"]
+      "@/declaration/*": ["declarations/*"]
     }
   }
 }

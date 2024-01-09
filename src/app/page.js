@@ -1,7 +1,8 @@
 "use client";
-
 import Image from "next/image";
 import PrimaryNavbar from "@/core/components/navbar/PrimaryNavbar";
+import useHomeViewModel from "@/features/home/viewModels/useHomeViewModel";
+import Link from "next/link";
 
 const Page = () => {
   return (
@@ -12,8 +13,8 @@ const Page = () => {
             <path d="M444.333 862.685C697.293 746.314 670.57 981.129 656.158 1084.56L-43.4536 1074C-57.4074 936.891 7.93945 689.233 90.0648 701.312C300.481 732.26 217.925 966.841 444.333 862.685Z" fill="#007397" />
           </g>
           <defs>
-            <filter id="filter0_f_58_1103" x="-745.34" y="0.88623" width="2110.12" height="1783.67" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <filter id="filter0_f_58_1103" x="-745.34" y="0.88623" width="2110.12" height="1783.67" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
               <feGaussianBlur stdDeviation="350" result="effect1_foregroundBlur_58_1103" />
             </filter>
@@ -26,8 +27,8 @@ const Page = () => {
             <path d="M949.25 822.204C843.304 627.46 1125.7 715.165 1249.72 755.463L1137.6 1193.78C968.515 1161.23 675.945 1045.27 702.317 997.089C769.884 873.637 1044.08 996.506 949.25 822.204Z" fill="#007397" />
           </g>
           <defs>
-            <filter id="filter0_f_58_1106" x="0.648438" y="0.520996" width="1949.07" height="1893.26" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <filter id="filter0_f_58_1106" x="0.648438" y="0.520996" width="1949.07" height="1893.26" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+              <feFlood floodOpacity="0" result="BackgroundImageFix" />
               <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
               <feGaussianBlur stdDeviation="350" result="effect1_foregroundBlur_58_1106" />
             </filter>

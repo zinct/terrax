@@ -221,7 +221,7 @@ export interface _SERVICE {
         'address' : string,
         'birth' : bigint,
         'phone' : string,
-        'profileImageURL' : string,
+        'profileImageURL' : [] | [string],
       },
     ],
     {

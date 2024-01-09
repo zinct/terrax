@@ -239,7 +239,7 @@ export const idlFactory = ({ IDL }) => {
             'address' : IDL.Text,
             'birth' : IDL.Nat64,
             'phone' : IDL.Text,
-            'profileImageURL' : IDL.Text,
+            'profileImageURL' : IDL.Opt(IDL.Text),
           }),
         ],
         [

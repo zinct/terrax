@@ -27,7 +27,7 @@ export const UserPayload = Record({
   birth: nat64,
   phone: text,
   idCardImageURL: text,
-  profileImageURL: text,
+  profileImageURL: Opt(text),
 });
 
 const PropertyCategory = Variant({

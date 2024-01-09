@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { ScaleLoader } from "react-spinners";
 
 export default function Home() {
   const viewModel = useRegisterViewmodel();
@@ -22,7 +23,6 @@ export default function Home() {
     </li>
   ));
 
-  console.log(viewModel.idCardError);
   return (
     <main className="relative">
       <div className={`fixed z-20 top-0 w-full h-full flex items-center justify-center backdrop-blur-sm ${!viewModel.success && "hidden"}`}>
@@ -246,39 +246,15 @@ export default function Home() {
               <div className="flex-1 space-y-5">
                 <div>
                   <label className="text-white mb-2 block">Full Name</label>
-                  <input className="py-3 px-5 w-full rounded-lg bg-zinc-800 text-white" type="text" placeholder="Type Your Username Here" name="name" onChange={viewModel.formik.handleChange} error={viewModel.formik.errors.name}></input>
-                  <span className="text-[#F82F1E]">{viewModel.formik.errors && viewModel.formik.errors.name}</span>
+                  <input className="py-3 px-5 w-full rounded-lg bg-zinc-800 text-white" type="text" placeholder="Type Your Fullname Here" name="name" onChange={viewModel.formik.handleChange} error={viewModel.formik.errors.name}></input>
+                  <span className="text-[#F82F1E] mt-20">{viewModel.formik.errors && viewModel.formik.errors.name}</span>
                 </div>
                 <div>
                   <label className="text-white mb-2 block">Email</label>
                   <input className="py-3 px-5 w-full rounded-lg bg-zinc-800 text-white" type="text" placeholder="Type Your Email Here" name="email" onChange={viewModel.formik.handleChange} error={viewModel.formik.errors.email}></input>
                   <span className="text-[#F82F1E]">{viewModel.formik.errors && viewModel.formik.errors.email}</span>
                 </div>
-                <div>
-                  <label className="text-white mb-2 block">Address</label>
-                  <input className="py-3 px-5 w-full rounded-lg bg-zinc-800 text-white" type="text" placeholder="Type Your Username Here" name="address" onChange={viewModel.formik.handleChange} error={viewModel.formik.errors.address}></input>
-                  <span className="text-[#F82F1E]">{viewModel.formik.errors && viewModel.formik.errors.address}</span>
-                </div>
-              </div>
-              <div className="flex-1 flex flex-col space-y-5">
-                <div>
-                  <label className="text-white mb-2 block">Date Of Birth</label>
-                  <div className="flex space-x-5">
-                    <div>
-                      <input className="py-3 px-5 w-full rounded-lg bg-zinc-800 basis-1/3 text-white" type="number" name="day" onChange={viewModel.formik.handleChange} error={viewModel.formik.errors.day} placeholder="DD"></input>
-                      <span className="text-[#F82F1E]">{viewModel.formik.errors && viewModel.formik.errors.day}</span>
-                    </div>
-                    <div>
-                      <input className="py-3 px-5 w-full rounded-lg bg-zinc-800 basis-1/3 text-white" type="number" name="month" onChange={viewModel.formik.handleChange} error={viewModel.formik.errors.month} placeholder="MM"></input>
-                      <span className="text-[#F82F1E]">{viewModel.formik.errors && viewModel.formik.errors.month}</span>
-                    </div>
-                    <div>
-                      <input className="py-3 px-5 w-full rounded-lg bg-zinc-800 basis-2/3 text-white" type="number" name="year" onChange={viewModel.formik.handleChange} error={viewModel.formik.errors.year} placeholder="YYYY"></input>
-                      <span className="text-[#F82F1E]">{viewModel.formik.errors && viewModel.formik.errors.year}</span>
-                    </div>
-                  </div>
-                </div>
-                <button {...viewModel.getRootProps({ className: "h-full" })}>
+                <button {...viewModel.getRootProps({ className: "h-36 w-full" })}>
                   <label className="text-white mb-2 block text-start">Photo (Optional)</label>
                   <div className="dropzone flex justify-center py-3 px-5 w-full h-full rounded-lg border-[#9D9D9F] border-2 border-dashed basis-1/3">
                     <p className="text-zinc-500 flex items-center justify-center space-x-3">
@@ -298,6 +274,35 @@ export default function Home() {
                   </div>
                   <input className="hidden"></input>
                 </button>
+              </div>
+              <div className="flex-1 flex flex-col space-y-5">
+                <div>
+                  <label className="text-white mb-2 block">Date Of Birth</label>
+                  <div className="flex space-x-5">
+                    <div>
+                      <input className="py-3 px-5 w-full rounded-lg bg-zinc-800 basis-1/3 text-white" type="number" name="day" onChange={viewModel.formik.handleChange} error={viewModel.formik.errors.day} placeholder="DD"></input>
+                      <span className="text-[#F82F1E]">{viewModel.formik.errors && viewModel.formik.errors.day}</span>
+                    </div>
+                    <div>
+                      <input className="py-3 px-5 w-full rounded-lg bg-zinc-800 basis-1/3 text-white" type="number" name="month" onChange={viewModel.formik.handleChange} error={viewModel.formik.errors.month} placeholder="MM"></input>
+                      <span className="text-[#F82F1E]">{viewModel.formik.errors && viewModel.formik.errors.month}</span>
+                    </div>
+                    <div>
+                      <input className="py-3 px-5 w-full rounded-lg bg-zinc-800 basis-2/3 text-white" type="number" name="year" onChange={viewModel.formik.handleChange} error={viewModel.formik.errors.year} placeholder="YYYY"></input>
+                      <span className="text-[#F82F1E]">{viewModel.formik.errors && viewModel.formik.errors.year}</span>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <label className="text-white mb-2 block">Phone</label>
+                  <input className="py-3 px-5 w-full rounded-lg bg-zinc-800 text-white" type="text" placeholder="Type Phone Address Here" name="address" onChange={viewModel.formik.handleChange} error={viewModel.formik.errors.address}></input>
+                  <span className="text-[#F82F1E]">{viewModel.formik.errors && viewModel.formik.errors.address}</span>
+                </div>
+                <div>
+                  <label className="text-white mb-2 block">Address</label>
+                  <textarea rows={5} className="py-3 px-5 w-full rounded-lg bg-zinc-800 text-white" type="text" placeholder="Type Your Address Here" name="address" onChange={viewModel.formik.handleChange} error={viewModel.formik.errors.address}></textarea>
+                  <span className="text-[#F82F1E]">{viewModel.formik.errors && viewModel.formik.errors.address}</span>
+                </div>
               </div>
             </div>
             {/* STEP 2 */}
@@ -344,7 +349,15 @@ export default function Home() {
               Back to Home
             </button>
             <button onClick={() => viewModel.handleNext()} className="bg-gradient-to-r from-cyan-400 to-orange-400 px-5 py-3 rounded-lg flex flex-row items-center">
-              Next Step <Image className="ml-5" src="/svg/arrow-btn-dark.svg" width={50} height={10} alt="Line" />{" "}
+              {viewModel.isSubmitting ? (
+                <div className="w-[9rem]">
+                  <ScaleLoader height={20} color="white" />
+                </div>
+              ) : (
+                <>
+                  Next Step <Image className="ml-5" src="/svg/arrow-btn-dark.svg" width={50} height={10} alt="Line" />{" "}
+                </>
+              )}
             </button>
           </div>
         </div>

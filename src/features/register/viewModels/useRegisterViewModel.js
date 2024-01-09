@@ -3,11 +3,16 @@
 import { useFormik, useFormikContext } from "formik";
 import * as Yup from "yup";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { makeTerraxActor } from "@/core/services/actorLocatorService";
+import { uploadImage } from "@/core/services/imageService";
+import { AuthClient } from "@dfinity/auth-client";
+import moment from "moment";
+import AuthContext from "@/core/contexts/AuthContext";
 
 export default function useRegisterViewmodel() {
+  const { authClient } = useContext(AuthContext);
   const router = useRouter();
   const [step, setStep] = useState(1);
   const [success, setSuccess] = useState(false);
@@ -22,6 +27,7 @@ export default function useRegisterViewmodel() {
     initialValues: {
       name: "",
       email: "",
+      phone: "",
       address: "",
       day: "",
       month: "",
@@ -38,28 +44,42 @@ export default function useRegisterViewmodel() {
     onSubmit: async (values, { setSubmitting }) => {
       if (step == 1) {
         setStep(2);
-      } else {
-        if (!idCard) {
-          setIdCardError(true);
-        } else {
-          console.log(values);
-          // const identity = await authClient.getIdentity();
-
-          // const terraxActor = makeTerraxActor({ identity });
-
-          // const test = await terraxActor.registerUser({
-          //   name: values.name,
-          //   email: values.email,
-          //   address: values.address,
-          //   birth: moment().unix(),
-          //   idCard: idCard,
-          //   phone: "081395749832",
-          // });
-        }
+        return;
       }
+
+      if (!idCard) {
+        setIdCardError(true);
+        return;
+      }
+
+      setIsSubmmiting(true);
+      const identity = await authClient.getIdentity();
+
+      const terraxActor = makeTerraxActor({ identity });
+      const principal = await terraxActor.whoAmI();
+      let profileImageURL = null;
+
+      const idCardImageURL = await uploadImage(idCard, `${principal}.jpeg`);
+
+      if (profile) {
+        profileImageURL = await uploadImage(profile, `${principal}.jpeg`);
+      }
+
+      const response = await terraxActor.registerUser({
+        name: values.name,
+        email: values.email,
+        address: values.address,
+        birth: moment(`${values.year}-${values.month}-${values.day}`).unix(),
+        profileImageURL: profileImageURL ? [profileImageURL] : [],
+        idCardImageURL: idCardImageURL,
+        phone: values.phone,
+      });
+
+      console.log(response);
+
+      setIsSubmmiting(false);
     },
   });
-
   const { getRootProps, getInputProps, acceptedFiles } = useDropzone({
     maxFiles: 1,
     accept: {

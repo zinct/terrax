@@ -12,7 +12,7 @@ const Page = () => {
             <path d="M519.161 337.533C710.263 212.862 710.799 422.508 708.927 515.081L149.438 566.382C125.529 446.535 154.631 222.204 221.317 225.751C392.176 234.841 348.118 449.119 519.161 337.533Z" fill="#007397" />
           </g>
           <defs>
-            <filter id="filter0_f_58_1586" x="-558.836" y="-474.29" width="1968.07" height="1740.67" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <filter id="filter0_f_58_1586" x="-558.836" y="-474.29" width="1968.07" height="1740.67" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
               <feFlood flood-opacity="0" result="BackgroundImageFix" />
               <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
               <feGaussianBlur stdDeviation="350" result="effect1_foregroundBlur_58_1586" />
@@ -27,7 +27,7 @@ const Page = () => {
               <path d="M532.333 862.685C785.293 746.314 758.57 981.129 744.158 1084.56L44.5466 1074C30.5928 936.891 95.9397 689.233 178.065 701.312C388.482 732.26 305.925 966.841 532.333 862.685Z" fill="#007397" />
             </g>
             <defs>
-              <filter id="filter0_f_58_1424" x="-657.34" y="0.886169" width="2110.12" height="1783.67" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+              <filter id="filter0_f_58_1424" x="-657.34" y="0.886169" width="2110.12" height="1783.67" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
                 <feFlood flood-opacity="0" result="BackgroundImageFix" />
                 <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
                 <feGaussianBlur stdDeviation="350" result="effect1_foregroundBlur_58_1424" />

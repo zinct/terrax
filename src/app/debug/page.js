@@ -1,12 +1,16 @@
 "use client";
 
 import { makeTerraxActor } from "@/core/services/actorLocatorService";
-import { arrayBufferToImgSrc, blobToBase64, fileToCanisterBinaryStoreFormat, resizeImage } from "@/core/utils/imageUtilS";
+import { arrayBufferToImgSrc, blobToBase64, fileToCanisterBinaryStoreFormat, getFileExtension, resizeImage } from "@/core/utils/imageUtilS";
 import { AuthClient } from "@dfinity/auth-client";
 import moment from "moment";
 import { initScriptLoader } from "next/script";
 import { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
+
+import { initializeApp } from "firebase/app";
+import { deleteObject, getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
+import { uploadImage } from "@/core/services/imageService";
 
 const Page = () => {
   const ImageMaxWidth = 2048;
@@ -36,8 +40,8 @@ const Page = () => {
       if (acceptedFiles.length > 0) {
         try {
           const firstFile = acceptedFiles[0];
-          const newFile = await resizeImage(firstFile, ImageMaxWidth);
-          setFile(newFile);
+          // const newFile = await resizeImage(firstFile, ImageMaxWidth);
+          setFile(firstFile);
         } catch (error) {
           console.error(error);
         }
@@ -51,28 +55,22 @@ const Page = () => {
       return;
     }
 
+    // Initialize Firebase
+
     setLoading(true);
     setImageId(null);
 
     const idCard = await fileToCanisterBinaryStoreFormat(file);
     const identity = await authClient.getIdentity();
-
     const terraxActor = makeTerraxActor({ identity });
 
-    const test = await terraxActor.registerUser({
-      name: "Indra Mahesa",
-      email: "indramahesa128@gmail.com",
-      address: "bandung",
-      birth: moment().unix(),
-      idCard: idCard,
-      phone: "081395749832",
-    });
+    const principal = await terraxActor.whoAmI();
 
-    console.log(test);
-    // const newImageId = await imageActor.create(fileArray);
-    // setImageId(newImageId);
+    // Upload File To Firebase
 
-    // setLoading(false);
+    const uploadedImageURL = await uploadImage(file, `${principal}.${getFileExtension(file)}`);
+
+    console.log(uploadedImageURL);
   }
 
   async function submitProperti() {
@@ -133,7 +131,7 @@ const Page = () => {
     const terraxActor = makeTerraxActor({ identity });
 
     // const test = await terraxActor.whoAmI();
-    const test = await terraxActor.getUserByPrincipal();
+    const test = await terraxActor.connectUser();
     console.log(test);
     // const byteArray = new Uint8Array(test.Ok[0].idCard);
     // const picBlob = new Blob([byteArray], { type: `image/jpeg` });
@@ -155,6 +153,8 @@ const Page = () => {
     // const picBlob = new Blob([byteArray], { type: `image/jpeg` });
     // console.log(await blobToBase64(picBlob));
   }
+
+  function dummyProperti() {}
 
   return (
     <div className="bg-white" style={{ height: "100vh" }}>
@@ -186,6 +186,10 @@ const Page = () => {
           <button onClick={submit}>{"Submit"}</button>
         </div>
         <button onClick={submitProperti}>{"Submit Propertie"}</button>
+        <br />
+        <button className="mt-10" onClick={dummyProperti}>
+          {"Dummy Property"}
+        </button>
       </div>
     </div>
   );

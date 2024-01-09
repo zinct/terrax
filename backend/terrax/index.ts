@@ -60,9 +60,16 @@ export default Canister({
         });
       }
 
-      const user: User = usersStore.values().filter((c: User) => c.principal === ic.caller())[0];
+      const user: User = usersStore.values().filter((c: User) => c.principal.toString() === ic.caller().toString())[0];
 
-      if (user.isRegistered) {
+      if (!user) {
+        return Result.Err({
+          code: 400,
+          message: "Principal not registered",
+        });
+      }
+
+      if (user?.isRegistered) {
         return Result.Err({
           code: 400,
           message: "User already registered",
@@ -83,7 +90,7 @@ export default Canister({
         birth: Some(payload.birth),
         phone: Some(payload.phone),
         idCardImageURL: Some(payload.idCardImageURL),
-        profileImageURL: Some(payload.profileImageURL),
+        profileImageURL: payload.profileImageURL,
       };
 
       usersStore.insert(user.id, newUser);

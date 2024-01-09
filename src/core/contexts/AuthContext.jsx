@@ -9,19 +9,16 @@ const AuthContext = createContext();
 const identityProvider = "http://127.0.0.1:4943/?canisterId=bkyz2-fmaaa-aaaaa-qaaaq-cai";
 
 export const AuthProvider = ({ children }) => {
-  let authClient;
-
   const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(null);
+  const [authClient, setAuthClient] = useState(null);
 
-  async function initalAuth() {
-    authClient = await AuthClient.create();
-
-    checkLogin();
+  async function initAuth() {
+    const newAuthClient = await AuthClient.create();
+    setAuthClient(newAuthClient);
   }
-
   async function checkLogin() {
     setIsLoading(true);
     const isAuthenticated = await authClient.isAuthenticated();
@@ -48,16 +45,17 @@ export const AuthProvider = ({ children }) => {
         handleAuthentication();
       },
       onError: (err) => {
-        console.log("ERROR WHEN LOGIN");
+        console.log("ERROR WHEN LOGIN", err);
       },
     });
   }
 
   async function handleAuthentication() {
+    setIsLoading(true);
     const identity = await authClient.getIdentity();
     const terraxActor = makeTerraxActor({ identity });
-
     const response = await terraxActor.connectUser();
+    setIsLoading(false);
 
     if (response.Ok.isRegistered) {
       setUser(response.Ok);
@@ -67,10 +65,10 @@ export const AuthProvider = ({ children }) => {
   }
 
   useEffect(() => {
-    initalAuth();
+    initAuth();
   }, []);
 
-  return <AuthContext.Provider value={{ authClient, isLoading, connectIdentityProvider }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ authClient, isLoading, connectIdentityProvider, user, authClient }}>{children}</AuthContext.Provider>;
 };
 
 export default AuthContext;

@@ -5,7 +5,6 @@ import AuthContext from "@/core/contexts/AuthContext";
 import Link from "next/link";
 import useHomeViewModel from "@/features/home/viewModels/useHomeViewModel";
 import SignInModal from "../modal/SignInModal";
-
 import Image from "next/image";
 
 const PrimaryNavbar = ({ onSignIn }) => {

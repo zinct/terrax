@@ -42,8 +42,13 @@
 <path d="M536.114 447C536.114 471.424 527.898 478.313 503 478.313C532.255 478.313 534.745 489.586 536.114 509C536.114 485.828 540.969 479.566 564 478.313C539.102 475.808 536.114 468.293 536.114 447Z" fill="#F3F3F3"/>
 </g>
 <defs>
+<<<<<<< HEAD
 <filter id="filter0_d_208_503" x="0.941895" y="384" width="398.025" height="361.522" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
 <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+=======
+<filter id="filter0_d_208_503" x="0.941895" y="384" width="398.025" height="361.522" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+>>>>>>> origin/dev/indra
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset dx="30" dy="30"/>
 <feGaussianBlur stdDeviation="30"/>
@@ -52,8 +57,13 @@
 <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_208_503"/>
 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_208_503" result="shape"/>
 </filter>
+<<<<<<< HEAD
 <filter id="filter1_d_208_503" x="299.942" y="217" width="398.025" height="361.522" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
 <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+=======
+<filter id="filter1_d_208_503" x="299.942" y="217" width="398.025" height="361.522" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+>>>>>>> origin/dev/indra
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset dx="30" dy="30"/>
 <feGaussianBlur stdDeviation="30"/>
@@ -62,8 +72,13 @@
 <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_208_503"/>
 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_208_503" result="shape"/>
 </filter>
+<<<<<<< HEAD
 <filter id="filter2_d_208_503" x="83.9419" y="93" width="398.025" height="361.522" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
 <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+=======
+<filter id="filter2_d_208_503" x="83.9419" y="93" width="398.025" height="361.522" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+>>>>>>> origin/dev/indra
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset dx="30" dy="30"/>
 <feGaussianBlur stdDeviation="30"/>
@@ -72,8 +87,13 @@
 <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_208_503"/>
 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_208_503" result="shape"/>
 </filter>
+<<<<<<< HEAD
 <filter id="filter3_d_208_503" x="103" y="525" width="261" height="262" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
 <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+=======
+<filter id="filter3_d_208_503" x="103" y="525" width="261" height="262" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+>>>>>>> origin/dev/indra
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset/>
 <feGaussianBlur stdDeviation="50"/>
@@ -82,8 +102,13 @@
 <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_208_503"/>
 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_208_503" result="shape"/>
 </filter>
+<<<<<<< HEAD
 <filter id="filter4_d_208_503" x="50" y="0" width="261" height="262" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
 <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+=======
+<filter id="filter4_d_208_503" x="50" y="0" width="261" height="262" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+>>>>>>> origin/dev/indra
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset/>
 <feGaussianBlur stdDeviation="50"/>
@@ -92,8 +117,13 @@
 <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_208_503"/>
 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_208_503" result="shape"/>
 </filter>
+<<<<<<< HEAD
 <filter id="filter5_d_208_503" x="403" y="347" width="261" height="262" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
 <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+=======
+<filter id="filter5_d_208_503" x="403" y="347" width="261" height="262" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+>>>>>>> origin/dev/indra
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset/>
 <feGaussianBlur stdDeviation="50"/>

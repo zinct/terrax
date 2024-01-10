@@ -1,0 +1,33 @@
+{
+  "canisters": {
+    "terrax": {
+      "type": "custom",
+      "main": "backend/terrax/index.ts",
+      "candid": "backend/terrax/index.did",
+      "build": "npx azle terrax",
+      "wasm": ".azle/terrax/terrax.wasm",
+      "gzip": true
+    },
+    "internet_identity": {
+      "type": "custom",
+      "candid": "https://github.com/dfinity/internet-identity/releases/download/release-2023-11-17/internet_identity.did",
+      "wasm": "https://github.com/dfinity/internet-identity/releases/download/release-2023-11-17/internet_identity_dev.wasm.gz",
+      "remote": {
+        "id": {
+          "ic": "rdmx6-jaaaa-aaaaa-aaadq-cai"
+        }
+      },
+      "frontend": {}
+    }
+  },
+  "comment": {
+    "frontend": {
+      "dependencies": ["backend"],
+      "frontend": {
+        "entrypoint": "out/index.html"
+      },
+      "source": ["out"],
+      "type": "assets"
+    }
+  }
+}

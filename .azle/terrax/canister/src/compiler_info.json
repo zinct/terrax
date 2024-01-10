@@ -1,0 +1,1 @@
+{"canister_methods":{"queries":[{"name":"whoAmI","composite":false},{"name":"getUsers","composite":false},{"name":"getUserByPrincipal","composite":false},{"name":"getProperty","composite":false}],"updates":[{"name":"connectUser"},{"name":"registerUser"},{"name":"createProperty"},{"name":"emptyProperty"},{"name":"emptyUsers"}],"callbacks":{}}}

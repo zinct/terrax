@@ -57,21 +57,35 @@ const PrimaryNavbar = ({ onSignIn }) => {
                   : "text-gray-300"
               } hover:cursor-pointer`}
             >
-              Asset Manager
+              <Link href="/asset-manager">Assets Manager</Link>
             </li>
           </ul>
         </nav>
-        <button
-          className="w-24 h-12 text-white d-flex items-center justify-between font-medium rounded-[11px] bg-gradient-to-r from-cyan-400 to-orange-400 p-[2.5px] hover:cursor-pointer"
-          onClick={() => viewModel.setIsSignInModalShow(true)}
-        >
-          <div
-            className="h-full rounded-lg py-2 hover:cursor-pointer"
-            style={{ backgroundColor: "#000a14" }}
-          >
-            Sign In
+        {authContext.user ? (
+          <div className="flex justify-center items-center space-x-5">
+            <button onClick={() => alert("user")}>
+              <Image
+                className="rounded-lg"
+                width={35}
+                height={35}
+                src="/images/no-user.png"
+                alt="Image"
+              />
+            </button>
           </div>
-        </button>
+        ) : (
+          <button
+            className="w-24 h-12 text-white d-flex items-center justify-between font-medium rounded-[11px] bg-gradient-to-r from-cyan-400 to-orange-400 p-[2.5px] hover:cursor-pointer"
+            onClick={() => viewModel.setIsSignInModalShow(true)}
+          >
+            <div
+              className="h-full rounded-lg py-2 hover:cursor-pointer"
+              style={{ backgroundColor: "#000a14" }}
+            >
+              Sign In
+            </div>
+          </button>
+        )}
       </header>
     </>
   );

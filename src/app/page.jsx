@@ -13,7 +13,6 @@ export default function Home() {
     viewModel.getNearProperties();
   }, []);
 
-  console.log(viewModel.nearProperties);
   return (
     <main className="relative">
       <div className="absolute z-0 top-96">

@@ -16,7 +16,6 @@ export default function usePropertiesViewModel() {
   }, [category]);
 
   async function getProperties() {
-    console.log(category ? [getPropertyCategory(category)] : []);
     setIsLoading(true);
     const terraxActor = makeTerraxActor();
     const response = await terraxActor.getProperties({

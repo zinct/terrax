@@ -137,6 +137,76 @@ export const idlFactory = ({ IDL }) => {
       ),
     'emptyProperty' : IDL.Func([], [IDL.Text], []),
     'emptyUsers' : IDL.Func([], [IDL.Text], []),
+    'getCurrentProperties' : IDL.Func(
+        [],
+        [
+          IDL.Variant({
+            'Ok' : IDL.Vec(
+              IDL.Record({
+                'id' : IDL.Text,
+                'latitude' : IDL.Nat64,
+                'bedroom' : IDL.Nat16,
+                'bathroom' : IDL.Nat16,
+                'owner' : IDL.Record({
+                  'id' : IDL.Text,
+                  'principal' : IDL.Principal,
+                  'name' : IDL.Opt(IDL.Text),
+                  'createdAt' : IDL.Opt(IDL.Nat64),
+                  'email' : IDL.Opt(IDL.Text),
+                  'updatedAt' : IDL.Opt(IDL.Nat64),
+                  'idCardImageURL' : IDL.Opt(IDL.Text),
+                  'address' : IDL.Opt(IDL.Text),
+                  'birth' : IDL.Opt(IDL.Nat64),
+                  'phone' : IDL.Opt(IDL.Text),
+                  'isRegistered' : IDL.Bool,
+                  'profileImageURL' : IDL.Opt(IDL.Text),
+                }),
+                'firstFloor' : IDL.Nat16,
+                'name' : IDL.Text,
+                'createdAt' : IDL.Nat64,
+                'description' : IDL.Text,
+                'history' : IDL.Vec(
+                  IDL.Variant({
+                    'endDate' : IDL.Nat64,
+                    'user' : IDL.Record({
+                      'id' : IDL.Text,
+                      'principal' : IDL.Principal,
+                      'name' : IDL.Opt(IDL.Text),
+                      'createdAt' : IDL.Opt(IDL.Nat64),
+                      'email' : IDL.Opt(IDL.Text),
+                      'updatedAt' : IDL.Opt(IDL.Nat64),
+                      'idCardImageURL' : IDL.Opt(IDL.Text),
+                      'address' : IDL.Opt(IDL.Text),
+                      'birth' : IDL.Opt(IDL.Nat64),
+                      'phone' : IDL.Opt(IDL.Text),
+                      'isRegistered' : IDL.Bool,
+                      'profileImageURL' : IDL.Opt(IDL.Text),
+                    }),
+                    'startDate' : IDL.Nat64,
+                  })
+                ),
+                'updatedAt' : IDL.Opt(IDL.Nat64),
+                'groundFloor' : IDL.Nat16,
+                'livingRoom' : IDL.Nat16,
+                'secondFloor' : IDL.Nat16,
+                'longitude' : IDL.Nat64,
+                'address' : IDL.Text,
+                'category' : IDL.Variant({
+                  'new' : IDL.Null,
+                  'land' : IDL.Null,
+                  'used' : IDL.Null,
+                }),
+                'dining' : IDL.Nat16,
+                'image' : IDL.Vec(IDL.Text),
+                'price' : IDL.Nat64,
+                'construtionArea' : IDL.Nat16,
+              })
+            ),
+            'Err' : IDL.Record({ 'code' : IDL.Nat16, 'message' : IDL.Text }),
+          }),
+        ],
+        ['query'],
+      ),
     'getProperties' : IDL.Func(
         [
           IDL.Record({

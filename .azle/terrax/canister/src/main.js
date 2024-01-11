@@ -100492,6 +100492,23 @@ var terrax_default = Canister({
             });
         }
     }),
+    getCurrentProperties: query([], Result(Vec2(Property), ErrorResponse), ()=>{
+        try {
+            if (ic.caller().isAnonymous()) {
+                return Result.Err({
+                    code: 400,
+                    message: "Anonymous is not allowed"
+                });
+            }
+            const properties = propertiesStore.values().filter((property)=>property.owner.principal.toString() === ic.caller().toString());
+            return Result.Ok(properties);
+        } catch (err) {
+            return Result.Err({
+                code: 500,
+                message: "Internal server error with message " + err
+            });
+        }
+    }),
     debug: query([
         PropertyParams
     ], Result(text, ErrorResponse), (params)=>{

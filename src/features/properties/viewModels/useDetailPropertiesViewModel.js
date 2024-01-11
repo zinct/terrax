@@ -23,7 +23,7 @@ export default function useDetailPropertiesViewModel() {
     setIsLoading(true);
     const terraxActor = makeTerraxActor();
     const response = await terraxActor.getProperties({
-      name: [],
+      name: "",
       category: [],
     });
     setNearProperties(response.Ok);

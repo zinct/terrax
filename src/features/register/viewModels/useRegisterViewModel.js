@@ -78,7 +78,6 @@ export default function useRegisterViewmodel() {
         phone: values.phone,
       });
       setIsSubmmiting(false);
-      console.log(response);
       if (response?.Ok) {
         setUser(response?.Ok);
         return;

@@ -8,7 +8,11 @@ import SignInModal from "../modal/SignInModal";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 
-const PrimaryNavbar = ({ onSignIn }) => {
+const PrimaryNavbar = ({
+  onSignIn,
+  isSignModalShow = null,
+  onClose = null,
+}) => {
   const pathName = usePathname();
   const viewModel = useHomeViewModel();
   const authContext = useContext(AuthContext);
@@ -16,9 +20,15 @@ const PrimaryNavbar = ({ onSignIn }) => {
   return (
     <>
       <SignInModal
+        isSignModalShow={isSignModalShow}
         isShow={viewModel.isSignInModalShow && !authContext.user}
         isLoading={authContext.isLoading}
-        onClose={() => viewModel.setIsSignInModalShow(false)}
+        onClose={() => {
+          if (onClose) {
+            return onClose();
+          }
+          viewModel.setIsSignInModalShow(false);
+        }}
         onSignIn={authContext.connectIdentityProvider}
       />
       <header className="flex flex-row items-center justify-between my-5 z-50">

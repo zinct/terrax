@@ -234,7 +234,7 @@ export default function Home({ params }) {
                   style={{ border: 0 }}
                   loading="lazy"
                   allowfullscreen
-                  src="https://google.com/maps/embed/v1/place?q=Bandung&key=AIzaSyCdRzRUfbYXGhOLvo3f5KQLQOvupPY3FUA"
+                  src={`https://google.com/maps/embed/v1/place?q=Bandung&key=${process.env.NEXT_PUBLIC_MAPS_API_KEY}`}
                 ></iframe>
               </div>
             </div>

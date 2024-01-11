@@ -47,7 +47,7 @@ export const Property = Record({
   owner: User,
   name: text,
   description: text,
-  price: nat64,
+  price: nat16,
   image: Vec(text),
   category: PropertyCategory,
   history: Vec(PropertyHistory),
@@ -60,8 +60,8 @@ export const Property = Record({
   secondFloor: nat16,
   construtionArea: nat16,
   address: text,
-  latitude: nat64,
-  longitude: nat64,
+  latitude: nat16,
+  longitude: nat16,
   createdAt: nat64,
   updatedAt: Opt(nat64),
 });
@@ -69,7 +69,7 @@ export const Property = Record({
 export const PropertyPayload = Record({
   name: text,
   description: text,
-  price: nat64,
+  price: nat16,
   image: Vec(text),
   category: PropertyCategory,
   bedroom: nat16,
@@ -81,8 +81,8 @@ export const PropertyPayload = Record({
   secondFloor: nat16,
   construtionArea: nat16,
   address: text,
-  latitude: nat64,
-  longitude: nat64,
+  latitude: nat16,
+  longitude: nat16,
 });
 
 export const PropertyParams = Record({

@@ -7,9 +7,21 @@ export function arrayBufferToImgSrc(arrayBuffer, imgType = "jpeg") {
   return picSrc;
 }
 
+export function imageFileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+  });
+}
+
 export function getFileExtension(file) {
   const filename = file.name;
-  return filename.substring(filename.lastIndexOf(".") + 1, filename.length) || filename;
+  return (
+    filename.substring(filename.lastIndexOf(".") + 1, filename.length) ||
+    filename
+  );
 }
 
 export function blobToBase64(blob) {

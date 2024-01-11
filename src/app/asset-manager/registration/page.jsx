@@ -4,6 +4,9 @@ import PrimaryNavbar from "@/core/components/navbar/PrimaryNavbar";
 import useRegistrationViewModel from "@/features/assetManager/viewModels/useRegistrationViewModel";
 import React, { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { imageFileToBase64 } from "@/core/utils/imageUtilS";
+import PrimaryMaps from "@/core/components/maps/PrimaryMaps";
 
 const stepDetail = [
   {
@@ -22,7 +25,9 @@ const stepDetail = [
 
 const Page = () => {
   const viewModel = useRegistrationViewModel();
-  const [step, setStep] = useState(1);
+  const router = useRouter();
+
+  console.log(viewModel.propertyBase64);
 
   return (
     <main className="relative">
@@ -75,12 +80,12 @@ const Page = () => {
             <div className="flex">
               <button
                 className={`flex-1 text-white rounded-tl-lg p-6 ${
-                  step >= 1 && "font-bold bg-orange-400"
+                  viewModel.tab >= 1 && "font-bold bg-orange-400"
                 }`}
               >
                 <span
                   className={`bg-white ${
-                    step >= 1 ? "text-orange-400" : "text-zinc-800"
+                    viewModel.tab >= 1 ? "text-orange-400" : "text-zinc-800"
                   } p-2 rounded-full mr-3`}
                 >
                   01
@@ -89,12 +94,12 @@ const Page = () => {
               </button>
               <button
                 className={`flex-1 text-white p-6 ${
-                  step >= 2 && "font-bold bg-orange-400"
+                  viewModel.tab >= 2 && "font-bold bg-orange-400"
                 }`}
               >
                 <span
                   className={`bg-white ${
-                    step >= 2 ? "text-orange-400" : "text-zinc-800"
+                    viewModel.tab >= 2 ? "text-orange-400" : "text-zinc-800"
                   } p-2 rounded-full mr-3`}
                 >
                   02
@@ -103,12 +108,12 @@ const Page = () => {
               </button>
               <button
                 className={`flex-1 text-white rounded-tr-lg p-6 ${
-                  step >= 3 && "font-bold bg-orange-400"
+                  viewModel.tab >= 3 && "font-bold bg-orange-400"
                 }`}
               >
                 <span
                   className={`bg-white ${
-                    step >= 3 ? "text-orange-400" : "text-zinc-800"
+                    viewModel.tab >= 3 ? "text-orange-400" : "text-zinc-800"
                   } p-2 rounded-full mr-3`}
                 >
                   03
@@ -117,16 +122,18 @@ const Page = () => {
               </button>
             </div>
             <div className="flex-none text-center pt-[6rem] p-[2rem] space-y-3">
-              <p className="text-cyan-400 text-2xl font-bold">Step {step}</p>
-              <p className="text-white text-4xl font-bold">
-                {stepDetail[step - 1].title}
+              <p className="text-cyan-400 text-2xl font-bold">
+                Step {viewModel.tab + 1}
               </p>
-              <p className="text-gray-500">{stepDetail[step - 1].desc}</p>
+              <p className="text-white text-4xl font-bold">
+                {stepDetail[viewModel.tab].title}
+              </p>
+              <p className="text-gray-500">{stepDetail[viewModel.tab].desc}</p>
             </div>
             {/* STEP 1 */}
             <div
               className={`flex px-[8rem] mb-[8rem] space-x-10 ${
-                step === 1 ? "" : "hidden"
+                viewModel.tab === 0 ? "" : "hidden"
               }`}
             >
               <div className="flex flex-row space-x-5 mt-5 w-full">
@@ -170,49 +177,114 @@ const Page = () => {
             </div>
             {/* STEP 2 */}
             <div
-              className={`flex px-10 mb-10 space-x-10 ${
-                step === 2 ? "" : "hidden"
-              }`}
+              className={`flex flex-col ${viewModel.tab === 1 ? "" : "hidden"}`}
             >
-              <div className="flex-1 space-y-5">
-                <div>
-                  <label className="text-white mb-2 block">Type</label>
-                  <input
-                    className="py-3 px-5 w-full rounded-lg bg-zinc-800"
-                    type="text"
-                    placeholder="Type Your Username Here"
-                  ></input>
+              <div
+                className={`flex px-10 mb-10 space-x-10 ${
+                  viewModel.tab === 1 ? "" : "hidden"
+                }`}
+              >
+                <div className="flex-1 space-y-5">
+                  <div>
+                    <label className="text-white mb-2 block">
+                      Property Name
+                    </label>
+                    <input
+                      className="py-3 px-5 w-full rounded-lg bg-zinc-800"
+                      type="text"
+                      placeholder="Type Your Property name Here"
+                    ></input>
+                  </div>
+                  <div>
+                    <label className="text-white mb-2 block">
+                      Property Description
+                    </label>
+                    <textarea
+                      className="py-3 px-5 w-full rounded-lg bg-zinc-800"
+                      placeholder="Type Your Description Here"
+                    ></textarea>
+                  </div>
+                  <div>
+                    <label className="text-white mb-2 block">
+                      Property Price
+                    </label>
+                    <input
+                      className="py-3 px-5 w-full rounded-lg bg-zinc-800"
+                      type="number"
+                      placeholder="0 ICP"
+                    ></input>
+                  </div>
+                  <button
+                    {...viewModel.getRootProps({
+                      className: "min-h-36 w-full",
+                    })}
+                  >
+                    <label className="text-white mb-2 block text-start">
+                      Property Images
+                    </label>
+                    <div className="dropzone flex justify-center py-3 px-5 w-full h-full rounded-lg border-[#9D9D9F] border-2 border-dashed basis-1/3">
+                      {viewModel.propertyBase64.length > 0 ? (
+                        <div></div>
+                      ) : (
+                        <p className="text-zinc-500 text-left flex items-center justify-center gap-x-3">
+                          <span>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="25"
+                              height="24"
+                              viewBox="0 0 25 24"
+                              fill="none"
+                            >
+                              <path
+                                d="M16.2844 2.44238H8.21552L6.21292 6.06992C5.81681 6.10332 5.42298 6.13746 5.03155 6.17126C3.3578 6.3158 1.97999 7.60537 1.73477 9.26736C1.51261 10.773 1.31247 12.3236 1.31247 13.9073C1.31247 15.491 1.51261 17.0417 1.73477 18.5473C1.97999 20.2093 3.3578 21.4989 5.03155 21.6434C7.43298 21.8509 9.83764 22.0576 12.25 22.0576C14.6623 22.0576 17.067 21.8509 19.4684 21.6434C21.1421 21.4989 22.5199 20.2093 22.7652 18.5473C22.9873 17.0417 23.1875 15.491 23.1875 13.9073C23.1875 12.3236 22.9873 10.773 22.7652 9.26736C22.5199 7.60537 21.1421 6.3158 19.4684 6.17126C19.0746 6.13724 18.6808 6.10313 18.287 6.06992L16.2844 2.44238Z"
+                                stroke="#62D9FF"
+                                strokeWidth="2.62497"
+                                strokeLinejoin="round"
+                              />
+                              <path
+                                d="M12 16.9755C14.1302 16.9755 15.8571 15.2486 15.8571 13.1184C15.8571 10.9881 14.1302 9.26123 12 9.26123C9.86976 9.26123 8.14286 10.9881 8.14286 13.1184C8.14286 15.2486 9.86976 16.9755 12 16.9755Z"
+                                stroke="#62D9FF"
+                                strokeWidth="2.62497"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              />
+                            </svg>
+                          </span>
+                        </p>
+                      )}
+                      <div className="flex flex-col gap-3 py-10">
+                        {viewModel.propertyBase64.length > 0 ? (
+                          viewModel.propertyBase64.map((row, index) => {
+                            return (
+                              <Image
+                                className="rounded"
+                                width={80}
+                                height={80}
+                                objectFit="cover"
+                                key={row.key}
+                                src={row}
+                                alt="Image"
+                              />
+                            );
+                          })
+                        ) : (
+                          <span className="ms-2">Upload your photo here</span>
+                        )}
+                      </div>
+                      <input {...viewModel.getInputProps()} />
+                    </div>
+                  </button>
                 </div>
-                <div>
-                  <label className="text-white mb-2 block">
-                    Property Description
-                  </label>
-                  <textarea
-                    className="py-3 px-5 w-full rounded-lg bg-zinc-800"
-                    placeholder="Type Your Email Here"
-                  ></textarea>
-                </div>
-                <div>
-                  <label className="text-white mb-2 block">
-                    Property Address
-                  </label>
-                  <textarea
-                    className="py-3 px-5 w-full rounded-lg bg-zinc-800"
-                    placeholder="Type Your Username Here"
-                  ></textarea>
-                </div>
-              </div>
-              <div className="flex-1 space-y-5">
-                <div>
-                  <div className="flex space-x-5">
+                <div className="flex flex-1 flex-col gap-y-5">
+                  <div className="flex gap-x-5">
                     <div className="flex-1">
                       <label className="text-white mb-2 block">
-                        Property Size
+                        Ground Floor
                       </label>
                       <input
                         className="py-3 px-5 w-full rounded-lg bg-zinc-800"
                         type="number"
-                        placeholder="DD"
+                        placeholder="0 m²"
                       ></input>
                     </div>
                     <div className="flex-1">
@@ -222,70 +294,96 @@ const Page = () => {
                       <input
                         className="py-3 px-5 w-full rounded-lg bg-zinc-800"
                         type="number"
-                        placeholder="MM"
+                        placeholder="0 m²"
                       ></input>
                     </div>
                   </div>
-                </div>
-                <div>
-                  <div className="flex space-x-5 items-end">
+                  <div className="flex gap-x-5">
                     <div className="flex-1">
                       <label className="text-white mb-2 block">
-                        Property Floor
+                        First Floor
                       </label>
                       <input
                         className="py-3 px-5 w-full rounded-lg bg-zinc-800"
                         type="number"
-                        placeholder="DD"
+                        placeholder="0 m²"
                       ></input>
                     </div>
-                    <div>
-                      <button
-                        onClick={() => alert("add floor")}
-                        className="flex-1 bg-zinc-800 px-5 py-3 rounded-lg text-white"
-                      >
-                        Add floor
-                      </button>
+                    <div className="flex-1">
+                      <label className="text-white mb-2 block">
+                        Second Floor
+                      </label>
+                      <input
+                        className="py-3 px-5 w-full rounded-lg bg-zinc-800"
+                        type="number"
+                        placeholder="0 m²"
+                      ></input>
+                    </div>
+                  </div>
+                  <div className="flex gap-x-5">
+                    <div className="flex-1">
+                      <label className="text-white mb-2 block">Bedroom</label>
+                      <input
+                        className="py-3 px-5 w-full rounded-lg bg-zinc-800"
+                        type="number"
+                        placeholder="0"
+                      ></input>
+                    </div>
+                    <div className="flex-1">
+                      <label className="text-white mb-2 block">Bathroom</label>
+                      <input
+                        className="py-3 px-5 w-full rounded-lg bg-zinc-800"
+                        type="number"
+                        placeholder="0"
+                      ></input>
+                    </div>
+                  </div>
+                  <div className="flex gap-x-5">
+                    <div className="flex-1">
+                      <label className="text-white mb-2 block">
+                        Dining Room
+                      </label>
+                      <input
+                        className="py-3 px-5 w-full rounded-lg bg-zinc-800"
+                        type="number"
+                        placeholder="0"
+                      ></input>
+                    </div>
+                    <div className="flex-1">
+                      <label className="text-white mb-2 block">
+                        Living Room
+                      </label>
+                      <input
+                        className="py-3 px-5 w-full rounded-lg bg-zinc-800"
+                        type="number"
+                        placeholder="0"
+                      ></input>
                     </div>
                   </div>
                 </div>
-                <div>
-                  <label className="text-white mb-2 block">Photo</label>
-                  <div className="py-3 px-5 w-full rounded-lg border-zinc-800 border-2 border-dashed basis-1/3">
-                    <p className="text-zinc-500 flex items-center justify-center space-x-3">
-                      <span>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="25"
-                          height="24"
-                          viewBox="0 0 25 24"
-                          fill="none"
-                        >
-                          <path
-                            d="M16.2844 2.44238H8.21552L6.21292 6.06992C5.81681 6.10332 5.42298 6.13746 5.03155 6.17126C3.3578 6.3158 1.97999 7.60537 1.73477 9.26736C1.51261 10.773 1.31247 12.3236 1.31247 13.9073C1.31247 15.491 1.51261 17.0417 1.73477 18.5473C1.97999 20.2093 3.3578 21.4989 5.03155 21.6434C7.43298 21.8509 9.83764 22.0576 12.25 22.0576C14.6623 22.0576 17.067 21.8509 19.4684 21.6434C21.1421 21.4989 22.5199 20.2093 22.7652 18.5473C22.9873 17.0417 23.1875 15.491 23.1875 13.9073C23.1875 12.3236 22.9873 10.773 22.7652 9.26736C22.5199 7.60537 21.1421 6.3158 19.4684 6.17126C19.0746 6.13724 18.6808 6.10313 18.287 6.06992L16.2844 2.44238Z"
-                            stroke="#62D9FF"
-                            strokeWidth="2.62497"
-                            strokeLinejoin="round"
-                          />
-                          <path
-                            d="M12 16.9755C14.1302 16.9755 15.8571 15.2486 15.8571 13.1184C15.8571 10.9881 14.1302 9.26123 12 9.26123C9.86976 9.26123 8.14286 10.9881 8.14286 13.1184C8.14286 15.2486 9.86976 16.9755 12 16.9755Z"
-                            stroke="#62D9FF"
-                            strokeWidth="2.62497"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </span>
-                      <span>Upload your photo here</span>
-                    </p>
-                  </div>
-                  <input className="hidden"></input>
-                </div>
+              </div>
+              <div className="px-10 rounded mb-10 w-full">
+                <label className="text-white mb-2 block">
+                  Property Location
+                </label>
+                <PrimaryMaps />
+              </div>
+              <div className="px-10 rounded mb-10 w-full">
+                <label className="text-white mb-2 block">
+                  Property Address
+                </label>
+                <textarea
+                  className="py-3 px-5 w-full rounded-lg bg-zinc-800"
+                  rows={4}
+                  placeholder="Type Your Address Here"
+                ></textarea>
               </div>
             </div>
             {/* STEP 3 */}
             <div
-              className={`px-10 mb-10 space-x-10 ${step === 3 ? "" : "hidden"}`}
+              className={`px-10 mb-10 space-x-10 ${
+                viewModel.tab === 2 ? "" : "hidden"
+              }`}
             >
               <div className="flex flex-row items-center justify-center mb-10">
                 <div>
@@ -360,7 +458,13 @@ const Page = () => {
           </div>
           <div className="w-full flex justify-between my-10">
             <button
-              onClick={() => handleBack()}
+              onClick={() => {
+                if (viewModel.tab > 0) {
+                  return viewModel.setTab(viewModel.tab - 1);
+                }
+
+                router.push("/asset-manager");
+              }}
               className="px-5 py-3 rounded-lg flex flex-row items-center font-bold text-white"
             >
               <span className="bg-white rounded-full p-0.5 mr-5">
@@ -377,20 +481,31 @@ const Page = () => {
                   />
                 </svg>
               </span>
-              Back to Home
+              {viewModel.tab === 0 ? "Back to Asset Manager" : "Previous"}
             </button>
             <button
-              onClick={() => handleNext()}
+              onClick={() => {
+                if (viewModel.tab === 2) {
+                  return;
+                }
+                viewModel.setTab(viewModel.tab + 1);
+              }}
               className="bg-gradient-to-r from-cyan-400 to-orange-400 px-5 py-3 rounded-lg flex flex-row items-center"
             >
-              Next Step{" "}
-              <Image
-                className="ml-5"
-                src="/svg/arrow-btn-dark.svg"
-                width={50}
-                height={10}
-                alt="Line"
-              />{" "}
+              {viewModel.tab === 2 ? (
+                "Submit"
+              ) : (
+                <>
+                  Next Step
+                  <Image
+                    className="ml-5"
+                    src="/svg/arrow-btn-dark.svg"
+                    width={50}
+                    height={10}
+                    alt="Line"
+                  />{" "}
+                </>
+              )}
             </button>
           </div>
         </div>

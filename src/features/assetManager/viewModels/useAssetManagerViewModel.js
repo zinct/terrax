@@ -9,6 +9,7 @@ export default function useAssetManagerViewModel() {
   const [tab, setTab] = useState(0);
   const [properties, setProperties] = useState(0);
   const { authClient } = useContext(AuthContext);
+  const [notAuthenticated, setNotAuthenticated] = useState(null);
 
   async function getProperties() {
     try {
@@ -17,8 +18,12 @@ export default function useAssetManagerViewModel() {
       const terraxActor = makeTerraxActor({ identity });
       const response = await terraxActor.getCurrentProperties();
       setIsLoading(false);
-      console.log(response);
-      setProperties(response.Ok);
+
+      if (response.Ok) {
+        setProperties(response.Ok);
+      } else {
+        setNotAuthenticated(true);
+      }
     } catch (err) {
       console.error("Somethin went wrong with message,", err);
     }
@@ -30,6 +35,7 @@ export default function useAssetManagerViewModel() {
 
   return {
     tab,
+    notAuthenticated,
     setTab,
     isLoading,
     properties,

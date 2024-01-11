@@ -4,17 +4,23 @@ import PrimaryNavbar from "@/core/components/navbar/PrimaryNavbar";
 import useAssetManagerViewModel from "@/features/assetManager/viewModels/useAssetManagerViewModel";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function AssetManager({ children }) {
   const viewModel = useAssetManagerViewModel();
   const pathname = usePathname();
+  const router = useRouter();
 
   return (
     <main className="relative">
       <article className="container mx-auto">
-        <PrimaryNavbar />
+        <PrimaryNavbar
+          isSignModalShow={viewModel.notAuthenticated}
+          onClose={() => {
+            router.push("/");
+          }}
+        />
 
         <h2 className="text-[40px] font-bold text-[#F3F3F3] my-[5rem]">
           Asset Manager
@@ -51,7 +57,8 @@ export default function AssetManager({ children }) {
             <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5">
               {viewModel.isLoading
                 ? "Loading"
-                : viewModel.properties.map((row) => (
+                : !viewModel.notAuthenticated &&
+                  viewModel.properties.map((row) => (
                     <Link
                       href={`/properties/${row.id}`}
                       key={row.id}
@@ -106,7 +113,8 @@ export default function AssetManager({ children }) {
             <>
               {viewModel.isLoading
                 ? "Loading"
-                : viewModel.properties.map((row) => (
+                : !viewModel.notAuthenticated &&
+                  viewModel.properties.map((row) => (
                     <div key={row.id} className="bg-zinc-900 rounded-lg p-5">
                       <div className="flex flex-row items-center">
                         <div className="relative h-28 w-40 mr-5">

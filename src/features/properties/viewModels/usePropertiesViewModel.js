@@ -16,15 +16,21 @@ export default function usePropertiesViewModel() {
   }, [category]);
 
   async function getProperties() {
-    setIsLoading(true);
-    const terraxActor = makeTerraxActor();
-    const response = await terraxActor.getProperties({
-      name: keyword,
-      category: category ? [getPropertyCategory(category)] : [],
-    });
-    setIsLoading(false);
+    try {
+      setIsLoading(true);
+      const terraxActor = makeTerraxActor();
+      const response = await terraxActor.getProperties({
+        name: keyword,
+        category: category ? [getPropertyCategory(category)] : [],
+      });
+      setIsLoading(false);
 
-    setProperties(response.Ok);
+      if (response.Ok) {
+        setProperties(response.Ok);
+      }
+    } catch (err) {
+      console.error("Somethin went wrong with message,", err);
+    }
   }
 
   function handleChangeCategory(value) {

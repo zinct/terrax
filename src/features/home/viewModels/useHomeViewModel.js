@@ -10,14 +10,18 @@ export default function useHomeViewModel() {
   const [isSignInModalShow, setIsSignInModalShow] = useState(false);
 
   async function getNearProperties() {
-    setIsLoading(true);
-    const terraxActor = makeTerraxActor();
-    const response = await terraxActor.getProperties({
-      name: "",
-      category: [],
-    });
-    setNearProperties(response.Ok);
-    setIsLoading(false);
+    try {
+      setIsLoading(true);
+      const terraxActor = makeTerraxActor();
+      const response = await terraxActor.getProperties({
+        name: "",
+        category: [],
+      });
+      setNearProperties(response.Ok);
+      setIsLoading(false);
+    } catch (err) {
+      console.error("Somethin went wrong with message,", err);
+    }
   }
 
   return {

@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
-import { Canister, ic, nat16, None, Null, query, Result, Some, StableBTreeMap, text, update, Vec } from "azle";
+import { Canister, ic, nat16, nat64, None, Null, Opt, query, Result, Some, StableBTreeMap, text, update, Vec } from "azle";
 
-import { ErrorResponse, Property, PropertyParams, PropertyPayload, User, UserPayload } from "./types";
+import { ErrorResponse, Property, PropertyCategory, PropertyParams, PropertyPayload, User, UserPayload } from "./types";
 
 const usersStore = StableBTreeMap<text, User>(1);
 const propertiesStore = StableBTreeMap<text, Property>(10);
@@ -9,6 +9,10 @@ const propertiesStore = StableBTreeMap<text, Property>(10);
 export default Canister({
   whoAmI: query([], text, () => {
     return ic.caller().toString();
+  }),
+
+  getTimestamp: query([], nat64, () => {
+    return ic.time();
   }),
 
   connectUser: update([], Result(User, ErrorResponse), () => {
@@ -191,11 +195,51 @@ export default Canister({
     return "ok";
   }),
 
-  getProperty: query([PropertyParams], Result(Vec(Property), ErrorResponse), (params) => {
+  getProperties: query([PropertyParams], Result(Vec(Property), ErrorResponse), (params) => {
     try {
       const properties = propertiesStore.values();
+      const filteredProperties: Property[] = properties.filter((property) => 
+         property.name.toLowerCase().includes(params.name.toLocaleLowerCase()) && ('None' in params.category) ? true : JSON.stringify(property.category) === JSON.stringify(params.category.Some)
+      );
 
-      return Result.Ok(properties);
+      return Result.Ok(filteredProperties);
+    } catch (err) {
+      return Result.Err({
+        code: 500,
+        message: "Internal server error with message " + err,
+      });
+    }
+  }),
+  debug: query([PropertyParams], Result(text,  ErrorResponse), (params) => {
+    try {
+      return Result.Ok(JSON.stringify(params.category));
+    } catch (err) {
+      return Result.Err({
+        code: 500,
+        message: "Internal server error with message " + err,
+      });
+    }
+  }),
+  
+  getProperty: query([text], Result(Property, ErrorResponse), (id) => {
+    try {
+      if(!id) {
+        return Result.Err({
+          code: 400,
+          message: "Invalid property id",
+        });
+      }
+
+      const property = propertiesStore.get(id);
+
+      if('None' in property) {
+        return Result.Err({
+          code: 404,
+          message: `Property with id ${id} not found`,
+        });
+      }
+
+      return Result.Ok(property.Some);
     } catch (err) {
       return Result.Err({
         code: 500,

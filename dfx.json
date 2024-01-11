@@ -18,7 +18,10 @@
         }
       },
       "frontend": {}
-    },
+    }
+    
+  },
+  "comment": {
     "frontend": {
       "dependencies": ["terrax"],
       "frontend": {
@@ -27,6 +30,5 @@
       "source": ["out"],
       "type": "assets"
     }
-  },
-  "comment": {}
+  }
 }

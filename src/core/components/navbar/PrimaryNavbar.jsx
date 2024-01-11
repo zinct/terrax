@@ -6,8 +6,10 @@ import Link from "next/link";
 import useHomeViewModel from "@/features/home/viewModels/useHomeViewModel";
 import SignInModal from "../modal/SignInModal";
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
 
 const PrimaryNavbar = ({ onSignIn }) => {
+  const pathName = usePathname();
   const viewModel = useHomeViewModel();
   const authContext = useContext(AuthContext);
 
@@ -30,14 +32,33 @@ const PrimaryNavbar = ({ onSignIn }) => {
         </Link>
         <nav>
           <ul className="flex flex-row items-center justify-center space-x-16 text-white">
-            <li className="font-bold border-b-white border-b-2 hover:cursor-pointer">
+            <li
+              className={`${
+                pathName == "/"
+                  ? "font-bold border-b-white border-b-2"
+                  : "text-gray-300"
+              } hover:cursor-pointer`}
+            >
               <Link href="/">Home</Link>
             </li>
-            <li className="text-gray-300">
-              <Link href="/properties">Buy</Link>
+            <li
+              className={`${
+                pathName == "/properties"
+                  ? "font-bold border-b-white border-b-2"
+                  : "text-gray-300"
+              } hover:cursor-pointer`}
+            >
+              <Link href="/properties">Properties</Link>
             </li>
-            <li className="text-gray-300">Sell</li>
-            <li className="text-gray-300">Asset Manager</li>
+            <li
+              className={`${
+                pathName == "/asset-manager"
+                  ? "font-bold border-b-white border-b-2"
+                  : "text-gray-300"
+              } hover:cursor-pointer`}
+            >
+              Asset Manager
+            </li>
           </ul>
         </nav>
         <button

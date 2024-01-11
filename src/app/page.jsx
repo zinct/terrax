@@ -1,7 +1,19 @@
+"use client";
+
 import PrimaryNavbar from "@/core/components/navbar/PrimaryNavbar";
+import useHomeViewModel from "@/features/home/viewModels/useHomeViewModel";
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect } from "react";
 
 export default function Home() {
+  const viewModel = useHomeViewModel();
+
+  useEffect(() => {
+    viewModel.getNearProperties();
+  }, []);
+
+  console.log(viewModel.nearProperties);
   return (
     <main className="relative">
       <div className="absolute z-0 top-96">
@@ -213,8 +225,12 @@ export default function Home() {
         <section>
           <div className="flex flex-row items-center justify-between my-28">
             <h2 className="text-white font-bold text-5xl">Near You</h2>
-            <button className="bg-cyan-400 px-5 py-3 rounded-lg flex flex-row items-center">
-              Explore{" "}
+            <Link
+              passHref={true}
+              href="/properties"
+              className="bg-cyan-400 px-5 py-3 rounded-lg flex flex-row items-center"
+            >
+              Explore
               <Image
                 className="ml-5"
                 src="/svg/arrow-btn-dark.svg"
@@ -222,251 +238,63 @@ export default function Home() {
                 height={10}
                 alt="Line"
               />{" "}
-            </button>
+            </Link>
           </div>
         </section>{" "}
         <section>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5">
-            <div className="bg-zinc-900 rounded-lg p-5">
-              <div className="relative h-[20rem] w-full">
-                <Image
-                  className="rounded-lg object-cover"
-                  src="/images/img1.png"
-                  alt="Image"
-                  fill
-                />
-                <span className="absolute top-3 left-3 bg-orange-400 py-1 px-3 rounded-lg text-white">
-                  Used Home
-                </span>
-              </div>
-              <h3 className="text-white text-2xl mt-3 mb-2">
-                Rumah Full-Furnish di Jaksel
-              </h3>
-              <p className="text-gray-500 flex flex-row mb-3">
-                <Image
-                  className="mr-2"
-                  src="/svg/point.svg"
-                  alt="Point"
-                  width={15}
-                  height={15}
-                />
-                JL.Jeruk, Jakarta Selatan
-              </p>
-              <Image
-                src="/svg/break-line.svg"
-                alt="Break Line"
-                width={500}
-                height={25}
-              />
-              <p className="text-gray-500 flex flex-row items-center my-3">
-                <span>3842 sq ft</span>
-                <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
-                <span>4 Beds</span>
-                <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
-                <span>3 Baths</span>
-              </p>
-              <p className="text-cyan-400 text-2xl">30.20 ETH</p>
-            </div>
-            <div className="bg-zinc-900 rounded-lg p-5">
-              <div className="relative h-[20rem] w-full">
-                <Image
-                  className="rounded-lg object-cover"
-                  src="/images/img1.png"
-                  alt="Image"
-                  fill
-                />
-                <span className="absolute top-3 left-3 bg-orange-400 py-1 px-3 rounded-lg text-white">
-                  Used Home
-                </span>
-              </div>
-              <h3 className="text-white text-2xl mt-3 mb-2">
-                Rumah Full-Furnish di Jaksel
-              </h3>
-              <p className="text-gray-500 flex flex-row mb-3">
-                <Image
-                  className="mr-2"
-                  src="/svg/point.svg"
-                  alt="Point"
-                  width={15}
-                  height={15}
-                />
-                JL.Jeruk, Jakarta Selatan
-              </p>
-              <Image
-                src="/svg/break-line.svg"
-                alt="Break Line"
-                width={500}
-                height={25}
-              />
-              <p className="text-gray-500 flex flex-row items-center my-3">
-                <span>3842 sq ft</span>
-                <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
-                <span>4 Beds</span>
-                <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
-                <span>3 Baths</span>
-              </p>
-              <p className="text-cyan-400 text-2xl">30.20 ETH</p>
-            </div>
-            <div className="bg-zinc-900 rounded-lg p-5">
-              <div className="relative h-[20rem] w-full">
-                <Image
-                  className="rounded-lg object-cover"
-                  src="/images/img1.png"
-                  alt="Image"
-                  fill
-                />
-                <span className="absolute top-3 left-3 bg-orange-400 py-1 px-3 rounded-lg text-white">
-                  Used Home
-                </span>
-              </div>
-              <h3 className="text-white text-2xl mt-3 mb-2">
-                Rumah Full-Furnish di Jaksel
-              </h3>
-              <p className="text-gray-500 flex flex-row mb-3">
-                <Image
-                  className="mr-2"
-                  src="/svg/point.svg"
-                  alt="Point"
-                  width={15}
-                  height={15}
-                />
-                JL.Jeruk, Jakarta Selatan
-              </p>
-              <Image
-                src="/svg/break-line.svg"
-                alt="Break Line"
-                width={500}
-                height={25}
-              />
-              <p className="text-gray-500 flex flex-row items-center my-3">
-                <span>3842 sq ft</span>
-                <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
-                <span>4 Beds</span>
-                <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
-                <span>3 Baths</span>
-              </p>
-              <p className="text-cyan-400 text-2xl">30.20 ETH</p>
-            </div>
-            <div className="bg-zinc-900 rounded-lg p-5">
-              <div className="relative h-[20rem] w-full">
-                <Image
-                  className="rounded-lg object-cover"
-                  src="/images/img1.png"
-                  alt="Image"
-                  fill
-                />
-                <span className="absolute top-3 left-3 bg-orange-400 py-1 px-3 rounded-lg text-white">
-                  Used Home
-                </span>
-              </div>
-              <h3 className="text-white text-2xl mt-3 mb-2">
-                Rumah Full-Furnish di Jaksel
-              </h3>
-              <p className="text-gray-500 flex flex-row mb-3">
-                <Image
-                  className="mr-2"
-                  src="/svg/point.svg"
-                  alt="Point"
-                  width={15}
-                  height={15}
-                />
-                JL.Jeruk, Jakarta Selatan
-              </p>
-              <Image
-                src="/svg/break-line.svg"
-                alt="Break Line"
-                width={500}
-                height={25}
-              />
-              <p className="text-gray-500 flex flex-row items-center my-3">
-                <span>3842 sq ft</span>
-                <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
-                <span>4 Beds</span>
-                <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
-                <span>3 Baths</span>
-              </p>
-              <p className="text-cyan-400 text-2xl">30.20 ETH</p>
-            </div>
-            <div className="bg-zinc-900 rounded-lg p-5">
-              <div className="relative h-[20rem] w-full">
-                <Image
-                  className="rounded-lg object-cover"
-                  src="/images/img1.png"
-                  alt="Image"
-                  fill
-                />
-                <span className="absolute top-3 left-3 bg-orange-400 py-1 px-3 rounded-lg text-white">
-                  Used Home
-                </span>
-              </div>
-              <h3 className="text-white text-2xl mt-3 mb-2">
-                Rumah Full-Furnish di Jaksel
-              </h3>
-              <p className="text-gray-500 flex flex-row mb-3">
-                <Image
-                  className="mr-2"
-                  src="/svg/point.svg"
-                  alt="Point"
-                  width={15}
-                  height={15}
-                />
-                JL.Jeruk, Jakarta Selatan
-              </p>
-              <Image
-                src="/svg/break-line.svg"
-                alt="Break Line"
-                width={500}
-                height={25}
-              />
-              <p className="text-gray-500 flex flex-row items-center my-3">
-                <span>3842 sq ft</span>
-                <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
-                <span>4 Beds</span>
-                <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
-                <span>3 Baths</span>
-              </p>
-              <p className="text-cyan-400 text-2xl">30.20 ETH</p>
-            </div>
-            <div className="bg-zinc-900 rounded-lg p-5">
-              <div className="relative h-[20rem] w-full">
-                <Image
-                  className="rounded-lg object-cover"
-                  src="/images/img1.png"
-                  alt="Image"
-                  fill
-                />
-                <span className="absolute top-3 left-3 bg-orange-400 py-1 px-3 rounded-lg text-white">
-                  Used Home
-                </span>
-              </div>
-              <h3 className="text-white text-2xl mt-3 mb-2">
-                Rumah Full-Furnish di Jaksel
-              </h3>
-              <p className="text-gray-500 flex flex-row mb-3">
-                <Image
-                  className="mr-2"
-                  src="/svg/point.svg"
-                  alt="Point"
-                  width={15}
-                  height={15}
-                />
-                JL.Jeruk, Jakarta Selatan
-              </p>
-              <Image
-                src="/svg/break-line.svg"
-                alt="Break Line"
-                width={500}
-                height={25}
-              />
-              <p className="text-gray-500 flex flex-row items-center my-3">
-                <span>3842 sq ft</span>
-                <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
-                <span>4 Beds</span>
-                <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
-                <span>3 Baths</span>
-              </p>
-              <p className="text-cyan-400 text-2xl">30.20 ETH</p>
-            </div>
+            {viewModel.isLoading
+              ? "Loading"
+              : viewModel.nearProperties.map((row) => (
+                  <Link
+                    href={`/properties/${row.id}`}
+                    key={row.id}
+                    className="bg-zinc-900 rounded-lg p-5"
+                  >
+                    <div className="relative h-[20rem] w-full">
+                      <Image
+                        className="rounded-lg object-cover"
+                        src={row.image[0]}
+                        alt="Image"
+                        fill
+                      />
+                      <span className="absolute top-3 left-3 bg-orange-400 py-1 px-3 rounded-lg text-white">
+                        {row.category.hasOwnProperty("used")
+                          ? "Used Home"
+                          : "New Home"}
+                      </span>
+                    </div>
+                    <h3 className="text-white text-2xl mt-3 mb-2">
+                      {row.name}
+                    </h3>
+                    <p className="text-gray-500 flex flex-row mb-3">
+                      <Image
+                        className="mr-2"
+                        src="/svg/point.svg"
+                        alt="Point"
+                        width={15}
+                        height={15}
+                      />
+                      JL.Jeruk, Jakarta Selatan
+                    </p>
+                    <Image
+                      src="/svg/break-line.svg"
+                      alt="Break Line"
+                      width={500}
+                      height={25}
+                    />
+                    <p className="text-gray-500 flex flex-row items-center my-3">
+                      <span>3842 sq ft</span>
+                      <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
+                      <span>{row.bedroom} Beds</span>
+                      <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
+                      <span>{row.bathroom} Baths</span>
+                    </p>
+                    <p className="text-cyan-400 text-2xl">
+                      {Number(row.price)} ETH
+                    </p>
+                  </Link>
+                ))}
           </div>
         </section>
         <section className="flex flex-row items-center justify-between relative my-28">

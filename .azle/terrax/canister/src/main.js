@@ -100258,7 +100258,8 @@ var UserPayload = Record2({
 });
 var PropertyCategory = Variant2({
     new: Null2,
-    used: Null2
+    used: Null2,
+    land: Null2
 });
 var PropertyHistory = Variant2({
     user: User,
@@ -100308,7 +100309,7 @@ var PropertyPayload = Record2({
 });
 var PropertyParams = Record2({
     name: text,
-    category: PropertyCategory
+    category: Opt2(PropertyCategory)
 });
 // backend/terrax/index.ts
 var usersStore = StableBTreeMap(1);
@@ -100316,6 +100317,9 @@ var propertiesStore = StableBTreeMap(10);
 var terrax_default = Canister({
     whoAmI: query([], text, ()=>{
         return ic.caller().toString();
+    }),
+    getTimestamp: query([], nat64, ()=>{
+        return ic.time();
     }),
     connectUser: update([], Result(User, ErrorResponse), ()=>{
         try {
@@ -100474,12 +100478,50 @@ var terrax_default = Canister({
         }
         return "ok";
     }),
-    getProperty: query([
+    getProperties: query([
         PropertyParams
     ], Result(Vec2(Property), ErrorResponse), (params)=>{
         try {
             const properties = propertiesStore.values();
-            return Result.Ok(properties);
+            const filteredProperties = properties.filter((property)=>property.name.toLowerCase().includes(params.name.toLocaleLowerCase()) && "None" in params.category ? true : JSON.stringify(property.category) === JSON.stringify(params.category.Some));
+            return Result.Ok(filteredProperties);
+        } catch (err) {
+            return Result.Err({
+                code: 500,
+                message: "Internal server error with message " + err
+            });
+        }
+    }),
+    debug: query([
+        PropertyParams
+    ], Result(text, ErrorResponse), (params)=>{
+        try {
+            return Result.Ok(JSON.stringify(params.category));
+        } catch (err) {
+            return Result.Err({
+                code: 500,
+                message: "Internal server error with message " + err
+            });
+        }
+    }),
+    getProperty: query([
+        text
+    ], Result(Property, ErrorResponse), (id2)=>{
+        try {
+            if (!id2) {
+                return Result.Err({
+                    code: 400,
+                    message: "Invalid property id"
+                });
+            }
+            const property = propertiesStore.get(id2);
+            if ("None" in property) {
+                return Result.Err({
+                    code: 404,
+                    message: `Property with id ${id2} not found`
+                });
+            }
+            return Result.Ok(property.Some);
         } catch (err) {
             return Result.Err({
                 code: 500,

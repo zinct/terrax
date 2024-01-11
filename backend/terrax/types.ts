@@ -30,9 +30,10 @@ export const UserPayload = Record({
   profileImageURL: Opt(text),
 });
 
-const PropertyCategory = Variant({
+export const PropertyCategory = Variant({
   new: Null,
   used: Null,
+  land: Null,
 });
 
 export const PropertyHistory = Variant({
@@ -86,7 +87,7 @@ export const PropertyPayload = Record({
 
 export const PropertyParams = Record({
   name: text,
-  category: PropertyCategory,
+  category: Opt(PropertyCategory),
 });
 
 export type User = typeof User.tsType;
@@ -94,3 +95,4 @@ export type UserPayload = typeof UserPayload.tsType;
 export type ErrorResponse = typeof ErrorResponse.tsType;
 export type Property = typeof Property.tsType;
 export type PropertyPayload = typeof PropertyPayload.tsType;
+export type PropertyCategory = typeof PropertyCategory.tsType;

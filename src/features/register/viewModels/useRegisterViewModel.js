@@ -80,6 +80,7 @@ export default function useRegisterViewmodel() {
       setIsSubmmiting(false);
       if (response?.Ok) {
         setUser(response?.Ok);
+        router.push("/");
         return;
       }
 

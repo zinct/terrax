@@ -14,6 +14,13 @@ function nanoToSecondTimestampto(timestamp) {
   return timestampInSeconds;
 }
 
+export function getHumanFormat(nanoTimestamp) {
+  const timestamp = nanoToSecondTimestampto(nanoTimestamp);
+  console.log(nanoTimestamp);
+  const date = moment.unix(timestamp).format("D MMM YYYY");
+  return date;
+}
+
 export function getUpdatedAtStatus(nanoTimestamp) {
   const timestamp = nanoToSecondTimestampto(nanoTimestamp);
   const updatedAt = moment.unix(timestamp);

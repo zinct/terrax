@@ -20,7 +20,7 @@ service : {
     );
   createProperty : (
       record {
-        latitude : nat64;
+        latitude : text;
         bedroom : nat16;
         bathroom : nat16;
         firstFloor : nat16;
@@ -29,19 +29,19 @@ service : {
         groundFloor : nat16;
         livingRoom : nat16;
         secondFloor : nat16;
-        longitude : nat64;
+        longitude : text;
         address : text;
         category : variant { new; land; used };
         dining : nat16;
         image : vec text;
-        price : nat64;
+        price : nat16;
         construtionArea : nat16;
       },
     ) -> (
       variant {
         Ok : record {
           id : text;
-          latitude : nat64;
+          latitude : text;
           bedroom : nat16;
           bathroom : nat16;
           owner : record {
@@ -62,8 +62,7 @@ service : {
           name : text;
           createdAt : nat64;
           description : text;
-          history : vec variant {
-            endDate : nat64;
+          history : vec record {
             user : record {
               id : text;
               "principal" : principal;
@@ -84,12 +83,12 @@ service : {
           groundFloor : nat16;
           livingRoom : nat16;
           secondFloor : nat16;
-          longitude : nat64;
+          longitude : text;
           address : text;
           category : variant { new; land; used };
           dining : nat16;
           image : vec text;
-          price : nat64;
+          price : nat16;
           construtionArea : nat16;
         };
         Err : record { code : nat16; message : text };
@@ -106,7 +105,7 @@ service : {
       variant {
         Ok : vec record {
           id : text;
-          latitude : nat64;
+          latitude : text;
           bedroom : nat16;
           bathroom : nat16;
           owner : record {
@@ -127,8 +126,7 @@ service : {
           name : text;
           createdAt : nat64;
           description : text;
-          history : vec variant {
-            endDate : nat64;
+          history : vec record {
             user : record {
               id : text;
               "principal" : principal;
@@ -149,12 +147,12 @@ service : {
           groundFloor : nat16;
           livingRoom : nat16;
           secondFloor : nat16;
-          longitude : nat64;
+          longitude : text;
           address : text;
           category : variant { new; land; used };
           dining : nat16;
           image : vec text;
-          price : nat64;
+          price : nat16;
           construtionArea : nat16;
         };
         Err : record { code : nat16; message : text };
@@ -166,7 +164,7 @@ service : {
       variant {
         Ok : vec record {
           id : text;
-          latitude : nat64;
+          latitude : text;
           bedroom : nat16;
           bathroom : nat16;
           owner : record {
@@ -187,8 +185,7 @@ service : {
           name : text;
           createdAt : nat64;
           description : text;
-          history : vec variant {
-            endDate : nat64;
+          history : vec record {
             user : record {
               id : text;
               "principal" : principal;
@@ -209,12 +206,12 @@ service : {
           groundFloor : nat16;
           livingRoom : nat16;
           secondFloor : nat16;
-          longitude : nat64;
+          longitude : text;
           address : text;
           category : variant { new; land; used };
           dining : nat16;
           image : vec text;
-          price : nat64;
+          price : nat16;
           construtionArea : nat16;
         };
         Err : record { code : nat16; message : text };
@@ -224,7 +221,7 @@ service : {
       variant {
         Ok : record {
           id : text;
-          latitude : nat64;
+          latitude : text;
           bedroom : nat16;
           bathroom : nat16;
           owner : record {
@@ -245,8 +242,7 @@ service : {
           name : text;
           createdAt : nat64;
           description : text;
-          history : vec variant {
-            endDate : nat64;
+          history : vec record {
             user : record {
               id : text;
               "principal" : principal;
@@ -267,12 +263,12 @@ service : {
           groundFloor : nat16;
           livingRoom : nat16;
           secondFloor : nat16;
-          longitude : nat64;
+          longitude : text;
           address : text;
           category : variant { new; land; used };
           dining : nat16;
           image : vec text;
-          price : nat64;
+          price : nat16;
           construtionArea : nat16;
         };
         Err : record { code : nat16; message : text };

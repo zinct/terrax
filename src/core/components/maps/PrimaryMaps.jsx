@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   GoogleMap,
   useJsApiLoader,
   StandaloneSearchBox,
   InfoWindow,
+  Autocomplete,
   Marker,
 } from "@react-google-maps/api";
 
-function PrimaryMaps({ lat, lng, address }) {
+function PrimaryMaps({ lat, lng, onChangeCoordinate, readonly = false }) {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY,
@@ -15,12 +16,34 @@ function PrimaryMaps({ lat, lng, address }) {
   });
 
   const [viewPort, setViewPort] = useState({
-    lat: Number(lat ?? -6.9064866),
-    lng: Number(lng ?? 107.7073688),
-    address: address ?? "",
+    lat: lat,
+    lng: lng,
   });
 
   const [map, setMap] = React.useState(null);
+  const searchRef = useRef();
+
+  async function calculateRoute() {
+    if (searchRef.current.value === "") {
+      return;
+    }
+    const geocoder = new google.maps.Geocoder();
+    geocoder.geocode(
+      { address: searchRef.current.value },
+      function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          setViewPort({
+            lat: results[0].geometry.location.lat(),
+            lng: results[0].geometry.location.lng(),
+          });
+          onChangeCoordinate({
+            lat: results[0].geometry.location.lat(),
+            lng: results[0].geometry.location.lng(),
+          });
+        }
+      }
+    );
+  }
 
   const onLoad = React.useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds({
@@ -43,48 +66,49 @@ function PrimaryMaps({ lat, lng, address }) {
     setViewPort({
       lat,
       lng,
-      address,
     });
-    console.log(lat);
-    console.log(lng);
-  }
-
-  function handleClick(maps) {
-    console.log(maps);
+    onChangeCoordinate({
+      lat,
+      lng,
+    });
   }
 
   return isLoaded ? (
-    <GoogleMap
-      mapContainerClassName="w-full h-[20rem]"
-      center={{
-        lat: Number(lat ?? -6.9064866),
-        lng: Number(lng ?? 107.7073688),
-      }}
-      zoom={18}
-      onLoad={onLoad}
-      onUnmount={onUnmount}
-    >
-      {/* Child components, such as markers, info windows, etc. */}
-      <Marker
-        position={viewPort}
-        draggable={true}
-        onClick={handleClick}
-        onDragEnd={handleDragEnd}
+    <>
+      {readonly ? (
+        ""
+      ) : (
+        <Autocomplete onPlaceChanged={calculateRoute}>
+          <input
+            className="py-3 mb-5 mt-2 px-5 w-full rounded-lg bg-zinc-800"
+            type="text"
+            placeholder="Search Location"
+            ref={searchRef}
+          ></input>
+        </Autocomplete>
+      )}
+      <GoogleMap
+        mapContainerClassName="w-full h-[24rem]"
+        center={{
+          lat: Number(lat ?? -6.9064866),
+          lng: Number(lng ?? 107.7073688),
+        }}
+        zoom={14}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
       >
-        <InfoWindow options={{ maxWidth: 100 }}>
-          <span className="text-black">{`Lat: ${viewPort.lat}, Lng: ${viewPort.lng}`}</span>
-        </InfoWindow>
-      </Marker>
-
-      <>
-        <StandaloneSearchBox>
-          <>
-            <h2>Hello</h2>
-            <input name="address" type="text" />
-          </>
-        </StandaloneSearchBox>
-      </>
-    </GoogleMap>
+        {/* Child components, such as markers, info windows, etc. */}
+        <Marker
+          position={viewPort}
+          draggable={!readonly}
+          onDragEnd={handleDragEnd}
+        >
+          <InfoWindow options={{ maxWidth: 100 }}>
+            <span className="text-black">{`Lat: ${viewPort.lat}, Lng: ${viewPort.lng}`}</span>
+          </InfoWindow>
+        </Marker>
+      </GoogleMap>
+    </>
   ) : (
     <></>
   );

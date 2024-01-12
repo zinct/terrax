@@ -25,7 +25,7 @@ export interface _SERVICE {
   'createProperty' : ActorMethod<
     [
       {
-        'latitude' : bigint,
+        'latitude' : string,
         'bedroom' : number,
         'bathroom' : number,
         'firstFloor' : number,
@@ -34,21 +34,21 @@ export interface _SERVICE {
         'groundFloor' : number,
         'livingRoom' : number,
         'secondFloor' : number,
-        'longitude' : bigint,
+        'longitude' : string,
         'address' : string,
         'category' : { 'new' : null } |
           { 'land' : null } |
           { 'used' : null },
         'dining' : number,
         'image' : Array<string>,
-        'price' : bigint,
+        'price' : number,
         'construtionArea' : number,
       },
     ],
     {
         'Ok' : {
           'id' : string,
-          'latitude' : bigint,
+          'latitude' : string,
           'bedroom' : number,
           'bathroom' : number,
           'owner' : {
@@ -70,37 +70,36 @@ export interface _SERVICE {
           'createdAt' : bigint,
           'description' : string,
           'history' : Array<
-            { 'endDate' : bigint } |
-              {
-                'user' : {
-                  'id' : string,
-                  'principal' : Principal,
-                  'name' : [] | [string],
-                  'createdAt' : [] | [bigint],
-                  'email' : [] | [string],
-                  'updatedAt' : [] | [bigint],
-                  'idCardImageURL' : [] | [string],
-                  'address' : [] | [string],
-                  'birth' : [] | [bigint],
-                  'phone' : [] | [string],
-                  'isRegistered' : boolean,
-                  'profileImageURL' : [] | [string],
-                }
-              } |
-              { 'startDate' : bigint }
+            {
+              'user' : {
+                'id' : string,
+                'principal' : Principal,
+                'name' : [] | [string],
+                'createdAt' : [] | [bigint],
+                'email' : [] | [string],
+                'updatedAt' : [] | [bigint],
+                'idCardImageURL' : [] | [string],
+                'address' : [] | [string],
+                'birth' : [] | [bigint],
+                'phone' : [] | [string],
+                'isRegistered' : boolean,
+                'profileImageURL' : [] | [string],
+              },
+              'startDate' : bigint,
+            }
           >,
           'updatedAt' : [] | [bigint],
           'groundFloor' : number,
           'livingRoom' : number,
           'secondFloor' : number,
-          'longitude' : bigint,
+          'longitude' : string,
           'address' : string,
           'category' : { 'new' : null } |
             { 'land' : null } |
             { 'used' : null },
           'dining' : number,
           'image' : Array<string>,
-          'price' : bigint,
+          'price' : number,
           'construtionArea' : number,
         }
       } |
@@ -128,7 +127,7 @@ export interface _SERVICE {
         'Ok' : Array<
           {
             'id' : string,
-            'latitude' : bigint,
+            'latitude' : string,
             'bedroom' : number,
             'bathroom' : number,
             'owner' : {
@@ -150,37 +149,36 @@ export interface _SERVICE {
             'createdAt' : bigint,
             'description' : string,
             'history' : Array<
-              { 'endDate' : bigint } |
-                {
-                  'user' : {
-                    'id' : string,
-                    'principal' : Principal,
-                    'name' : [] | [string],
-                    'createdAt' : [] | [bigint],
-                    'email' : [] | [string],
-                    'updatedAt' : [] | [bigint],
-                    'idCardImageURL' : [] | [string],
-                    'address' : [] | [string],
-                    'birth' : [] | [bigint],
-                    'phone' : [] | [string],
-                    'isRegistered' : boolean,
-                    'profileImageURL' : [] | [string],
-                  }
-                } |
-                { 'startDate' : bigint }
+              {
+                'user' : {
+                  'id' : string,
+                  'principal' : Principal,
+                  'name' : [] | [string],
+                  'createdAt' : [] | [bigint],
+                  'email' : [] | [string],
+                  'updatedAt' : [] | [bigint],
+                  'idCardImageURL' : [] | [string],
+                  'address' : [] | [string],
+                  'birth' : [] | [bigint],
+                  'phone' : [] | [string],
+                  'isRegistered' : boolean,
+                  'profileImageURL' : [] | [string],
+                },
+                'startDate' : bigint,
+              }
             >,
             'updatedAt' : [] | [bigint],
             'groundFloor' : number,
             'livingRoom' : number,
             'secondFloor' : number,
-            'longitude' : bigint,
+            'longitude' : string,
             'address' : string,
             'category' : { 'new' : null } |
               { 'land' : null } |
               { 'used' : null },
             'dining' : number,
             'image' : Array<string>,
-            'price' : bigint,
+            'price' : number,
             'construtionArea' : number,
           }
         >
@@ -202,7 +200,7 @@ export interface _SERVICE {
         'Ok' : Array<
           {
             'id' : string,
-            'latitude' : bigint,
+            'latitude' : string,
             'bedroom' : number,
             'bathroom' : number,
             'owner' : {
@@ -224,37 +222,36 @@ export interface _SERVICE {
             'createdAt' : bigint,
             'description' : string,
             'history' : Array<
-              { 'endDate' : bigint } |
-                {
-                  'user' : {
-                    'id' : string,
-                    'principal' : Principal,
-                    'name' : [] | [string],
-                    'createdAt' : [] | [bigint],
-                    'email' : [] | [string],
-                    'updatedAt' : [] | [bigint],
-                    'idCardImageURL' : [] | [string],
-                    'address' : [] | [string],
-                    'birth' : [] | [bigint],
-                    'phone' : [] | [string],
-                    'isRegistered' : boolean,
-                    'profileImageURL' : [] | [string],
-                  }
-                } |
-                { 'startDate' : bigint }
+              {
+                'user' : {
+                  'id' : string,
+                  'principal' : Principal,
+                  'name' : [] | [string],
+                  'createdAt' : [] | [bigint],
+                  'email' : [] | [string],
+                  'updatedAt' : [] | [bigint],
+                  'idCardImageURL' : [] | [string],
+                  'address' : [] | [string],
+                  'birth' : [] | [bigint],
+                  'phone' : [] | [string],
+                  'isRegistered' : boolean,
+                  'profileImageURL' : [] | [string],
+                },
+                'startDate' : bigint,
+              }
             >,
             'updatedAt' : [] | [bigint],
             'groundFloor' : number,
             'livingRoom' : number,
             'secondFloor' : number,
-            'longitude' : bigint,
+            'longitude' : string,
             'address' : string,
             'category' : { 'new' : null } |
               { 'land' : null } |
               { 'used' : null },
             'dining' : number,
             'image' : Array<string>,
-            'price' : bigint,
+            'price' : number,
             'construtionArea' : number,
           }
         >
@@ -266,7 +263,7 @@ export interface _SERVICE {
     {
         'Ok' : {
           'id' : string,
-          'latitude' : bigint,
+          'latitude' : string,
           'bedroom' : number,
           'bathroom' : number,
           'owner' : {
@@ -288,37 +285,36 @@ export interface _SERVICE {
           'createdAt' : bigint,
           'description' : string,
           'history' : Array<
-            { 'endDate' : bigint } |
-              {
-                'user' : {
-                  'id' : string,
-                  'principal' : Principal,
-                  'name' : [] | [string],
-                  'createdAt' : [] | [bigint],
-                  'email' : [] | [string],
-                  'updatedAt' : [] | [bigint],
-                  'idCardImageURL' : [] | [string],
-                  'address' : [] | [string],
-                  'birth' : [] | [bigint],
-                  'phone' : [] | [string],
-                  'isRegistered' : boolean,
-                  'profileImageURL' : [] | [string],
-                }
-              } |
-              { 'startDate' : bigint }
+            {
+              'user' : {
+                'id' : string,
+                'principal' : Principal,
+                'name' : [] | [string],
+                'createdAt' : [] | [bigint],
+                'email' : [] | [string],
+                'updatedAt' : [] | [bigint],
+                'idCardImageURL' : [] | [string],
+                'address' : [] | [string],
+                'birth' : [] | [bigint],
+                'phone' : [] | [string],
+                'isRegistered' : boolean,
+                'profileImageURL' : [] | [string],
+              },
+              'startDate' : bigint,
+            }
           >,
           'updatedAt' : [] | [bigint],
           'groundFloor' : number,
           'livingRoom' : number,
           'secondFloor' : number,
-          'longitude' : bigint,
+          'longitude' : string,
           'address' : string,
           'category' : { 'new' : null } |
             { 'land' : null } |
             { 'used' : null },
           'dining' : number,
           'image' : Array<string>,
-          'price' : bigint,
+          'price' : number,
           'construtionArea' : number,
         }
       } |

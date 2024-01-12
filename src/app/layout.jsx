@@ -3,6 +3,7 @@ import { AuthProvider } from "@/core/contexts/AuthContext";
 
 import localFont from "next/font/local";
 import NextTopLoader from "nextjs-toploader";
+import "react-loading-skeleton/dist/skeleton.css";
 
 // Font files can be colocated inside of `app`
 const Gilroy = localFont({

@@ -26,7 +26,7 @@ export const idlFactory = ({ IDL }) => {
     'createProperty' : IDL.Func(
         [
           IDL.Record({
-            'latitude' : IDL.Nat64,
+            'latitude' : IDL.Text,
             'bedroom' : IDL.Nat16,
             'bathroom' : IDL.Nat16,
             'firstFloor' : IDL.Nat16,
@@ -35,7 +35,7 @@ export const idlFactory = ({ IDL }) => {
             'groundFloor' : IDL.Nat16,
             'livingRoom' : IDL.Nat16,
             'secondFloor' : IDL.Nat16,
-            'longitude' : IDL.Nat64,
+            'longitude' : IDL.Text,
             'address' : IDL.Text,
             'category' : IDL.Variant({
               'new' : IDL.Null,
@@ -44,7 +44,7 @@ export const idlFactory = ({ IDL }) => {
             }),
             'dining' : IDL.Nat16,
             'image' : IDL.Vec(IDL.Text),
-            'price' : IDL.Nat64,
+            'price' : IDL.Nat16,
             'construtionArea' : IDL.Nat16,
           }),
         ],
@@ -52,7 +52,7 @@ export const idlFactory = ({ IDL }) => {
           IDL.Variant({
             'Ok' : IDL.Record({
               'id' : IDL.Text,
-              'latitude' : IDL.Nat64,
+              'latitude' : IDL.Text,
               'bedroom' : IDL.Nat16,
               'bathroom' : IDL.Nat16,
               'owner' : IDL.Record({
@@ -74,8 +74,7 @@ export const idlFactory = ({ IDL }) => {
               'createdAt' : IDL.Nat64,
               'description' : IDL.Text,
               'history' : IDL.Vec(
-                IDL.Variant({
-                  'endDate' : IDL.Nat64,
+                IDL.Record({
                   'user' : IDL.Record({
                     'id' : IDL.Text,
                     'principal' : IDL.Principal,
@@ -97,7 +96,7 @@ export const idlFactory = ({ IDL }) => {
               'groundFloor' : IDL.Nat16,
               'livingRoom' : IDL.Nat16,
               'secondFloor' : IDL.Nat16,
-              'longitude' : IDL.Nat64,
+              'longitude' : IDL.Text,
               'address' : IDL.Text,
               'category' : IDL.Variant({
                 'new' : IDL.Null,
@@ -106,7 +105,7 @@ export const idlFactory = ({ IDL }) => {
               }),
               'dining' : IDL.Nat16,
               'image' : IDL.Vec(IDL.Text),
-              'price' : IDL.Nat64,
+              'price' : IDL.Nat16,
               'construtionArea' : IDL.Nat16,
             }),
             'Err' : IDL.Record({ 'code' : IDL.Nat16, 'message' : IDL.Text }),
@@ -144,7 +143,7 @@ export const idlFactory = ({ IDL }) => {
             'Ok' : IDL.Vec(
               IDL.Record({
                 'id' : IDL.Text,
-                'latitude' : IDL.Nat64,
+                'latitude' : IDL.Text,
                 'bedroom' : IDL.Nat16,
                 'bathroom' : IDL.Nat16,
                 'owner' : IDL.Record({
@@ -166,8 +165,7 @@ export const idlFactory = ({ IDL }) => {
                 'createdAt' : IDL.Nat64,
                 'description' : IDL.Text,
                 'history' : IDL.Vec(
-                  IDL.Variant({
-                    'endDate' : IDL.Nat64,
+                  IDL.Record({
                     'user' : IDL.Record({
                       'id' : IDL.Text,
                       'principal' : IDL.Principal,
@@ -189,7 +187,7 @@ export const idlFactory = ({ IDL }) => {
                 'groundFloor' : IDL.Nat16,
                 'livingRoom' : IDL.Nat16,
                 'secondFloor' : IDL.Nat16,
-                'longitude' : IDL.Nat64,
+                'longitude' : IDL.Text,
                 'address' : IDL.Text,
                 'category' : IDL.Variant({
                   'new' : IDL.Null,
@@ -198,7 +196,7 @@ export const idlFactory = ({ IDL }) => {
                 }),
                 'dining' : IDL.Nat16,
                 'image' : IDL.Vec(IDL.Text),
-                'price' : IDL.Nat64,
+                'price' : IDL.Nat16,
                 'construtionArea' : IDL.Nat16,
               })
             ),
@@ -225,7 +223,7 @@ export const idlFactory = ({ IDL }) => {
             'Ok' : IDL.Vec(
               IDL.Record({
                 'id' : IDL.Text,
-                'latitude' : IDL.Nat64,
+                'latitude' : IDL.Text,
                 'bedroom' : IDL.Nat16,
                 'bathroom' : IDL.Nat16,
                 'owner' : IDL.Record({
@@ -247,8 +245,7 @@ export const idlFactory = ({ IDL }) => {
                 'createdAt' : IDL.Nat64,
                 'description' : IDL.Text,
                 'history' : IDL.Vec(
-                  IDL.Variant({
-                    'endDate' : IDL.Nat64,
+                  IDL.Record({
                     'user' : IDL.Record({
                       'id' : IDL.Text,
                       'principal' : IDL.Principal,
@@ -270,7 +267,7 @@ export const idlFactory = ({ IDL }) => {
                 'groundFloor' : IDL.Nat16,
                 'livingRoom' : IDL.Nat16,
                 'secondFloor' : IDL.Nat16,
-                'longitude' : IDL.Nat64,
+                'longitude' : IDL.Text,
                 'address' : IDL.Text,
                 'category' : IDL.Variant({
                   'new' : IDL.Null,
@@ -279,7 +276,7 @@ export const idlFactory = ({ IDL }) => {
                 }),
                 'dining' : IDL.Nat16,
                 'image' : IDL.Vec(IDL.Text),
-                'price' : IDL.Nat64,
+                'price' : IDL.Nat16,
                 'construtionArea' : IDL.Nat16,
               })
             ),
@@ -294,7 +291,7 @@ export const idlFactory = ({ IDL }) => {
           IDL.Variant({
             'Ok' : IDL.Record({
               'id' : IDL.Text,
-              'latitude' : IDL.Nat64,
+              'latitude' : IDL.Text,
               'bedroom' : IDL.Nat16,
               'bathroom' : IDL.Nat16,
               'owner' : IDL.Record({
@@ -316,8 +313,7 @@ export const idlFactory = ({ IDL }) => {
               'createdAt' : IDL.Nat64,
               'description' : IDL.Text,
               'history' : IDL.Vec(
-                IDL.Variant({
-                  'endDate' : IDL.Nat64,
+                IDL.Record({
                   'user' : IDL.Record({
                     'id' : IDL.Text,
                     'principal' : IDL.Principal,
@@ -339,7 +335,7 @@ export const idlFactory = ({ IDL }) => {
               'groundFloor' : IDL.Nat16,
               'livingRoom' : IDL.Nat16,
               'secondFloor' : IDL.Nat16,
-              'longitude' : IDL.Nat64,
+              'longitude' : IDL.Text,
               'address' : IDL.Text,
               'category' : IDL.Variant({
                 'new' : IDL.Null,
@@ -348,7 +344,7 @@ export const idlFactory = ({ IDL }) => {
               }),
               'dining' : IDL.Nat16,
               'image' : IDL.Vec(IDL.Text),
-              'price' : IDL.Nat64,
+              'price' : IDL.Nat16,
               'construtionArea' : IDL.Nat16,
             }),
             'Err' : IDL.Record({ 'code' : IDL.Nat16, 'message' : IDL.Text }),

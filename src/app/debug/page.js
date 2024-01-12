@@ -9,6 +9,7 @@ import { AuthClient } from "@dfinity/auth-client";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const images = [
   "https://firebasestorage.googleapis.com/v0/b/terrax-de163.appspot.com/o/files%2Fproperties%2Fdummies%2F1.png?alt=media&token=34513744-e2d2-4c7e-99d2-b95d5da77e0b",
@@ -90,36 +91,12 @@ const Page = () => {
     const identity = await authClient.getIdentity();
     const terraxActor = makeTerraxActor({ identity });
 
-    const test = await terraxActor.createProperty({
-      name: "Rumah Full-Furnish di Jaksel",
-      description:
-        "Discover the perfect blend of comfort and style in this inviting 3-bedroom home. Nestled in a prime location, this property boasts a spacious living area, modern kitchen, and a serene backyard. The master bedroom features an ensuite bathroom, providing a private oasis. With contemporary finishes throughout, this home is move-in ready. Conveniently located near schools, parks, and shopping centers, it offers an ideal lifestyle for families. Don't miss the chance to make this delightful house your new home. Schedule a viewing today!",
-      price: 2000,
-      image: images,
-      category: {
-        used: null,
-      },
-      bedroom: 1,
-      bathroom: 2,
-      dining: 4,
-      livingRoom: 2,
-      firstFloor: 5,
-      secondFloor: 2,
-      groundFloor: 8,
-      construtionArea: 19,
-      address: "JL.Bandung, Jakarta Selatan",
-      latitude: 0,
-      longitude: 0,
-    });
-
-    console.log(test);
-    return;
     images.map(async (row) => {
       const test = await terraxActor.createProperty({
         name: "Rumah Full-Furnish di Jaksel",
         description:
           "Discover the perfect blend of comfort and style in this inviting 3-bedroom home. Nestled in a prime location, this property boasts a spacious living area, modern kitchen, and a serene backyard. The master bedroom features an ensuite bathroom, providing a private oasis. With contemporary finishes throughout, this home is move-in ready. Conveniently located near schools, parks, and shopping centers, it offers an ideal lifestyle for families. Don't miss the chance to make this delightful house your new home. Schedule a viewing today!",
-        price: 10000000,
+        price: 800,
         image: [row],
         category: {
           used: null,
@@ -133,8 +110,8 @@ const Page = () => {
         groundFloor: 8,
         construtionArea: 19,
         address: "JL.Bandung, Jakarta Selatan",
-        latitude: 0,
-        longitude: 0,
+        latitude: String(-6.9064866),
+        longitude: String(107.7073688),
       });
 
       console.log(test);

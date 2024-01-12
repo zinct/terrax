@@ -1,12 +1,15 @@
 "use client";
 
 import * as Yup from "yup";
+import { v4 as uuidv4 } from "uuid";
 import AuthContext from "@/core/contexts/AuthContext";
 import { makeTerraxActor } from "@/core/services/actorLocatorService";
 import { useFormik } from "formik";
 import { useContext, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { imageFileToBase64 } from "@/core/utils/imageUtilS";
+import { uploadImage } from "@/core/services/imageService";
+import { getPropertyCategory } from "@/core/utils/propertyUtils";
 
 export default function useRegistrationViewModel() {
   const { authClient } = useContext(AuthContext);
@@ -15,7 +18,15 @@ export default function useRegistrationViewModel() {
   const [isLoading, setIsLoading] = useState(true);
   const [propertyCategory, setPropertyCategory] = useState("new");
   const [propertyImages, setPropertyImages] = useState([]);
+  const [certificateImage, setCertifcateImage] = useState(null);
+  const [isMaps, setIsMaps] = useState(false);
   const [propertyBase64, setPropertyBase64] = useState([]);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  const [viewPort, setViewPort] = useState({
+    lat: -6.9064866,
+    lng: 107.7073688,
+  });
 
   // Image Input
   const { getRootProps, getInputProps, acceptedFiles } = useDropzone({
@@ -37,6 +48,28 @@ export default function useRegistrationViewModel() {
 
           console.log("tes", newBase64);
           setPropertyBase64(newBase64);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    },
+  });
+
+  const {
+    getRootProps: getRootProps2,
+    getInputProps: getInputProps2,
+    acceptedFiles: acceptedFiles2,
+  } = useDropzone({
+    maxFiles: 1,
+    accept: {
+      "image/png": [".png"],
+      "image/jpeg": [".jpg", ".jpeg"],
+    },
+    onDrop: async (acceptedFiles) => {
+      if (acceptedFiles.length > 0) {
+        try {
+          const newFile = acceptedFiles[0];
+          setCertifcateImage(newFile);
         } catch (error) {
           console.error(error);
         }
@@ -75,13 +108,78 @@ export default function useRegistrationViewModel() {
       secondFloor: Yup.string().required("The field is required"),
       construtionArea: Yup.string().required("The field is required"),
       address: Yup.string().required("The field is required"),
-      latitude: Yup.string().required("The field is required"),
-      longitude: Yup.string().required("The field is required"),
     }),
-    onSubmit: async (values, { setSubmitting }) => {},
+    onSubmit: async (values, { setSubmitting }) => {
+      if (certificateImage === null || propertyImages.length === 0) {
+        console.log("Image Required");
+        return;
+      }
+
+      setSubmitting(true);
+      const identity = await authClient.getIdentity();
+
+      const terraxActor = makeTerraxActor({ identity });
+
+      const certificateImageURL = await uploadImage(
+        certificateImage,
+        `${uuidv4()}.jpeg`
+      );
+      const propertyImagesURL = [];
+
+      for (const row of propertyImages) {
+        const imageURL = await uploadImage(row, `${uuidv4()}.jpeg`);
+        propertyImagesURL.push(imageURL);
+      }
+
+      console.log("propertyImagesURL", propertyImagesURL);
+
+      const response = await terraxActor.createProperty({
+        name: values.name,
+        description: values.description,
+        price: values.price,
+        image: propertyImagesURL,
+        category: getPropertyCategory(propertyCategory),
+        bedroom: values.bedroom,
+        bathroom: values.bathroom,
+        dining: values.dining,
+        livingRoom: values.livingRoom,
+        firstFloor: values.firstFloor,
+        secondFloor: values.secondFloor,
+        groundFloor: values.groundFloor,
+        construtionArea: values.construtionArea,
+        address: values.address,
+        latitude: String(viewPort.lat),
+        longitude: String(viewPort.lng),
+      });
+
+      setSubmitting(false);
+
+      if (response?.Ok) {
+        setIsSuccess(true);
+        return;
+      }
+
+      console.log("Something went wrong", response);
+    },
   });
 
+  function handleCoordinate(coord) {
+    setViewPort(coord);
+  }
+
+  function handleSuccess() {
+    setIsMaps(false);
+  }
+
   return {
+    isSuccess,
+
+    getRootProps2,
+    getInputProps2,
+    acceptedFiles2,
+    handleSuccess,
+    handleCoordinate,
+    viewPort,
     tab,
     propertyBase64,
     propertyImages,
@@ -92,5 +190,8 @@ export default function useRegistrationViewModel() {
     acceptedFiles,
     setTab,
     isLoading,
+    isMaps,
+    setIsMaps,
+    formik,
   };
 }

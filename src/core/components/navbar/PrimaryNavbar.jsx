@@ -78,7 +78,9 @@ const PrimaryNavbar = ({
                 className="rounded-lg"
                 width={35}
                 height={35}
-                src="/images/no-user.png"
+                src={
+                  authContext.user.profileImageURL[0] || "/images/no-user.png"
+                }
                 alt="Image"
               />
             </button>

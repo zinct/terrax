@@ -25,9 +25,13 @@ export default function usePropertiesViewModel() {
       });
       setIsLoading(false);
 
+      console.log(response);
+
       if (response.Ok) {
-        setProperties(response.Ok);
+        return setProperties(response.Ok);
       }
+
+      console.error("Somethin went wrong with message,", response);
     } catch (err) {
       console.error("Somethin went wrong with message,", err);
     }

@@ -100261,17 +100261,16 @@ var PropertyCategory = Variant2({
     used: Null2,
     land: Null2
 });
-var PropertyHistory = Variant2({
+var PropertyHistory = Record2({
     user: User,
-    startDate: nat64,
-    endDate: nat64
+    startDate: nat64
 });
 var Property = Record2({
     id: text,
     owner: User,
     name: text,
     description: text,
-    price: nat64,
+    price: nat16,
     image: Vec2(text),
     category: PropertyCategory,
     history: Vec2(PropertyHistory),
@@ -100284,15 +100283,15 @@ var Property = Record2({
     secondFloor: nat16,
     construtionArea: nat16,
     address: text,
-    latitude: nat64,
-    longitude: nat64,
+    latitude: text,
+    longitude: text,
     createdAt: nat64,
     updatedAt: Opt2(nat64)
 });
 var PropertyPayload = Record2({
     name: text,
     description: text,
-    price: nat64,
+    price: nat16,
     image: Vec2(text),
     category: PropertyCategory,
     bedroom: nat16,
@@ -100304,8 +100303,8 @@ var PropertyPayload = Record2({
     secondFloor: nat16,
     construtionArea: nat16,
     address: text,
-    latitude: nat64,
-    longitude: nat64
+    latitude: text,
+    longitude: text
 });
 var PropertyParams = Record2({
     name: text,
@@ -100448,10 +100447,16 @@ var terrax_default = Canister({
                     message: "User not registered"
                 });
             }
+            const newHistory = {
+                user,
+                startDate: ic.time()
+            };
             const newProperty = _extends({
                 id: v4_default(),
                 owner: user,
-                history: [],
+                history: [
+                    newHistory
+                ],
                 createdAt: ic.time(),
                 updatedAt: Some(ic.time())
             }, payload);

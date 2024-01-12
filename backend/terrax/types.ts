@@ -36,10 +36,9 @@ export const PropertyCategory = Variant({
   land: Null,
 });
 
-export const PropertyHistory = Variant({
+export const PropertyHistory = Record({
   user: User,
   startDate: nat64,
-  endDate: nat64,
 });
 
 export const Property = Record({
@@ -60,8 +59,8 @@ export const Property = Record({
   secondFloor: nat16,
   construtionArea: nat16,
   address: text,
-  latitude: nat16,
-  longitude: nat16,
+  latitude: text,
+  longitude: text,
   createdAt: nat64,
   updatedAt: Opt(nat64),
 });
@@ -81,8 +80,8 @@ export const PropertyPayload = Record({
   secondFloor: nat16,
   construtionArea: nat16,
   address: text,
-  latitude: nat16,
-  longitude: nat16,
+  latitude: text,
+  longitude: text,
 });
 
 export const PropertyParams = Record({
@@ -95,4 +94,5 @@ export type UserPayload = typeof UserPayload.tsType;
 export type ErrorResponse = typeof ErrorResponse.tsType;
 export type Property = typeof Property.tsType;
 export type PropertyPayload = typeof PropertyPayload.tsType;
+export type PropertyHistory = typeof PropertyHistory.tsType;
 export type PropertyCategory = typeof PropertyCategory.tsType;

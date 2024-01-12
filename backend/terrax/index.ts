@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import { Canister, ic, nat16, nat64, None, Null, Opt, query, Result, Some, StableBTreeMap, text, update, Vec } from "azle";
 
-import { ErrorResponse, Property, PropertyCategory, PropertyParams, PropertyPayload, User, UserPayload } from "./types";
+import { ErrorResponse, Property, PropertyCategory, PropertyHistory, PropertyParams, PropertyPayload, User, UserPayload } from "./types";
 
 const usersStore = StableBTreeMap<text, User>(1);
 const propertiesStore = StableBTreeMap<text, Property>(10);
@@ -157,10 +157,17 @@ export default Canister({
         });
       }
 
+      const newHistory: PropertyHistory = {
+        user: user,
+        startDate: ic.time(),
+      };
+
       const newProperty: Property = {
         id: uuidv4(),
         owner: user,
-        history: [],
+        history: [
+          newHistory,
+        ],
         createdAt: ic.time(),
         updatedAt: Some(ic.time()),
 

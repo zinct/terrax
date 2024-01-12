@@ -1,7 +1,9 @@
 "use client";
 
+import PrimaryLoading from "@/core/components/loading/PrimaryLoading";
+import PrimaryMaps from "@/core/components/maps/PrimaryMaps";
 import PrimaryNavbar from "@/core/components/navbar/PrimaryNavbar";
-import { getUpdatedAtStatus } from "@/core/utils/datetimeUtils";
+import { getHumanFormat, getUpdatedAtStatus } from "@/core/utils/datetimeUtils";
 import useDetailPropertiesViewModel from "@/features/properties/viewModels/useDetailPropertiesViewModel";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,17 +22,18 @@ export default function Home({ params }) {
       <article className="container mx-auto">
         <PrimaryNavbar />
         {!viewModel.property ? (
-          "Loading"
+          <div className="mt-[20rem]">
+            <PrimaryLoading />
+          </div>
         ) : (
           <section className="flex flex-row justify-between relative my-24">
             <div className="basis-1/3">
               <div>
                 <div className="relative h-96 w-full">
-                  <Image
-                    className="rounded-lg"
+                  <img
+                    className="rounded-lg w-full h-full object-cover"
                     src={viewModel.property.image[viewModel.selectedImage]}
                     alt="Image"
-                    fill
                   />
                 </div>
                 <div className="flex flex-row space-x-5 mt-5">
@@ -40,7 +43,7 @@ export default function Home({ params }) {
                         viewModel.setSelectedImage(index);
                       }}
                       key={row}
-                      className={`relative h-20 w-20 ${
+                      className={`relative h-20 w-20 cursor-pointer ${
                         viewModel.property.image[viewModel.selectedImage] == row
                           ? "border-cyan-400"
                           : ""
@@ -58,7 +61,9 @@ export default function Home({ params }) {
               </div>
               <div className="bg-zinc-900 rounded-lg p-5 w-full mt-10">
                 <h4 className="text-white text-xl mb-5">Price</h4>
-                <p className="text-cyan-400 text-2xl mb-5">30.20 ETH</p>{" "}
+                <p className="text-cyan-400 text-2xl mb-5">
+                  {viewModel.property.price} ETH
+                </p>{" "}
               </div>
               <div className="bg-zinc-900 rounded-lg p-5 w-full mt-10">
                 <h4 className="text-white text-xl mb-2">Ownership History</h4>
@@ -88,20 +93,26 @@ export default function Home({ params }) {
                       </svg>
                     </div>
                     <div>
-                      <p className="text-white">24 Dec 2020 - Now</p>
+                      <p className="text-white">
+                        {getHumanFormat(Number(row.startDate))} - Now
+                      </p>
                       <div className="flex flex-row items-center mt-5">
                         <Image
                           className="rounded-lg"
                           width={56}
                           height={56}
-                          src="/images/user.png"
+                          src={
+                            row.user.profileImageURL[0] || "/images/no-user.png"
+                          }
                           alt="Image"
                         />
                         <div className="ml-5">
                           <p className="bg-gradient-to-r from-cyan-400 to-orange-400 bg-clip-text text-transparent text-lg">
-                            {row.name}
+                            {row.user.name}
                           </p>
-                          <p className="text-gray-500">24 Dec 2020 - Now</p>
+                          <p className="text-gray-500">
+                            {getHumanFormat(Number(row.startDate))} - Now
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -229,80 +240,84 @@ export default function Home({ params }) {
                     height={25}
                   />
                 </div>
-                <iframe
-                  className="w-full h-72 rounded-lg mt-10"
-                  style={{ border: 0 }}
-                  loading="lazy"
-                  allowfullscreen
-                  src={`https://google.com/maps/embed/v1/place?q=Bandung&key=${process.env.NEXT_PUBLIC_MAPS_API_KEY}`}
-                ></iframe>
+                <PrimaryMaps
+                  readonly={true}
+                  lat={Number(viewModel.property.latitude)}
+                  lng={Number(viewModel.property.longitude)}
+                />
               </div>
             </div>
           </section>
         )}
-        <section>
-          <h1 className="text-white text-2xl mb-10">Similar Listings</h1>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5">
-            {viewModel.isLoading
-              ? "Loading"
-              : viewModel.nearProperties.map((row) => (
-                  <Link
-                    href={`/properties/${row.id}`}
-                    key={row.id}
-                    className="bg-zinc-900 rounded-lg p-5"
-                  >
-                    <div className="relative h-[20rem] w-full">
-                      <Image
-                        className="rounded-lg object-cover"
-                        src={row.image[0]}
-                        alt="Image"
-                        fill
-                      />
-                      <span className="absolute top-3 left-3 bg-orange-400 py-1 px-3 rounded-lg text-white">
-                        {row.category.hasOwnProperty("used")
-                          ? "Used Home"
-                          : "New Home"}
-                      </span>
-                    </div>
-                    <h3 className="text-white text-2xl mt-3 mb-2">
-                      {row.name}
-                    </h3>
-                    <p className="text-gray-500 flex flex-row mb-3">
-                      <Image
-                        className="mr-2"
-                        src="/svg/point.svg"
-                        alt="Point"
-                        width={15}
-                        height={15}
-                      />
-                      JL.Jeruk, Jakarta Selatan
-                    </p>
-                    <Image
-                      src="/svg/break-line.svg"
-                      alt="Break Line"
-                      width={500}
-                      height={25}
-                    />
-                    <p className="text-gray-500 flex flex-row items-center my-3">
-                      <span>3842 sq ft</span>
-                      <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
-                      <span>{row.bedroom} Beds</span>
-                      <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
-                      <span>{row.bathroom} Baths</span>
-                    </p>
-                    <p className="text-cyan-400 text-2xl">
-                      {Number(row.price)} ETH
-                    </p>
-                  </Link>
-                ))}
-          </div>
-        </section>
-        <section className="mt-24">
-          <hr className="border-gray-800" />
-          <p className="text-gray-500 my-10">
-            (c) 2023 TerraX. all Right Reserved
-          </p>
-        </section>
+        {!viewModel.isLoading ? (
+          <>
+            <section>
+              <h1 className="text-white text-2xl mb-10">Similar Listings</h1>
+              <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5">
+                {viewModel.isLoading
+                  ? ""
+                  : viewModel.nearProperties.map((row) => (
+                      <Link
+                        href={`/properties/${row.id}`}
+                        key={row.id}
+                        className="bg-zinc-900 rounded-lg p-5"
+                      >
+                        <div className="relative h-[20rem] w-full">
+                          <Image
+                            className="rounded-lg object-cover"
+                            src={row.image[0]}
+                            alt="Image"
+                            fill
+                          />
+                          <span className="absolute top-3 left-3 bg-orange-400 py-1 px-3 rounded-lg text-white">
+                            {row.category.hasOwnProperty("used")
+                              ? "Used Home"
+                              : "New Home"}
+                          </span>
+                        </div>
+                        <h3 className="text-white text-2xl mt-3 mb-2">
+                          {row.name}
+                        </h3>
+                        <p className="text-gray-500 flex flex-row mb-3">
+                          <Image
+                            className="mr-2"
+                            src="/svg/point.svg"
+                            alt="Point"
+                            width={15}
+                            height={15}
+                          />
+                          JL.Jeruk, Jakarta Selatan
+                        </p>
+                        <Image
+                          src="/svg/break-line.svg"
+                          alt="Break Line"
+                          width={500}
+                          height={25}
+                        />
+                        <p className="text-gray-500 flex flex-row items-center my-3">
+                          <span>3842 sq ft</span>
+                          <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
+                          <span>{row.bedroom} Beds</span>
+                          <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
+                          <span>{row.bathroom} Baths</span>
+                        </p>
+                        <p className="text-cyan-400 text-2xl">
+                          {Number(row.price)} ETH
+                        </p>
+                      </Link>
+                    ))}
+              </div>
+            </section>
+            <section className="mt-24">
+              <hr className="border-gray-800" />
+              <p className="text-gray-500 my-10">
+                (c) 2023 TerraX. all Right Reserved
+              </p>
+            </section>
+          </>
+        ) : (
+          ""
+        )}
       </article>
     </main>
   );

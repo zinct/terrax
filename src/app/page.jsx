@@ -1,10 +1,12 @@
 "use client";
 
+import PrimaryLoading from "@/core/components/loading/PrimaryLoading";
 import PrimaryNavbar from "@/core/components/navbar/PrimaryNavbar";
 import useHomeViewModel from "@/features/home/viewModels/useHomeViewModel";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect } from "react";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const viewModel = useHomeViewModel();
@@ -95,15 +97,26 @@ export default function Home() {
       </div>
       <article className="container mx-auto">
         <PrimaryNavbar />
-        <Image
-          src="/svg/pattern.svg"
-          width={800}
-          height={700}
-          alt="Pattern"
+        <motion.div
+          initial={{ y: "40px", opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ type: "spring", duration: 2, bounce: 0 }}
           className="absolute right-[15rem]"
-        />
+        >
+          <Image
+            src="/svg/pattern.svg"
+            width={800}
+            height={700}
+            alt="Pattern"
+          />
+        </motion.div>
         <section className="flex flex-row items-center justify-between relative mt-14">
-          <div className="flex-1">
+          <motion.div
+            className="flex-1"
+            initial={{ y: 0, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ type: "spring", duration: 2, bounce: 0 }}
+          >
             <h1 className="text-white font-bold text-7xl">
               <span className="bg-gradient-to-r from-cyan-400 to-orange-400 bg-clip-text text-transparent">
                 Secure and Easy
@@ -124,9 +137,12 @@ export default function Home() {
               effortlessly and completed within 7 days or less.
             </p>
             <div className="mt-10">
-              <button className="bg-cyan-400 px-5 py-3 rounded-lg mr-10">
+              <Link
+                href="/properties"
+                className="bg-cyan-400 px-5 py-3 rounded-lg mr-10"
+              >
                 Explore
-              </button>
+              </Link>
               <button className="text-white relative">
                 Go To Market{" "}
                 <Image
@@ -138,9 +154,14 @@ export default function Home() {
                 />
               </button>
             </div>
-          </div>
+          </motion.div>
           <div className="flex-1">
-            <div className="relative">
+            <motion.div
+              className="relative"
+              initial={{ y: "40px", opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ type: "spring", duration: 2, bounce: 0 }}
+            >
               <Image
                 src="/images/hero.png"
                 width={600}
@@ -148,8 +169,13 @@ export default function Home() {
                 alt="Card Promotion"
                 className="z-10"
               />
-            </div>
-            <div className="flex flex-row items-center justify-center space-x-20">
+            </motion.div>
+            <motion.div
+              initial={{ y: "10px", opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ type: "spring", duration: 2, bounce: 0 }}
+              className="flex flex-row items-center justify-center space-x-20"
+            >
               <div>
                 <h2 className="text-white font-bold text-4xl">
                   56K<span className="text-cyan-300">+</span>
@@ -168,10 +194,14 @@ export default function Home() {
                 </h2>
                 <p className="text-white">Customer Satisfied</p>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
-        <section>
+        <motion.section
+          initial={{ y: "10px", opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ type: "tween", duration: 2, bounce: 0 }}
+        >
           <div className="flex flex-row items-center justify-between">
             <div className="flex flex-row items-center justify-center space-x-6">
               <Image
@@ -220,7 +250,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-        </section>
+        </motion.section>
         <section>
           <div className="flex flex-row items-center justify-between my-28">
             <h2 className="text-white font-bold text-5xl">Near You</h2>
@@ -239,64 +269,82 @@ export default function Home() {
               />{" "}
             </Link>
           </div>
-        </section>{" "}
-        <section>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5">
-            {viewModel.isLoading
-              ? "Loading"
-              : viewModel.nearProperties.map((row) => (
-                  <Link
-                    href={`/properties/${row.id}`}
-                    key={row.id}
-                    className="bg-zinc-900 rounded-lg p-5"
-                  >
-                    <div className="relative h-[20rem] w-full">
-                      <Image
-                        className="rounded-lg object-cover"
-                        src={row.image[0]}
-                        alt="Image"
-                        fill
-                      />
-                      <span className="absolute top-3 left-3 bg-orange-400 py-1 px-3 rounded-lg text-white">
-                        {row.category.hasOwnProperty("used")
-                          ? "Used Home"
-                          : "New Home"}
-                      </span>
-                    </div>
-                    <h3 className="text-white text-2xl mt-3 mb-2">
-                      {row.name}
-                    </h3>
-                    <p className="text-gray-500 flex flex-row mb-3">
-                      <Image
-                        className="mr-2"
-                        src="/svg/point.svg"
-                        alt="Point"
-                        width={15}
-                        height={15}
-                      />
-                      JL.Jeruk, Jakarta Selatan
-                    </p>
-                    <Image
-                      src="/svg/break-line.svg"
-                      alt="Break Line"
-                      width={500}
-                      height={25}
-                    />
-                    <p className="text-gray-500 flex flex-row items-center my-3">
-                      <span>3842 sq ft</span>
-                      <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
-                      <span>{row.bedroom} Beds</span>
-                      <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
-                      <span>{row.bathroom} Baths</span>
-                    </p>
-                    <p className="text-cyan-400 text-2xl">
-                      {Number(row.price)} ETH
-                    </p>
-                  </Link>
-                ))}
-          </div>
         </section>
-        <section className="flex flex-row items-center justify-between relative my-28">
+        <section>
+          {viewModel.isLoading ? (
+            <PrimaryLoading />
+          ) : viewModel.nearProperties.length > 0 ? (
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5">
+              {viewModel.nearProperties.map((row) => (
+                <Link
+                  href={`/properties/${row.id}`}
+                  key={row.id}
+                  className="bg-zinc-900 rounded-lg p-5"
+                >
+                  <div className="relative h-[20rem] w-full">
+                    <Image
+                      className="rounded-lg object-cover"
+                      src={row.image[0]}
+                      alt="Image"
+                      fill
+                    />
+                    <span className="absolute top-3 left-3 bg-orange-400 py-1 px-3 rounded-lg text-white">
+                      {row.category.hasOwnProperty("used")
+                        ? "Used Home"
+                        : "New Home"}
+                    </span>
+                  </div>
+                  <h3 className="text-white text-2xl mt-3 mb-2">{row.name}</h3>
+                  <p className="text-gray-500 flex flex-row mb-3">
+                    <Image
+                      className="mr-2"
+                      src="/svg/point.svg"
+                      alt="Point"
+                      width={15}
+                      height={15}
+                    />
+                    JL.Jeruk, Jakarta Selatan
+                  </p>
+                  <Image
+                    src="/svg/break-line.svg"
+                    alt="Break Line"
+                    width={500}
+                    height={25}
+                  />
+                  <p className="text-gray-500 flex flex-row items-center my-3">
+                    <span>3842 sq ft</span>
+                    <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
+                    <span>{row.bedroom} Beds</span>
+                    <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
+                    <span>{row.bathroom} Baths</span>
+                  </p>
+                  <p className="text-cyan-400 text-2xl">
+                    {Number(row.price)} ETH
+                  </p>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center gap-y-5">
+              <img className="w-44" src="images/not-found.png" alt="" />
+              <div className="flex flex-col items-center">
+                <p className="font-bold text-[24px] text-[#F3F3F3]">
+                  Result Not Found
+                </p>
+                <p className="font-bold text-[16px] text-[#6F6F73]">
+                  Please try again with another keywords or maybe use generic
+                  term
+                </p>
+              </div>
+            </div>
+          )}
+        </section>
+        <motion.section
+          initial={{ y: "10px", opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ type: "spring", duration: 2, bounce: 0 }}
+          className="flex flex-row items-center justify-between relative my-28"
+        >
           <div className="flex-1">
             <h1 className="text-white font-bold text-7xl">
               Easy Process,
@@ -336,7 +384,7 @@ export default function Home() {
               />
             </div>
           </div>
-        </section>
+        </motion.section>
         <section>
           <hr className="border-gray-800" />
           <p className="text-gray-500 my-10">

@@ -1,13 +1,14 @@
 "use client";
 
-import PrimaryNavbar from "@/core/components/navbar/PrimaryNavbar";
-import usePropertiesViewModel from "@/features/properties/viewModels/usePropertiesViewModel";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+
+import { HashLoader } from "react-spinners";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
-import { HashLoader } from "react-spinners";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import PrimaryLoading from "@/core/components/loading/PrimaryLoading";
+import PrimaryNavbar from "@/core/components/navbar/PrimaryNavbar";
+import { useEffect } from "react";
+import usePropertiesViewModel from "@/features/properties/viewModels/usePropertiesViewModel";
 
 const Page = () => {
   const viewModel = usePropertiesViewModel();
@@ -18,7 +19,7 @@ const Page = () => {
 
   return (
     <>
-      <div className="absolute z-0 -top-32">
+      <div className="absolute z-0 -top-32 hidden lg:block">
         <svg
           className="max-w-full"
           xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +59,7 @@ const Page = () => {
           </defs>
         </svg>
       </div>
-      <div className="absolute z-0 -bottom-10">
+      <div className="absolute z-0 -bottom-10 hidden lg:block">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="1280"
@@ -102,21 +103,21 @@ const Page = () => {
           <PrimaryNavbar />
           <section className="flex flex-row items-center justify-between relative my-24">
             <div className="flex-1">
-              <h1 className="text-white font-bold text-7xl">
+              <h1 className="text-white font-bold text-3xl lg:text-7xl">
                 <span className="bg-gradient-to-r from-cyan-400 to-orange-400 bg-clip-text text-transparent">
                   Search and Buy
                 </span>{" "}
                 Secure
                 <br /> Property or Land Here!
               </h1>
-              <p className="text-gray-500 text-lg">
+              <p className="text-gray-500 lg:text-lg">
                 With blockchain technology, now you can do property transactions
                 effortlessly and completed within 7 days or less.
               </p>
-              <div className="mt-10 space-x-5 flex">
-                <div className="flex">
+              <div className="mt-10 lg:flex">
+                <div className="flex mb-10 lg:mb-0 lg:mr-5">
                   <input
-                    className="py-3 px-5 w-80 rounded-l-lg text-black"
+                    className="py-3 px-5 w-80 rounded-l-lg text-black border-0"
                     type="text"
                     value={viewModel.keyword}
                     onChange={(e) => {
@@ -148,54 +149,56 @@ const Page = () => {
                     </svg>
                   </button>
                 </div>
-                <button
-                  className={`text-white font-bold rounded-lg py-3 px-5 ${
-                    viewModel.category == null
-                      ? "bg-gradient-to-r from-cyan-400 to-orange-400"
-                      : "border-2 from-cyan-400 "
-                  }`}
-                  onClick={() => {
-                    viewModel.handleChangeCategory(null);
-                  }}
-                >
-                  All
-                </button>
-                <button
-                  className={`text-white font-bold rounded-lg py-3 px-5 ${
-                    viewModel.category == "used"
-                      ? "bg-gradient-to-r from-cyan-400 to-orange-400"
-                      : "border-2 from-cyan-400 "
-                  }`}
-                  onClick={() => {
-                    viewModel.handleChangeCategory("used");
-                  }}
-                >
-                  Used Home
-                </button>
-                <button
-                  className={`text-white font-bold rounded-lg py-3 px-5 ${
-                    viewModel.category == "new"
-                      ? "bg-gradient-to-r from-cyan-400 to-orange-400"
-                      : "border-2 from-cyan-400 "
-                  }`}
-                  onClick={() => {
-                    viewModel.handleChangeCategory("new");
-                  }}
-                >
-                  New Home
-                </button>
-                <button
-                  className={`text-white font-bold rounded-lg py-3 px-5 ${
-                    viewModel.category == "land"
-                      ? "bg-gradient-to-r from-cyan-400 to-orange-400"
-                      : "border-2 from-cyan-400 "
-                  }`}
-                  onClick={() => {
-                    viewModel.handleChangeCategory("land");
-                  }}
-                >
-                  Land
-                </button>
+                <div className="flex space-x-5 overflow-x-auto">
+                  <button
+                    className={`text-white font-bold rounded-lg py-3 px-5 ${
+                      viewModel.category == null
+                        ? "bg-gradient-to-r from-cyan-400 to-orange-400"
+                        : "border-2 from-cyan-400 "
+                    }`}
+                    onClick={() => {
+                      viewModel.handleChangeCategory(null);
+                    }}
+                  >
+                    All
+                  </button>
+                  <button
+                    className={`text-white font-bold rounded-lg py-3 px-5 ${
+                      viewModel.category == "used"
+                        ? "bg-gradient-to-r from-cyan-400 to-orange-400"
+                        : "border-2 from-cyan-400 "
+                    }`}
+                    onClick={() => {
+                      viewModel.handleChangeCategory("used");
+                    }}
+                  >
+                    Used Home
+                  </button>
+                  <button
+                    className={`text-white font-bold rounded-lg py-3 px-5 ${
+                      viewModel.category == "new"
+                        ? "bg-gradient-to-r from-cyan-400 to-orange-400"
+                        : "border-2 from-cyan-400 "
+                    }`}
+                    onClick={() => {
+                      viewModel.handleChangeCategory("new");
+                    }}
+                  >
+                    New Home
+                  </button>
+                  <button
+                    className={`text-white font-bold rounded-lg py-3 px-5 ${
+                      viewModel.category == "land"
+                        ? "bg-gradient-to-r from-cyan-400 to-orange-400"
+                        : "border-2 from-cyan-400 "
+                    }`}
+                    onClick={() => {
+                      viewModel.handleChangeCategory("land");
+                    }}
+                  >
+                    Land
+                  </button>
+                </div>
               </div>
             </div>
           </section>
@@ -203,7 +206,7 @@ const Page = () => {
             {viewModel.isLoading ? (
               <PrimaryLoading />
             ) : viewModel.properties.length > 0 ? (
-              <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5">
+              <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {viewModel.properties.map((row) => (
                   <Link
                     href={`/properties/${row.id}`}
@@ -223,7 +226,7 @@ const Page = () => {
                           : "New Home"}
                       </span>
                     </div>
-                    <h3 className="text-white text-2xl mt-3 mb-2">
+                    <h3 className="text-white text-xl lg:text-2xl mt-3 mb-2">
                       {row.name}
                     </h3>
                     <p className="text-gray-500 flex flex-row mb-3">
@@ -249,7 +252,7 @@ const Page = () => {
                       <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
                       <span>{row.bathroom} Baths</span>
                     </p>
-                    <p className="text-cyan-400 text-2xl">
+                    <p className="text-cyan-400 text-lg lg:text-2xl">
                       {Number(row.price)} ICP
                     </p>
                   </Link>

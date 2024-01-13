@@ -13,9 +13,10 @@
 /out/
 
 # Internet Computer
-/.azle/
-/.dfx/
-/out/
+.azle/
+.dfx/
+out/
+
 
 # production
 /build

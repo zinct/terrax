@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useState } from "react";
 import { ScaleLoader } from "react-spinners";
 
 const SignInModal = ({
@@ -9,6 +10,8 @@ const SignInModal = ({
   isLoading,
   isSignModalShow = null,
 }) => {
+  const [isRegister, setIsRegister] = useState(false);
+
   return (
     <div
       className={`absolute z-20 top-0 left-0 right-0 bottom-0 w-full h-full flex justify-center backdrop-blur-xl ${
@@ -73,15 +76,20 @@ const SignInModal = ({
                   height={25}
                   alt="ICP Logo"
                 />
-                Sign In with Internet Identity
+                {isRegister ? "Sign Up" : "Sign In"} with Internet Identity
               </>
             )}
           </button>
         </div>
         <p className="text-white text-sm">
-          Already have an account?{" "}
-          <button onClick={onRegister} className="text-cyan-500">
-            Sign In
+          {!isRegister ? "Already have an account" : "Not registered yet?"}{" "}
+          <button
+            onClick={() => {
+              setIsRegister(!isRegister);
+            }}
+            className="text-cyan-500"
+          >
+            {!isRegister ? "Sign In" : "Create an account"}
           </button>
         </p>
         <p className="text-gray-500 text-sm">

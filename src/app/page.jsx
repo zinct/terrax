@@ -166,6 +166,9 @@ export default function Home() {
                 className="bg-cyan-400 px-5 py-3 rounded-lg mr-10 inline-block"
               >
                 Explore
+              </Link>
+              <button className="text-white relative">
+                Go To Market{" "}
                 <Image
                   src="/svg/arrow-btn.svg"
                   width={50}
@@ -173,7 +176,7 @@ export default function Home() {
                   alt="Line"
                   className="inline-block"
                 />
-              </Link>
+              </button>
             </div>
           </motion.div>
           <motion.div
@@ -360,7 +363,7 @@ export default function Home() {
                     <span>{row.bathroom} Baths</span>
                   </p>
                   <p className="text-cyan-400 text-lg lg:text-2xl">
-                    {Number(row.price)} ETH
+                    {Number(row.price)} ICP
                   </p>
                 </Link>
               ))}

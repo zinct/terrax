@@ -24,9 +24,20 @@ export default function AssetManager({ children }) {
             }}
           />
 
-          <h2 className="text-[40px] font-bold text-[#F3F3F3] my-[5rem]">
-            Asset Manager
-          </h2>
+          <div className="my-[5rem]">
+            <h2 className="text-[40px] font-bold text-[#F3F3F3] ">
+              Asset Manager
+            </h2>
+            <p className="text-gray-500 lg:text-lg">
+              Ready to elevate the security of your land certificates?{" "}
+              <Link
+                href="/asset-manager/registration"
+                className="text-cyan-500"
+              >
+                Register Now
+              </Link>
+            </p>
+          </div>
 
           <section className="flex flex-row items-center">
             <button
@@ -107,7 +118,7 @@ export default function AssetManager({ children }) {
                           <span>{row.bathroom} Baths</span>
                         </p>
                         <p className="text-cyan-400 text-lg lg:text-2xl">
-                          {Number(row.price)} ETH
+                          {Number(row.price)} ICP
                         </p>
                       </Link>
                     ))}

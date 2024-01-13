@@ -3,8 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import PrimaryNavbar from "@/core/components/navbar/PrimaryNavbar";
-import useRegisterViewmodel from "@/features/register/viewModels/useRegisterViewModel";
 import { ScaleLoader } from "react-spinners";
+import useRegisterViewmodel from "@/features/register/viewModels/useRegisterViewModel";
 
 export default function Home() {
   const viewModel = useRegisterViewmodel();
@@ -613,14 +613,14 @@ export default function Home() {
         <PrimaryNavbar />
         <div className="flex flex-col mt-[5rem]">
           <div className="w-full bg-zinc-900 rounded-lg">
-            <div className="flex">
+            <div className="flex overflow-x-auto">
               <button
-                className={`flex-1 text-white rounded-tl-lg p-6 ${
+                className={`text-nowrap flex-1 text-white rounded-tl-lg p-6 ${
                   viewModel.step >= 1 && "font-bold bg-orange-400"
                 }`}
               >
                 <span
-                  className={`bg-white ${
+                  className={` bg-white ${
                     viewModel.step >= 1 ? "text-orange-400" : "text-zinc-800"
                   } p-2 rounded-full mr-3`}
                 >
@@ -629,7 +629,7 @@ export default function Home() {
                 Set Up Profile
               </button>
               <button
-                className={`flex-1 text-white rounded-tr-lg p-6 ${
+                className={`text-nowrap flex-1 text-white rounded-tr-lg p-6 ${
                   viewModel.step >= 2 && "font-bold bg-orange-400"
                 }`}
               >
@@ -656,7 +656,7 @@ export default function Home() {
             </div>
             {/* STEP 1 */}
             <div
-              className={`flex px-10 mb-10 space-x-10 ${
+              className={`md:flex px-10 mb-10 md:space-x-10 ${
                 viewModel.step === 1 ? "" : "hidden"
               }`}
             >
@@ -733,7 +733,7 @@ export default function Home() {
                   <input className="hidden"></input>
                 </button>
               </div>
-              <div className="flex-1 flex flex-col space-y-5">
+              <div className="flex-1 mt-16 md:mt-0 space-y-5">
                 <div>
                   <label className="text-white mb-2 block">Date Of Birth</label>
                   <div className="flex space-x-5">
@@ -813,11 +813,11 @@ export default function Home() {
             </div>
             {/* STEP 2 */}
             <div
-              className={`px-10 mb-10 space-x-10 ${
+              className={`px-10 mb-10 md:space-x-10 ${
                 viewModel.step === 2 ? "" : "hidden"
               }`}
             >
-              <div className="flex flex-row items-center justify-center mb-10">
+              <div className="md:flex flex-row items-center justify-center space-y-5 mb-10">
                 <div>
                   <Image
                     className="mr-2"

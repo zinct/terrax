@@ -26,8 +26,13 @@ export default function useDetailPropertiesViewModel() {
       name: "",
       category: [],
     });
-    setNearProperties(response.Ok);
-    setIsLoading(false);
+
+    if (response?.Ok) {
+      setNearProperties(response.Ok.slice(0, 3));
+      setIsLoading(false);
+    } else {
+      console.error(response);
+    }
   }
 
   return {

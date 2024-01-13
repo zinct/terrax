@@ -106,7 +106,7 @@ export default function AssetManager({ children }) {
                           <span>{row.bathroom} Baths</span>
                         </p>
                         <p className="text-cyan-400 text-2xl">
-                          {Number(row.price)} ETH
+                          {Number(row.price)} ICP
                         </p>
                       </Link>
                     ))}

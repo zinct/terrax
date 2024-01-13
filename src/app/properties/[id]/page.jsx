@@ -62,7 +62,7 @@ export default function Home({ params }) {
               <div className="bg-zinc-900 rounded-lg p-5 w-full mt-10">
                 <h4 className="text-white text-xl mb-5">Price</h4>
                 <p className="text-cyan-400 text-2xl mb-5">
-                  {viewModel.property.price} ETH
+                  {viewModel.property.price} ICP
                 </p>{" "}
               </div>
               <div className="bg-zinc-900 rounded-lg p-5 w-full mt-10">
@@ -302,7 +302,7 @@ export default function Home({ params }) {
                           <span>{row.bathroom} Baths</span>
                         </p>
                         <p className="text-cyan-400 text-2xl">
-                          {Number(row.price)} ETH
+                          {Number(row.price)} ICP
                         </p>
                       </Link>
                     ))}

@@ -56,6 +56,7 @@ export const AuthProvider = ({ children }) => {
 
     if (response.Ok.isRegistered) {
       setUser(response.Ok);
+      router.push("/");
     } else {
       router.push("/register");
     }

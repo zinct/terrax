@@ -115,7 +115,11 @@ export default function Home() {
             className="flex-1"
             initial={{ y: 0, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ type: "spring", duration: 2, bounce: 0 }}
+            transition={{
+              type: "spring",
+              duration: 2,
+              bounce: 0,
+            }}
           >
             <h1 className="text-white font-bold text-7xl">
               <span className="bg-gradient-to-r from-cyan-400 to-orange-400 bg-clip-text text-transparent">
@@ -155,12 +159,25 @@ export default function Home() {
               </button>
             </div>
           </motion.div>
-          <div className="flex-1">
+          <motion.div
+            className="flex-1"
+            initial={{ y: "30px", opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{
+              type: "spring",
+              duration: 2,
+              bounce: 0,
+            }}
+          >
             <motion.div
               className="relative"
-              initial={{ y: "40px", opacity: 0 }}
+              initial={{ y: "30px", opacity: 1 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ type: "spring", duration: 2, bounce: 0 }}
+              transition={{
+                type: "spring",
+                duration: 2,
+                bounce: 0,
+              }}
             >
               <Image
                 src="/images/hero.png"
@@ -195,7 +212,7 @@ export default function Home() {
                 <p className="text-white">Customer Satisfied</p>
               </div>
             </motion.div>
-          </div>
+          </motion.div>
         </section>
         <motion.section
           initial={{ y: "10px", opacity: 0 }}

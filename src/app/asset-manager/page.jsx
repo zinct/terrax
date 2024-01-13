@@ -145,9 +145,7 @@ export default function AssetManager({ children }) {
                             />
                           </div>
                           <div className="flex-1">
-                            <h3 className="text-white mt-3 mb-2">
-                              E-Certificate
-                            </h3>
+                            <h3 className="text-white mt-3 mb-2">{row.name}</h3>
                             <p className="text-gray-500 flex flex-row mb-3">
                               ID: {row.id}
                             </p>
@@ -163,7 +161,7 @@ export default function AssetManager({ children }) {
                             </p>
                           </div>
                           <a
-                            href="/e-certificate"
+                            href={`/e-certificate/${row.id}`}
                             target="_blank"
                             // onClick={() => viewModel.handleDownloadPDF(row)}
                           >

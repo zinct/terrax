@@ -393,5 +393,67 @@ export interface _SERVICE {
       } |
       { 'Err' : { 'code' : number, 'message' : string } }
   >,
+  'validateCertificate' : ActorMethod<
+    [string],
+    {
+        'Ok' : {
+          'id' : string,
+          'latitude' : string,
+          'bedroom' : number,
+          'bathroom' : number,
+          'owner' : {
+            'id' : string,
+            'principal' : Principal,
+            'name' : [] | [string],
+            'createdAt' : [] | [bigint],
+            'email' : [] | [string],
+            'updatedAt' : [] | [bigint],
+            'idCardImageURL' : [] | [string],
+            'address' : [] | [string],
+            'birth' : [] | [bigint],
+            'phone' : [] | [string],
+            'isRegistered' : boolean,
+            'profileImageURL' : [] | [string],
+          },
+          'firstFloor' : number,
+          'name' : string,
+          'createdAt' : bigint,
+          'description' : string,
+          'history' : Array<
+            {
+              'user' : {
+                'id' : string,
+                'principal' : Principal,
+                'name' : [] | [string],
+                'createdAt' : [] | [bigint],
+                'email' : [] | [string],
+                'updatedAt' : [] | [bigint],
+                'idCardImageURL' : [] | [string],
+                'address' : [] | [string],
+                'birth' : [] | [bigint],
+                'phone' : [] | [string],
+                'isRegistered' : boolean,
+                'profileImageURL' : [] | [string],
+              },
+              'startDate' : bigint,
+            }
+          >,
+          'updatedAt' : [] | [bigint],
+          'groundFloor' : number,
+          'livingRoom' : number,
+          'secondFloor' : number,
+          'longitude' : string,
+          'address' : string,
+          'category' : { 'new' : null } |
+            { 'land' : null } |
+            { 'used' : null },
+          'dining' : number,
+          'image' : Array<string>,
+          'price' : number,
+          'construtionArea' : number,
+        }
+      } |
+      { 'Err' : { 'code' : number, 'message' : string } }
+  >,
   'whoAmI' : ActorMethod<[], string>,
 }

@@ -100550,6 +100550,43 @@ var terrax_default = Canister({
                 message: "Internal server error with message " + err
             });
         }
+    }),
+    validateCertificate: query([
+        text
+    ], Result(Property, ErrorResponse), (id2)=>{
+        try {
+            if (ic.caller().isAnonymous()) {
+                return Result.Err({
+                    code: 400,
+                    message: "Anonymous is not allowed"
+                });
+            }
+            if (!id2) {
+                return Result.Err({
+                    code: 400,
+                    message: "Invalid property id"
+                });
+            }
+            const property = propertiesStore.get(id2);
+            if ("None" in property) {
+                return Result.Err({
+                    code: 400,
+                    message: `Property certificate invalid`
+                });
+            }
+            if (property.Some.owner.principal.toString() !== ic.caller().toString()) {
+                return Result.Err({
+                    code: 400,
+                    message: `Property certificate invalid`
+                });
+            }
+            return Result.Ok(property.Some);
+        } catch (err) {
+            return Result.Err({
+                code: 500,
+                message: "Internal server error with message " + err
+            });
+        }
     })
 });
 // <stdin>

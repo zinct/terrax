@@ -78,6 +78,7 @@ export default function useRegisterViewmodel() {
         phone: values.phone,
       });
       setIsSubmmiting(false);
+
       if (response?.Ok) {
         setUser(response?.Ok);
         router.push("/");

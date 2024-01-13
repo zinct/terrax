@@ -4,7 +4,7 @@ export function dateInputToTimestamps(day, month, year) {
   const timestamp = new Date(year, month - 1, date.day).getTime();
 }
 
-function nanoToSecondTimestampto(timestamp) {
+export function nanoToSecondTimestampto(timestamp) {
   const timestampInNanoseconds = 1704939117903545000;
 
   // Konversi timestamp ke dalam satuan detik

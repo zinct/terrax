@@ -121,11 +121,11 @@ export default function Home() {
               bounce: 0,
             }}
           >
-            <h1 className="text-white font-bold text-7xl">
+            <h1 className="text-white font-bold text-6xl">
               <span className="bg-gradient-to-r from-cyan-400 to-orange-400 bg-clip-text text-transparent">
-                Secure and Easy
-              </span>{" "}
-              Property Transactions
+                Secure Your Property,{" "}
+              </span>
+              Get Your E-certificate Now!
               <div className="relative h-20">
                 <Image
                   src="/svg/line.svg"
@@ -137,8 +137,8 @@ export default function Home() {
               </div>
             </h1>
             <p className="text-gray-500 text-lg">
-              With blockchain technology, now you can do property transactions
-              effortlessly and completed within 7 days or less.
+              With blockchain technology, now you can have e-certificate of your
+              property/land for more secure ownership!
             </p>
             <div className="mt-10">
               <Link
@@ -146,9 +146,6 @@ export default function Home() {
                 className="bg-cyan-400 px-5 py-3 rounded-lg mr-10"
               >
                 Explore
-              </Link>
-              <button className="text-white relative">
-                Go To Market{" "}
                 <Image
                   src="/svg/arrow-btn.svg"
                   width={50}
@@ -156,7 +153,8 @@ export default function Home() {
                   alt="Line"
                   className="absolute top-2 -right-16"
                 />
-              </button>
+              </Link>
+              <button className="text-white relative">Go To Market </button>
             </div>
           </motion.div>
           <motion.div

@@ -1,18 +1,17 @@
 "use client";
 
 import React, { useContext, useEffect, useRef, useState } from "react";
-import html2canvas from "html2canvas";
-import jspdf from "jspdf";
-import { ref } from "firebase/storage";
 import useECertificateViewModel from "@/features/eCertificate/viewModels/useECertificateViewModel";
 import PrimaryLoading from "@/core/components/loading/PrimaryLoading";
 import { nanoToSecondTimestampto } from "@/core/utils/datetimeUtils";
 import AuthContext from "@/core/contexts/AuthContext";
 import moment from "moment";
+import { useRouter } from "next/navigation";
 
 const Page = ({ params }) => {
   const viewModel = useECertificateViewModel();
   const { authClient } = useContext(AuthContext);
+  const router = useRouter();
 
   useEffect(() => {
     if (authClient) {
@@ -20,11 +19,13 @@ const Page = ({ params }) => {
     }
   }, [authClient]);
 
-  if (viewModel.property) {
-    console.log(viewModel.property);
-  }
+  useEffect(() => {
+    if (viewModel.isError) {
+      router.push("/");
+    }
+  }, [viewModel.isError]);
 
-  return viewModel.isLoading ? (
+  return viewModel.isLoading || viewModel.isError ? (
     <div className="mt-[20rem]">
       <PrimaryLoading />
     </div>

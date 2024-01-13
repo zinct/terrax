@@ -46,6 +46,12 @@ const Page = () => {
     }
   }, [authContext.isLoading]);
 
+  useEffect(() => {
+    if (notAuthenticated) {
+      router.push("/");
+    }
+  }, [notAuthenticated]);
+
   return authContext.isLoading ? (
     <div className="mt-[20rem]">
       <PrimaryLoading />

@@ -3,11 +3,9 @@
 import PrimaryLoading from "@/core/components/loading/PrimaryLoading";
 import PrimaryNavbar from "@/core/components/navbar/PrimaryNavbar";
 import useAssetManagerViewModel from "@/features/assetManager/viewModels/useAssetManagerViewModel";
-import ECertificateView from "@/features/eCertificate/views/ECertificateView";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
 
 export default function AssetManager({ children }) {
   const viewModel = useAssetManagerViewModel();
@@ -118,11 +116,10 @@ export default function AssetManager({ children }) {
                     <img className="w-44" src="images/not-found.png" alt="" />
                     <div className="flex flex-col items-center">
                       <p className="font-bold text-[24px] text-[#F3F3F3]">
-                        Result Not Found
+                        Your property is empty
                       </p>
                       <p className="font-bold text-[16px] text-[#6F6F73]">
-                        Please try again with another keywords or maybe use
-                        generic term
+                        Please create a property if you want a create items
                       </p>
                     </div>
                   </div>

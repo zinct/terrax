@@ -19,7 +19,7 @@ export default function useECertificateViewModel() {
       setIsLoading(true);
       const identity = await authClient.getIdentity();
       const terraxActor = makeTerraxActor({ identity });
-      const response = await terraxActor.getProperty(id);
+      const response = await terraxActor.validateCertificate(id);
       setIsLoading(false);
 
       console.log(response);
@@ -28,9 +28,10 @@ export default function useECertificateViewModel() {
         return setProperty(response.Ok);
       }
 
-      return <Error statusCode={401} />;
+      setIsError(true);
     } catch (err) {
-      return <Error statusCode={500} />;
+      setIsError(true);
+      console.error(err);
     }
   }
 
@@ -53,5 +54,6 @@ export default function useECertificateViewModel() {
     property,
     validateCertificate,
     isLoading,
+    isError,
   };
 }

@@ -1,12 +1,12 @@
 "use client";
 
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import AuthContext from "@/core/contexts/AuthContext";
 import Link from "next/link";
 import useHomeViewModel from "@/features/home/viewModels/useHomeViewModel";
 import SignInModal from "../modal/SignInModal";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 const PrimaryNavbar = ({
   onSignIn,
@@ -72,19 +72,26 @@ const PrimaryNavbar = ({
           </ul>
         </nav>
         {authContext.user ? (
-          <div className="flex justify-center items-center space-x-5">
-            <button onClick={() => alert("user")}>
-              <Image
-                className="rounded-lg"
-                width={35}
-                height={35}
-                src={
-                  authContext.user.profileImageURL[0] || "/images/no-user.png"
-                }
-                alt="Image"
-              />
-            </button>
-          </div>
+          <>
+            <div className="flex justify-center items-center space-x-5">
+              <button
+                data-popover-target="popover-default"
+                onClick={() => {
+                  authContext.logout();
+                }}
+              >
+                <Image
+                  className="rounded-lg"
+                  width={35}
+                  height={35}
+                  src={
+                    authContext.user.profileImageURL[0] || "/images/no-user.png"
+                  }
+                  alt="Image"
+                />
+              </button>
+            </div>
+          </>
         ) : (
           <button
             className="w-24 h-12 text-white d-flex items-center justify-between font-medium rounded-[11px] bg-gradient-to-r from-cyan-400 to-orange-400 p-[2.5px] hover:cursor-pointer"

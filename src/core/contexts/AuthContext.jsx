@@ -52,14 +52,20 @@ export const AuthProvider = ({ children }) => {
     const terraxActor = makeTerraxActor({ identity });
 
     const response = await terraxActor.connectUser();
-    setIsLoading(false);
 
     if (response.Ok.isRegistered) {
+      setIsLoading(false);
       setUser(response.Ok);
       router.push("/");
     } else {
-      router.push("/register");
+      await router.push("/register");
+      setIsLoading(false);
     }
+  }
+
+  async function logout() {
+    console.log("object");
+    await authClient.logout();
   }
 
   useEffect(() => {
@@ -68,7 +74,14 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ authClient, isLoading, connectIdentityProvider, user }}
+      value={{
+        authClient,
+        isLoading,
+        connectIdentityProvider,
+        user,
+        setUser,
+        logout,
+      }}
     >
       {children}
     </AuthContext.Provider>

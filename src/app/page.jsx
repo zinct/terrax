@@ -111,7 +111,7 @@ export default function Home() {
             className="hidden lg:block"
           />
         </motion.div>
-        <section className="lg:flex flex-row items-center justify-between relative mt-14">
+        <section className="md:flex flex-row items-center justify-between relative mt-14">
           <motion.div
             className="flex-1"
             initial={{ y: 0, opacity: 0 }}
@@ -123,7 +123,7 @@ export default function Home() {
             }}
           >
             <motion.div
-              className="relative lg:hidden"
+              className="relative md:hidden"
               initial={{ y: "30px", opacity: 1 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{
@@ -187,7 +187,7 @@ export default function Home() {
             }}
           >
             <motion.div
-              className="relative hidden lg:block"
+              className="relative hidden md:block"
               initial={{ y: "30px", opacity: 1 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{
@@ -236,7 +236,7 @@ export default function Home() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: "tween", duration: 2, bounce: 0 }}
         >
-          <div className="lg:flex flex-row items-center justify-between">
+          <div className="flex flex-row items-center justify-between">
             <div className="flex flex-row items-center justify-center space-x-6">
               <Image
                 src="/svg/lock.svg"
@@ -255,7 +255,7 @@ export default function Home() {
             </div>
             <div className="flex-1">
               <Image
-                className="m-auto hidden lg:block"
+                className="m-auto"
                 src="/svg/star-light.svg"
                 width={300}
                 height={150}
@@ -384,7 +384,7 @@ export default function Home() {
           initial={{ y: "10px", opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: "spring", duration: 2, bounce: 0 }}
-          className="lg:flex flex-row items-center justify-between relative my-10 lg:my-28"
+          className="md:flex flex-row items-center justify-between relative my-10 lg:my-28"
         >
           <div className="flex-1">
             <Image
@@ -392,7 +392,7 @@ export default function Home() {
               width={600}
               height={500}
               alt="Card Promotion"
-              className="z-10 lg:hidden"
+              className="z-10 md:hidden"
             />
             <h1 className="text-white font-bold text-3xl lg:text-7xl">
               Easy Process,
@@ -428,7 +428,7 @@ export default function Home() {
                 width={600}
                 height={500}
                 alt="Card Promotion"
-                className="z-10 hidden lg:block"
+                className="z-10 hidden md:block"
               />
             </div>
           </div>

@@ -1,15 +1,16 @@
 "use client";
 
-import PrimaryNavbar from "@/core/components/navbar/PrimaryNavbar";
-import useRegistrationViewModel from "@/features/assetManager/viewModels/useRegistrationViewModel";
 import React, { useContext, useEffect, useState } from "react";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import PrimaryMaps from "@/core/components/maps/PrimaryMaps";
-import { ScaleLoader } from "react-spinners";
-import PrimaryLoading from "@/core/components/loading/PrimaryLoading";
-import PropertyRegistrationSuccessAlert from "@/core/components/alert/PropertyRegistrationSuccessAlert";
+
 import AuthContext from "@/core/contexts/AuthContext";
+import Image from "next/image";
+import PrimaryLoading from "@/core/components/loading/PrimaryLoading";
+import PrimaryMaps from "@/core/components/maps/PrimaryMaps";
+import PrimaryNavbar from "@/core/components/navbar/PrimaryNavbar";
+import PropertyRegistrationSuccessAlert from "@/core/components/alert/PropertyRegistrationSuccessAlert";
+import { ScaleLoader } from "react-spinners";
+import useRegistrationViewModel from "@/features/assetManager/viewModels/useRegistrationViewModel";
+import { useRouter } from "next/navigation";
 
 const stepDetail = [
   {
@@ -111,9 +112,9 @@ const Page = () => {
           <PrimaryNavbar />
           <div className="flex flex-col mt-[5rem]">
             <div className="w-full bg-zinc-900 rounded-lg">
-              <div className="flex">
+              <div className="flex overflow-x-auto">
                 <button
-                  className={`flex-1 text-white rounded-tl-lg p-6 ${
+                  className={`text-nowrap flex-1 text-white rounded-tl-lg p-6 ${
                     viewModel.tab >= 1 && "font-bold bg-orange-400"
                   }`}
                 >
@@ -127,7 +128,7 @@ const Page = () => {
                   Type of Property
                 </button>
                 <button
-                  className={`flex-1 text-white p-6 ${
+                  className={`text-nowrap flex-1 text-white p-6 ${
                     viewModel.tab >= 2 && "font-bold bg-orange-400"
                   }`}
                 >
@@ -141,7 +142,7 @@ const Page = () => {
                   Property/Land Details
                 </button>
                 <button
-                  className={`flex-1 text-white rounded-tr-lg p-6 ${
+                  className={`text-nowrap flex-1 text-white rounded-tr-lg p-6 ${
                     viewModel.tab >= 3 && "font-bold bg-orange-400"
                   }`}
                 >
@@ -168,11 +169,11 @@ const Page = () => {
               </div>
               {/* STEP 1 */}
               <div
-                className={`flex px-[8rem] mb-[8rem] space-x-10 ${
+                className={`flex px-10 mb-[8rem] space-x-10 ${
                   viewModel.tab === 0 ? "" : "hidden"
                 }`}
               >
-                <div className="flex flex-row space-x-5 mt-5 w-full">
+                <div className="flex flex-col md:flex-row space-y-5 md:space-y-0 md:space-x-5 mt-5 w-full">
                   <button
                     onClick={() => {
                       viewModel.setPropertyCategory("new");
@@ -218,7 +219,7 @@ const Page = () => {
                 }`}
               >
                 <div
-                  className={`flex px-10 mb-10 space-x-10 ${
+                  className={`md:flex px-10 mb-10 md:space-x-10 ${
                     viewModel.tab === 1 ? "" : "hidden"
                   }`}
                 >
@@ -319,7 +320,7 @@ const Page = () => {
                       </div>
                     </button>
                   </div>
-                  <div className="flex flex-1 flex-col gap-y-5">
+                  <div className="flex flex-1 flex-col gap-y-5 mt-5 md:mt-0">
                     <div className="flex gap-x-5">
                       <div className="flex-1">
                         <label className="text-white mb-2 block">

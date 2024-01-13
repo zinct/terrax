@@ -1,12 +1,12 @@
 "use client";
 
-import PrimaryLoading from "@/core/components/loading/PrimaryLoading";
-import PrimaryNavbar from "@/core/components/navbar/PrimaryNavbar";
-import useHomeViewModel from "@/features/home/viewModels/useHomeViewModel";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
+import PrimaryLoading from "@/core/components/loading/PrimaryLoading";
+import PrimaryNavbar from "@/core/components/navbar/PrimaryNavbar";
 import { motion } from "framer-motion";
+import { useEffect } from "react";
+import useHomeViewModel from "@/features/home/viewModels/useHomeViewModel";
 
 export default function Home() {
   const viewModel = useHomeViewModel();
@@ -17,7 +17,7 @@ export default function Home() {
 
   return (
     <main className="relative">
-      <div className="absolute z-0 top-96">
+      <div className="absolute z-0 top-96 hidden lg:block">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="1365"
@@ -56,7 +56,7 @@ export default function Home() {
           </defs>
         </svg>
       </div>
-      <div className="absolute z-0 bottom-16 right-0">
+      <div className="absolute z-0 bottom-16 right-0 hidden lg:block">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="1428"
@@ -108,9 +108,10 @@ export default function Home() {
             width={800}
             height={700}
             alt="Pattern"
+            className="hidden lg:block"
           />
         </motion.div>
-        <section className="flex flex-row items-center justify-between relative mt-14">
+        <section className="md:flex flex-row items-center justify-between relative mt-14">
           <motion.div
             className="flex-1"
             initial={{ y: 0, opacity: 0 }}
@@ -121,29 +122,48 @@ export default function Home() {
               bounce: 0,
             }}
           >
-            <h1 className="text-white font-bold text-6xl">
+            <motion.div
+              className="relative md:hidden"
+              initial={{ y: "30px", opacity: 1 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{
+                type: "spring",
+                duration: 2,
+                bounce: 0,
+              }}
+            >
+              <Image
+                src="/images/hero.png"
+                width={600}
+                height={500}
+                alt="Card Promotion"
+                className="z-10 max-w-72"
+              />
+            </motion.div>
+            <h1 className="text-white font-bold text-3xl lg:text-6xl">
               <span className="bg-gradient-to-r from-cyan-400 to-orange-400 bg-clip-text text-transparent">
                 Secure Your Property,{" "}
               </span>
+              <br className="lg:hidden" />
               Get Your E-certificate Now!
-              <div className="relative h-20">
+              <div className="relative h-10 lg:h-20">
                 <Image
                   src="/svg/line.svg"
                   width={400}
                   height={100}
                   alt="Line"
-                  className="absolute top-0 -right-5"
+                  className="absolute top-0 lg:-right-5 max-w-40 lg:max-w-auto"
                 />
               </div>
             </h1>
-            <p className="text-gray-500 text-lg">
+            <p className="text-gray-500 lg:text-lg">
               With blockchain technology, now you can have e-certificate of your
               property/land for more secure ownership!
             </p>
             <div className="mt-10">
               <Link
                 href="/properties"
-                className="bg-cyan-400 px-5 py-3 rounded-lg mr-10"
+                className="bg-cyan-400 px-5 py-3 rounded-lg mr-10 inline-block"
               >
                 Explore
               </Link>
@@ -154,7 +174,7 @@ export default function Home() {
                   width={50}
                   height={10}
                   alt="Line"
-                  className="absolute top-2 -right-16"
+                  className="inline-block"
                 />
               </button>
             </div>
@@ -170,7 +190,7 @@ export default function Home() {
             }}
           >
             <motion.div
-              className="relative"
+              className="relative hidden md:block"
               initial={{ y: "30px", opacity: 1 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{
@@ -191,22 +211,22 @@ export default function Home() {
               initial={{ y: "10px", opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ type: "spring", duration: 2, bounce: 0 }}
-              className="flex flex-row items-center justify-center space-x-20"
+              className="flex flex-row items-center justify-start lg:justify-center space-x-5 lg:space-x-20 my-10 lg:my-0"
             >
               <div>
-                <h2 className="text-white font-bold text-4xl">
+                <h2 className="text-white font-bold text-xl lg:text-4xl">
                   56K<span className="text-cyan-300">+</span>
                 </h2>
                 <p className="text-white">Listings</p>
               </div>
               <div>
-                <h2 className="text-white font-bold text-4xl">
+                <h2 className="text-white font-bold text-xl lg:text-4xl">
                   18K<span className="text-cyan-300">+</span>
                 </h2>
                 <p className="text-white">Property Sold</p>
               </div>
               <div>
-                <h2 className="text-white font-bold text-4xl">
+                <h2 className="text-white font-bold text-xl lg:text-4xl">
                   10K<span className="text-cyan-300">+</span>
                 </h2>
                 <p className="text-white">Customer Satisfied</p>
@@ -227,9 +247,12 @@ export default function Home() {
                 height={25}
                 alt="Lock Icon"
               />
-              <h2 className="text-white text-3xl">Blockchain Security</h2>
-              <p className="text-gray-500 text-lg">
-                Our platform has a strict security <br />
+              <h2 className="text-white text-md lg:text-3xl">
+                Blockchain Security
+              </h2>
+              <p className="text-gray-500 lg:text-lg">
+                Our platform has a strict security{" "}
+                <br className="hidden lg:block" />
                 system that is safe from name theft.
               </p>
             </div>
@@ -243,10 +266,10 @@ export default function Home() {
               />
             </div>
           </div>
-          <div className="flex flex-row items-center justify-between">
+          <div className="flex flex-row items-center justify-between mt-10 lg:mt-0">
             <div className="flex-1">
               <Image
-                className="m-auto "
+                className="m-auto"
                 src="/svg/star-light.svg"
                 width={300}
                 height={150}
@@ -260,8 +283,8 @@ export default function Home() {
                 height={25}
                 alt="Lock Icon"
               />
-              <h2 className="text-white text-3xl">E-Certificate</h2>
-              <p className="text-gray-500 text-lg">
+              <h2 className="text-white text-md lg:text-3xl">E-Certificate</h2>
+              <p className="text-gray-500 lg:text-lg">
                 We ensures ease and trust through e-certificates,
                 <br /> making transactions straightforward and worry-free
               </p>
@@ -269,8 +292,10 @@ export default function Home() {
           </div>
         </motion.section>
         <section>
-          <div className="flex flex-row items-center justify-between my-28">
-            <h2 className="text-white font-bold text-5xl">Near You</h2>
+          <div className="flex flex-row items-center justify-between my-10 lg:my-28">
+            <h2 className="text-white font-bold text-3xl lg:text-5xl">
+              Near You
+            </h2>
             <Link
               passHref={true}
               href="/properties"
@@ -291,7 +316,7 @@ export default function Home() {
           {viewModel.isLoading ? (
             <PrimaryLoading />
           ) : viewModel.nearProperties.length > 0 ? (
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-5">
+            <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {viewModel.nearProperties.map((row) => (
                 <Link
                   href={`/properties/${row.id}`}
@@ -311,7 +336,9 @@ export default function Home() {
                         : "New Home"}
                     </span>
                   </div>
-                  <h3 className="text-white text-2xl mt-3 mb-2">{row.name}</h3>
+                  <h3 className="text-white text-xl lg:text-2xl mt-3 mb-2">
+                    {row.name}
+                  </h3>
                   <p className="text-gray-500 flex flex-row mb-3">
                     <Image
                       className="mr-2"
@@ -335,7 +362,7 @@ export default function Home() {
                     <span className="w-1 h-1 bg-gray-500 rounded-full mx-2"></span>
                     <span>{row.bathroom} Baths</span>
                   </p>
-                  <p className="text-cyan-400 text-2xl">
+                  <p className="text-cyan-400 text-lg lg:text-2xl">
                     {Number(row.price)} ICP
                   </p>
                 </Link>
@@ -360,10 +387,17 @@ export default function Home() {
           initial={{ y: "10px", opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: "spring", duration: 2, bounce: 0 }}
-          className="flex flex-row items-center justify-between relative my-28"
+          className="md:flex flex-row items-center justify-between relative my-10 lg:my-28"
         >
           <div className="flex-1">
-            <h1 className="text-white font-bold text-7xl">
+            <Image
+              src="/images/easy-process.png"
+              width={600}
+              height={500}
+              alt="Card Promotion"
+              className="z-10 md:hidden"
+            />
+            <h1 className="text-white font-bold text-3xl lg:text-7xl">
               Easy Process,
               <br />
               Easy Deal
@@ -371,17 +405,17 @@ export default function Home() {
               <span className="bg-gradient-to-r from-cyan-400 to-orange-400 bg-clip-text text-transparent">
                 Easy Money
               </span>
-              <div className="relative h-20">
+              <div className="relative h-10 lg:h-20">
                 <Image
                   src="/svg/line.svg"
                   width={400}
                   height={100}
                   alt="Line"
-                  className="absolute -top-3 left-26"
+                  className="absolute lg:-top-3 left-26 max-w-40 lg:max-w-auto"
                 />
               </div>
             </h1>
-            <p className="text-gray-500 text-lg">
+            <p className="text-gray-500 lg:text-lg">
               Sell your property and land with an easy and fast process.
             </p>
             <div className="mt-10">
@@ -397,7 +431,7 @@ export default function Home() {
                 width={600}
                 height={500}
                 alt="Card Promotion"
-                className="z-10"
+                className="z-10 hidden md:block"
               />
             </div>
           </div>

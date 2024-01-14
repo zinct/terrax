@@ -6,8 +6,7 @@ import { makeTerraxActor } from "../services/actorLocatorService";
 import { useRouter } from "next/navigation";
 
 const AuthContext = createContext();
-const identityProvider =
-  "http://127.0.0.1:4943/?canisterId=bkyz2-fmaaa-aaaaa-qaaaq-cai";
+const identityProvider = `http://127.0.0.1:4943/?canisterId=${process.env.NEXT_PUBLIC_INTERNET_IDENTITY_CANISTER_ID}`;
 
 export const AuthProvider = ({ children }) => {
   const router = useRouter();

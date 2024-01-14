@@ -122,16 +122,17 @@ export default function useRegistrationViewModel() {
 
       const certificateImageURL = await uploadImage(
         certificateImage,
-        `${uuidv4()}.jpeg`
+        `/files/images/certificate/${uuidv4()}.jpeg`
       );
       const propertyImagesURL = [];
 
       for (const row of propertyImages) {
-        const imageURL = await uploadImage(row, `${uuidv4()}.jpeg`);
+        const imageURL = await uploadImage(
+          row,
+          `/files/images/properties/${uuidv4()}.jpeg`
+        );
         propertyImagesURL.push(imageURL);
       }
-
-      console.log("propertyImagesURL", propertyImagesURL);
 
       const response = await terraxActor.createProperty({
         name: values.name,

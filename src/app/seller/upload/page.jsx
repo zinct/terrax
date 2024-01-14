@@ -632,7 +632,7 @@ export default function Home() {
       <article className="container mx-auto relative z-10">
         <header className="flex flex-row items-center justify-between my-5">
           <div>
-            <Image
+            <img
               src="/svg/terrax.svg"
               width={117}
               height={42}
@@ -853,7 +853,7 @@ export default function Home() {
             >
               <div className="flex flex-row items-center justify-center mb-10">
                 <div>
-                  <Image
+                  <img
                     className="mr-2"
                     src="/images/ktp-1.png"
                     alt="KTP"
@@ -862,7 +862,7 @@ export default function Home() {
                   />
                 </div>
                 <div>
-                  <Image
+                  <img
                     className="mr-2"
                     src="/images/ktp-2.png"
                     alt="KTP"
@@ -871,7 +871,7 @@ export default function Home() {
                   />
                 </div>
                 <div>
-                  <Image
+                  <img
                     className="mr-2"
                     src="/images/ktp-3.png"
                     alt="KTP"
@@ -948,7 +948,7 @@ export default function Home() {
               className="bg-gradient-to-r from-cyan-400 to-orange-400 px-5 py-3 rounded-lg flex flex-row items-center"
             >
               Next Step{" "}
-              <Image
+              <img
                 className="ml-5"
                 src="/svg/arrow-btn-dark.svg"
                 width={50}

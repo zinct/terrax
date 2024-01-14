@@ -1,8 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useRef, useState } from "react";
 import {
   GoogleMap,
   useJsApiLoader,
-  StandaloneSearchBox,
   InfoWindow,
   Autocomplete,
   Marker,

@@ -656,8 +656,8 @@ export default function Home() {
             </div>
             {/* STEP 1 */}
             <div
-              className={`md:flex px-10 mb-10 md:space-x-10 ${
-                viewModel.step === 1 ? "" : "hidden"
+              className={`px-10 mb-10 md:space-x-10 ${
+                viewModel.step === 1 ? "md:flex" : "hidden"
               }`}
             >
               <div className="flex-1 space-y-5">
@@ -819,7 +819,7 @@ export default function Home() {
             >
               <div className="md:flex flex-row items-center justify-center space-y-5 mb-10">
                 <div>
-                  <Image
+                  <img
                     className="mr-2"
                     src="/images/ktp-1.png"
                     alt="KTP"
@@ -828,7 +828,7 @@ export default function Home() {
                   />
                 </div>
                 <div>
-                  <Image
+                  <img
                     className="mr-2"
                     src="/images/ktp-2.png"
                     alt="KTP"
@@ -837,7 +837,7 @@ export default function Home() {
                   />
                 </div>
                 <div>
-                  <Image
+                  <img
                     className="mr-2"
                     src="/images/ktp-3.png"
                     alt="KTP"
@@ -928,7 +928,7 @@ export default function Home() {
               ) : (
                 <>
                   Next Step{" "}
-                  <Image
+                  <img
                     className="ml-5"
                     src="/svg/arrow-btn-dark.svg"
                     width={50}

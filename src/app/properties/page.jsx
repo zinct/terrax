@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
@@ -214,7 +215,7 @@ const Page = () => {
                     className="bg-zinc-900 rounded-lg p-5"
                   >
                     <div className="relative h-[20rem] w-full">
-                      <Image
+                      <img
                         className="rounded-lg object-cover"
                         src={row.image[0]}
                         alt="Image"
@@ -230,7 +231,7 @@ const Page = () => {
                       {row.name}
                     </h3>
                     <p className="text-gray-500 flex flex-row mb-3">
-                      <Image
+                      <img
                         className="mr-2"
                         src="/svg/point.svg"
                         alt="Point"
@@ -239,7 +240,7 @@ const Page = () => {
                       />
                       JL.Jeruk, Jakarta Selatan
                     </p>
-                    <Image
+                    <img
                       src="/svg/break-line.svg"
                       alt="Break Line"
                       width={500}

@@ -49,7 +49,7 @@ const SignInModal = ({
           </svg>
         </button>
         <div className="w-full flex justify-center">
-          <Image
+          <img
             src="/svg/terrax.svg"
             width={100}
             height={35}
@@ -69,7 +69,7 @@ const SignInModal = ({
               <ScaleLoader height={20} color="white" />
             ) : (
               <>
-                <Image
+                <img
                   className="inline-block mr-3"
                   src="/images/icp.png"
                   width={25}

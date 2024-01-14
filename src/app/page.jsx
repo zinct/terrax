@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import Image from "next/image";
@@ -103,7 +104,7 @@ export default function Home() {
           transition={{ type: "spring", duration: 2, bounce: 0 }}
           className="absolute right-[15rem]"
         >
-          <Image
+          <img
             src="/svg/pattern.svg"
             width={800}
             height={700}
@@ -132,7 +133,7 @@ export default function Home() {
                 bounce: 0,
               }}
             >
-              <Image
+              <img
                 src="/images/hero.png"
                 width={600}
                 height={500}
@@ -147,7 +148,7 @@ export default function Home() {
               <br className="lg:hidden" />
               Get Your E-certificate Now!
               <div className="relative h-10 lg:h-20">
-                <Image
+                <img
                   src="/svg/line.svg"
                   width={400}
                   height={100}
@@ -165,18 +166,8 @@ export default function Home() {
                 href="/properties"
                 className="bg-cyan-400 px-5 py-3 rounded-lg mr-10 inline-block"
               >
-                Explore
+                Register Now
               </Link>
-              <button className="text-white relative">
-                Go To Market{" "}
-                <Image
-                  src="/svg/arrow-btn.svg"
-                  width={50}
-                  height={10}
-                  alt="Line"
-                  className="inline-block"
-                />
-              </button>
             </div>
           </motion.div>
           <motion.div
@@ -199,7 +190,7 @@ export default function Home() {
                 bounce: 0,
               }}
             >
-              <Image
+              <img
                 src="/images/hero.png"
                 width={600}
                 height={500}
@@ -217,19 +208,19 @@ export default function Home() {
                 <h2 className="text-white font-bold text-xl lg:text-4xl">
                   56K<span className="text-cyan-300">+</span>
                 </h2>
-                <p className="text-white">Listings</p>
-              </div>
-              <div>
-                <h2 className="text-white font-bold text-xl lg:text-4xl">
-                  18K<span className="text-cyan-300">+</span>
-                </h2>
-                <p className="text-white">Property Sold</p>
+                <p className="text-white">Properties Registered</p>
               </div>
               <div>
                 <h2 className="text-white font-bold text-xl lg:text-4xl">
                   10K<span className="text-cyan-300">+</span>
                 </h2>
                 <p className="text-white">Customer Satisfied</p>
+              </div>
+              <div>
+                <h2 className="text-white font-bold text-xl lg:text-4xl">
+                  100%
+                </h2>
+                <p className="text-white">Secure </p>
               </div>
             </motion.div>
           </motion.div>
@@ -241,12 +232,7 @@ export default function Home() {
         >
           <div className="flex flex-row items-center justify-between">
             <div className="flex flex-row items-center justify-center space-x-6">
-              <Image
-                src="/svg/lock.svg"
-                width={25}
-                height={25}
-                alt="Lock Icon"
-              />
+              <img src="/svg/lock.svg" width={25} height={25} alt="Lock Icon" />
               <h2 className="text-white text-md lg:text-3xl">
                 Blockchain Security
               </h2>
@@ -257,7 +243,7 @@ export default function Home() {
               </p>
             </div>
             <div className="flex-1">
-              <Image
+              <img
                 className="m-auto"
                 src="/svg/star-light.svg"
                 width={300}
@@ -268,7 +254,7 @@ export default function Home() {
           </div>
           <div className="flex flex-row items-center justify-between mt-10 lg:mt-0">
             <div className="flex-1">
-              <Image
+              <img
                 className="m-auto"
                 src="/svg/star-light.svg"
                 width={300}
@@ -277,12 +263,7 @@ export default function Home() {
               />
             </div>
             <div className="flex flex-row items-center justify-center space-x-6">
-              <Image
-                src="/svg/lock.svg"
-                width={25}
-                height={25}
-                alt="Lock Icon"
-              />
+              <img src="/svg/lock.svg" width={25} height={25} alt="Lock Icon" />
               <h2 className="text-white text-md lg:text-3xl">E-Certificate</h2>
               <p className="text-gray-500 lg:text-lg">
                 We ensures ease and trust through e-certificates,
@@ -299,10 +280,10 @@ export default function Home() {
             <Link
               passHref={true}
               href="/properties"
-              className="bg-cyan-400 px-5 py-3 rounded-lg flex flex-row items-center"
+              className="bg-cyan-400 text-black px-5 py-3 rounded-lg flex flex-row items-center"
             >
-              Explore
-              <Image
+              View All
+              <img
                 className="ml-5"
                 src="/svg/arrow-btn-dark.svg"
                 width={50}
@@ -324,7 +305,7 @@ export default function Home() {
                   className="bg-zinc-900 rounded-lg p-5"
                 >
                   <div className="relative h-[20rem] w-full">
-                    <Image
+                    <img
                       className="rounded-lg object-cover"
                       src={row.image[0]}
                       alt="Image"
@@ -340,7 +321,7 @@ export default function Home() {
                     {row.name}
                   </h3>
                   <p className="text-gray-500 flex flex-row mb-3">
-                    <Image
+                    <img
                       className="mr-2"
                       src="/svg/point.svg"
                       alt="Point"
@@ -349,7 +330,7 @@ export default function Home() {
                     />
                     JL.Jeruk, Jakarta Selatan
                   </p>
-                  <Image
+                  <img
                     src="/svg/break-line.svg"
                     alt="Break Line"
                     width={500}
@@ -390,7 +371,7 @@ export default function Home() {
           className="md:flex flex-row items-center justify-between relative my-10 lg:my-28"
         >
           <div className="flex-1">
-            <Image
+            <img
               src="/images/easy-process.png"
               width={600}
               height={500}
@@ -406,7 +387,7 @@ export default function Home() {
                 Easy Money
               </span>
               <div className="relative h-10 lg:h-20">
-                <Image
+                <img
                   src="/svg/line.svg"
                   width={400}
                   height={100}
@@ -416,22 +397,23 @@ export default function Home() {
               </div>
             </h1>
             <p className="text-gray-500 lg:text-lg">
-              Sell your property and land with an easy and fast process.
+              Wait for our future updates to start new experience of property
+              transaction!
             </p>
             <div className="mt-10">
-              <button className="bg-cyan-400 px-5 py-3 rounded-lg mr-10">
-                Sell Property Now
+              <button className="bg-cyan-400 px-5 text-black py-3 rounded-lg mr-10">
+                Get Updates in Email
               </button>
             </div>
           </div>
           <div className="flex-1">
             <div className="relative">
-              <Image
+              <img
                 src="/images/easy-process.png"
                 width={600}
                 height={500}
                 alt="Card Promotion"
-                className="z-10 hidden md:block"
+                className="z-10 hidden md:block ml-24"
               />
             </div>
           </div>

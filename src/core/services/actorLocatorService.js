@@ -1,5 +1,10 @@
+"use client";
+
 import { AuthClient } from "@dfinity/auth-client";
-import { createActor as createTerraxActor, canisterId as terraxCanisterId } from "../../declarations/terrax";
+import {
+  createActor as createTerraxActor,
+  canisterId as terraxCanisterId,
+} from "../../declarations/terrax";
 
 export const makeActor = (canisterId, createActor, agentOptions) => {
   return createActor(canisterId, {

@@ -1,20 +1,16 @@
 import { v4 as uuidv4 } from "uuid";
-import { Canister, ic, nat16, nat64, None, Null, Opt, query, Result, Some, StableBTreeMap, text, update, Vec } from "azle";
+import { Canister, ic, None, query, Result, Some, StableBTreeMap, text, update, Vec } from "azle";
 
-import { ErrorResponse, Property, PropertyCategory, PropertyHistory, PropertyParams, PropertyPayload, User, UserPayload } from "./types";
+import { ErrorResponse, Property, PropertyHistory, PropertyParams, PropertyPayload, User, UserPayload } from "./types";
 
 const usersStore = StableBTreeMap<text, User>(1);
 const propertiesStore = StableBTreeMap<text, Property>(10);
 
 export default Canister({
-  whoAmI: query([], text, () => {
-    return ic.caller().toString();
-  }),
-
-  getTimestamp: query([], nat64, () => {
-    return ic.time();
-  }),
-
+  /**
+   * Function to connect or authenticate a user.
+   * @returns Result<User, ErrorResponse> - Returns the user information if authentication is successful, else returns an error response.
+   */
   connectUser: update([], Result(User, ErrorResponse), () => {
     try {
       if (ic.caller().isAnonymous()) {
@@ -55,6 +51,11 @@ export default Canister({
     }
   }),
 
+  /**
+   * Function to register a user.
+   * @param UserPayload - UserPayload containing user registration details.
+   * @returns Result<User, ErrorResponse> - Returns the registered user information if successful, else returns an error response.
+   */
   registerUser: update([UserPayload], Result(User, ErrorResponse), (payload) => {
     try {
       if (ic.caller().isAnonymous()) {
@@ -107,18 +108,10 @@ export default Canister({
     }
   }),
 
-  getUsers: query([], Result(Vec(User), ErrorResponse), () => {
-    try {
-      const users = usersStore.values();
-      return Result.Ok(users);
-    } catch (err) {
-      return Result.Err({
-        code: 500,
-        message: "Internal server error with message " + err,
-      });
-    }
-  }),
-
+  /**
+   * Function to get a user by principal ID.
+   * @returns Result<User, ErrorResponse> - Returns the user information if found, else returns an error response.
+   */
   getUserByPrincipal: query([], Result(User, ErrorResponse), () => {
     try {
       const user: User = usersStore.values().filter((user) => user.principal.toString() === ic.caller().toString())[0];
@@ -139,6 +132,11 @@ export default Canister({
     }
   }),
 
+  /**
+   * Function to create a new property.
+   * @param PropertyPayload - PropertyPayload containing property details.
+   * @returns Result<Property, ErrorResponse> - Returns the created property information if successful, else returns an error response.
+   */
   createProperty: update([PropertyPayload], Result(Property, ErrorResponse), (payload) => {
     try {
       if (ic.caller().isAnonymous()) {
@@ -184,24 +182,11 @@ export default Canister({
     }
   }),
 
-  emptyProperty: update([], text, () => {
-    const arr = propertiesStore.keys();
-    for (let i = 0; i < arr.length; i++) {
-      propertiesStore.remove(arr[i]);
-    }
-
-    return "ok";
-  }),
-
-  emptyUsers: update([], text, () => {
-    const arr = usersStore.keys();
-    for (let i = 0; i < arr.length; i++) {
-      usersStore.remove(arr[i]);
-    }
-
-    return "ok";
-  }),
-
+  /**
+   * Function to get a list of properties based on search parameters.
+   * @param PropertyParams - PropertyParams containing search parameters.
+   * @returns Result<Vec<Property>, ErrorResponse> - Returns a list of properties if successful, else returns an error response.
+   */
   getProperties: query([PropertyParams], Result(Vec(Property), ErrorResponse), (params) => {
     try {
       const properties = propertiesStore.values();
@@ -218,6 +203,10 @@ export default Canister({
     }
   }),
   
+  /**
+   * Function to get the properties owned by the current authenticated user principal.
+   * @returns Result<Vec<Property>, ErrorResponse> - Returns a list of properties owned by the user if successful, else returns an error response.
+   */
   getCurrentProperties: query([], Result(Vec(Property), ErrorResponse), () => {
     try {
       if (ic.caller().isAnonymous()) {
@@ -237,18 +226,12 @@ export default Canister({
       });
     }
   }),
-
-  debug: query([PropertyParams], Result(text,  ErrorResponse), (params) => {
-    try {
-      return Result.Ok(JSON.stringify(params.category));
-    } catch (err) {
-      return Result.Err({
-        code: 500,
-        message: "Internal server error with message " + err,
-      });
-    }
-  }),
   
+  /**
+   * Function to get a property by its ID.
+   * @param id - Property ID.
+   * @returns Result<Property, ErrorResponse> - Returns the property information if found, else returns an error response.
+   */
   getProperty: query([text], Result(Property, ErrorResponse), (id) => {
     try {
       if(!id) {
@@ -276,6 +259,11 @@ export default Canister({
     }
   }),
 
+  /**
+   * Function to validate the certificate of a property.
+   * @param id - Property ID.
+   * @returns Result<Property, ErrorResponse> - Returns the property information if the certificate is valid, else returns an error response.
+   */
   validateCertificate: query([text], Result(Property, ErrorResponse), (id) => {
     try {
       if (ic.caller().isAnonymous()) {

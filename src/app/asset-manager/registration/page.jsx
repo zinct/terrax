@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import React, { useContext, useEffect, useState } from "react";
@@ -301,7 +302,7 @@ const Page = () => {
                           {viewModel.propertyBase64.length > 0 ? (
                             viewModel.propertyBase64.map((row, index) => {
                               return (
-                                <Image
+                                <img
                                   className="rounded"
                                   width={80}
                                   height={80}
@@ -461,7 +462,7 @@ const Page = () => {
                 <div className="flex flex-col">
                   <div className="flex flex-row items-center justify-center mb-10">
                     <div>
-                      <Image
+                      <img
                         className="mr-2"
                         src="/images/certificate-1.png"
                         alt="certificate"
@@ -470,7 +471,7 @@ const Page = () => {
                       />
                     </div>
                     <div>
-                      <Image
+                      <img
                         className="mr-2"
                         src="/images/certificate-2.png"
                         alt="certificate"
@@ -479,7 +480,7 @@ const Page = () => {
                       />
                     </div>
                     <div>
-                      <Image
+                      <img
                         className="mr-2"
                         src="/images/certificate-3.png"
                         alt="certificate"
@@ -583,7 +584,7 @@ const Page = () => {
                   ) : (
                     <>
                       Submit
-                      <Image
+                      <img
                         className="ml-5"
                         src="/svg/arrow-btn-dark.svg"
                         width={50}
@@ -595,7 +596,7 @@ const Page = () => {
                 ) : (
                   <>
                     Next Step
-                    <Image
+                    <img
                       className="ml-5"
                       src="/svg/arrow-btn-dark.svg"
                       width={50}

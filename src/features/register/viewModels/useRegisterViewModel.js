@@ -62,17 +62,27 @@ export default function useRegisterViewmodel() {
       const principal = await terraxActor.whoAmI();
       let profileImageURL = null;
 
-      const idCardImageURL = await uploadImage(idCard, `${principal}.jpeg`);
+      const idCardImageURL = await uploadImage(
+        idCard,
+        `/files/images/idcards/${principal}.jpeg`
+      );
 
       if (profile) {
-        profileImageURL = await uploadImage(profile, `${principal}.jpeg`);
+        profileImageURL = await uploadImage(
+          profile,
+          `/files/images/profile/${principal}.jpeg`
+        );
       }
 
       const response = await terraxActor.registerUser({
         name: values.name,
         email: values.email,
         address: values.address,
-        birth: moment(`${values.year}-${values.month}-${values.day}`).unix(),
+        birth: moment(
+          `${values.year.toString().padStart(4, "0")}-${values.month
+            .toString()
+            .padStart(2, "0")}-${values.day.toString().padStart(2, "0")}`
+        ).unix(),
         profileImageURL: profileImageURL ? [profileImageURL] : [],
         idCardImageURL: idCardImageURL,
         phone: values.phone,

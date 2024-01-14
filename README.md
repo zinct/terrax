@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## HOW TO RUN (Locally)
 
-## Getting Started
+You will need:
 
-First, run the development server:
+- NodeJS 18.\* or higher https://nodejs.org/en/download/
+- Internet Computer dfx CLI https://internetcomputer.org/docs/current/developer-docs/setup/install/
+
+Install:
+
+- clone this repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  git clone https://github.com/zinct/terrax.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Open command terminal: Enter the commands to start dfx local server in background:
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+  cd terrax
+  dfx start --clean --background
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Enter the commands to install dependencies, deploy canister and run Next.js dev server:
 
-## Learn More
+```bash
+  npm install
+  dfx deploy
+  npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Environment Variables
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To run this project, you will need to add the following environment variables to your .env file
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+`NEXT_PUBLIC_IC_HOST`: You can obtain this value by running 'dfx start,' and it will appear as shown in the console for example "http://localhost:56691."
 
-## Deploy on Vercel
+`NEXT_PUBLIC_TERRAX_CANISTER_ID`: You can obtain this after running 'dfx deploy', and it will appear as shown in the console for example: `be2us-64aaa-aaaaa-qaabq-cai`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+`NEXT_PUBLIC_INTERNET_IDENTITY_CANISTER_ID`: You can obtain this after running 'dfx deploy', and it will appear like the terrax example: `bd3sg-teaaa-aaaaa-qaaba-cai`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+`NEXT_PUBLIC_MAPS_API_KEY`: To obtain this, you can register on https://console.developers.google.com or use my API key for testing purposes only\
+(Google Maps API key: `AIzaSyCdRzRUfbYXGhOLvo3f5KQLQOvupPY3FUA`).
+
+## Access Your App
+
+You can access the frontend via http://localhost:3000 for default port

@@ -33,7 +33,7 @@ const PrimaryNavbar = ({
       />
       <header className="flex flex-row items-center justify-between my-5 z-50">
         <Link href="/">
-          <Image
+          <img
             src="/svg/terrax.svg"
             width={117}
             height={42}
@@ -75,7 +75,7 @@ const PrimaryNavbar = ({
           {authContext.user ? (
             <>
               <div className="flex justify-center items-center space-x-5">
-                <Image
+                <img
                   className="rounded-full object-cover w-[45px] h-[45px]"
                   width={45}
                   height={45}
@@ -83,8 +83,9 @@ const PrimaryNavbar = ({
                     authContext.user.profileImageURL[0] || "/images/no-user.png"
                   }
                   alt="Image"
+                  onClick={() => authContext.logout()}
                 />
-                <button
+                {/* <button
                   className="hidden text-red-600 font-bold hover:bg-zinc-800 px-3 py-2 rounded-lg md:flex flex-row"
                   data-popover-target="popover-default"
                   onClick={() => {
@@ -109,7 +110,7 @@ const PrimaryNavbar = ({
                     />
                   </svg>
                   Logout
-                </button>
+                </button> */}
               </div>
             </>
           ) : (

@@ -2,11 +2,20 @@ import { v4 as uuidv4 } from "uuid";
 import { Canister, ic, None, query, Result, Some, StableBTreeMap, text, update, Vec } from "azle";
 
 import { ErrorResponse, Property, PropertyHistory, PropertyParams, PropertyPayload, User, UserPayload } from "./types";
+import { dummyProperties } from "./dummy";
 
 const usersStore = StableBTreeMap<text, User>(1);
 const propertiesStore = StableBTreeMap<text, Property>(10);
 
 export default Canister({
+  /**
+   * Query function to retrieve the principal ID of the current authenticated user.
+   * @returns Result<string, ErrorResponse> - Returns the principal ID if the query is successful, else returns an error response.
+   */
+  whoAmI: query([], text, () => {
+    return ic.caller().toString();
+  }),
+
   /**
    * Function to connect or authenticate a user.
    * @returns Result<User, ErrorResponse> - Returns the user information if authentication is successful, else returns an error response.
@@ -303,5 +312,64 @@ export default Canister({
         message: "Internal server error with message " + err,
       });
     }
+  }),
+
+
+  // This is for development testing only
+  generateDummyProperties: update([], text, () => {
+    const newUser: User = {
+      id: uuidv4(),
+      isRegistered: true,
+      principal: ic.caller(),
+      createdAt: Some(ic.time()),
+      updatedAt: Some(ic.time()),
+      name: Some("Indra Mahesa"),
+      email: Some("indramahesa128@gmail.com"),
+      address: Some("St. Sydney"),
+      birth: Some(ic.time()),
+      phone: Some("08123123123"),
+      idCardImageURL: Some("https://firebasestorage.googleapis.com/v0/b/terrax-de163.appspot.com/o/files%2Fimages%2Fprofile%2Fesmzy-hk4t2-4qkuj-ipdey-hrl3x-47uww-oll23-juhfz-aahnt-i4f6d-lae.jpeg?alt=media&token=4a1a0a9e-f310-4a91-8811-316000fe5704"),
+      profileImageURL: Some("https://firebasestorage.googleapis.com/v0/b/terrax-de163.appspot.com/o/files%2Fimages%2Fprofile%2Fesmzy-hk4t2-4qkuj-ipdey-hrl3x-47uww-oll23-juhfz-aahnt-i4f6d-lae.jpeg?alt=media&token=4a1a0a9e-f310-4a91-8811-316000fe5704"),
+    };
+
+    usersStore.insert(newUser.id, newUser);
+
+    const newHistory: PropertyHistory = {
+      user: newUser,
+      startDate: ic.time(),
+    };
+
+    dummyProperties.forEach((row) => {
+        const newProperty: Property = {
+          id: uuidv4(),
+          owner: newUser,
+          history: [
+            newHistory,
+          ],
+          createdAt: ic.time(),
+          updatedAt: Some(ic.time()),
+          
+          name: row.name,
+          description: row.description,
+          price: row.price,
+          image: row.image,
+          category: row.category,
+          bedroom: row.bedroom,
+          bathroom: row.bathroom,
+          dining: row.dining,
+          livingRoom: row.livingRoom,
+          groundFloor: row.groundFloor,
+          firstFloor: row.firstFloor,
+          secondFloor: row.secondFloor,
+          construtionArea: row.construtionArea,
+          address: row.address,
+          latitude: row.latitude,
+          longitude: row.longitude,
+        };
+
+        propertiesStore.insert(newProperty.id, newProperty);
+    });
+
+    return "Success";
   }),
 });

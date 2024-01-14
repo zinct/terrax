@@ -113,29 +113,7 @@ export const idlFactory = ({ IDL }) => {
         ],
         [],
       ),
-    'debug' : IDL.Func(
-        [
-          IDL.Record({
-            'name' : IDL.Text,
-            'category' : IDL.Opt(
-              IDL.Variant({
-                'new' : IDL.Null,
-                'land' : IDL.Null,
-                'used' : IDL.Null,
-              })
-            ),
-          }),
-        ],
-        [
-          IDL.Variant({
-            'Ok' : IDL.Text,
-            'Err' : IDL.Record({ 'code' : IDL.Nat16, 'message' : IDL.Text }),
-          }),
-        ],
-        ['query'],
-      ),
-    'emptyProperty' : IDL.Func([], [IDL.Text], []),
-    'emptyUsers' : IDL.Func([], [IDL.Text], []),
+    'generateDummyProperties' : IDL.Func([], [IDL.Text], []),
     'getCurrentProperties' : IDL.Func(
         [],
         [
@@ -352,7 +330,6 @@ export const idlFactory = ({ IDL }) => {
         ],
         ['query'],
       ),
-    'getTimestamp' : IDL.Func([], [IDL.Nat64], ['query']),
     'getUserByPrincipal' : IDL.Func(
         [],
         [
@@ -371,31 +348,6 @@ export const idlFactory = ({ IDL }) => {
               'isRegistered' : IDL.Bool,
               'profileImageURL' : IDL.Opt(IDL.Text),
             }),
-            'Err' : IDL.Record({ 'code' : IDL.Nat16, 'message' : IDL.Text }),
-          }),
-        ],
-        ['query'],
-      ),
-    'getUsers' : IDL.Func(
-        [],
-        [
-          IDL.Variant({
-            'Ok' : IDL.Vec(
-              IDL.Record({
-                'id' : IDL.Text,
-                'principal' : IDL.Principal,
-                'name' : IDL.Opt(IDL.Text),
-                'createdAt' : IDL.Opt(IDL.Nat64),
-                'email' : IDL.Opt(IDL.Text),
-                'updatedAt' : IDL.Opt(IDL.Nat64),
-                'idCardImageURL' : IDL.Opt(IDL.Text),
-                'address' : IDL.Opt(IDL.Text),
-                'birth' : IDL.Opt(IDL.Nat64),
-                'phone' : IDL.Opt(IDL.Text),
-                'isRegistered' : IDL.Bool,
-                'profileImageURL' : IDL.Opt(IDL.Text),
-              })
-            ),
             'Err' : IDL.Record({ 'code' : IDL.Nat16, 'message' : IDL.Text }),
           }),
         ],

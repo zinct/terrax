@@ -7,6 +7,7 @@ import SignInModal from "../modal/SignInModal";
 import { useContext } from "react";
 import useHomeViewModel from "@/features/home/viewModels/useHomeViewModel";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const PrimaryNavbar = ({
   onSignIn,
@@ -16,6 +17,7 @@ const PrimaryNavbar = ({
   const pathName = usePathname();
   const viewModel = useHomeViewModel();
   const authContext = useContext(AuthContext);
+  const router = useRouter();
 
   return (
     <>
@@ -83,13 +85,13 @@ const PrimaryNavbar = ({
                     authContext.user.profileImageURL[0] || "/images/no-user.png"
                   }
                   alt="Image"
-                  onClick={() => authContext.logout()}
                 />
-                {/* <button
+                <button
                   className="hidden text-red-600 font-bold hover:bg-zinc-800 px-3 py-2 rounded-lg md:flex flex-row"
                   data-popover-target="popover-default"
                   onClick={() => {
                     authContext.logout();
+                    location.reload();
                   }}
                 >
                   <svg
@@ -110,7 +112,7 @@ const PrimaryNavbar = ({
                     />
                   </svg>
                   Logout
-                </button> */}
+                </button>
               </div>
             </>
           ) : (

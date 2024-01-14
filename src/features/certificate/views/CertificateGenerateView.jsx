@@ -7,9 +7,10 @@ import PrimaryLoading from "@/core/components/loading/PrimaryLoading";
 import { nanoToSecondTimestampto } from "@/core/utils/datetimeUtils";
 import AuthContext from "@/core/contexts/AuthContext";
 import moment from "moment";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 const CertificateGenerateView = () => {
+  const params = useParams();
   const viewModel = useECertificateViewModel();
   const { authClient } = useContext(AuthContext);
   const router = useRouter();

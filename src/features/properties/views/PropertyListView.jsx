@@ -13,6 +13,7 @@ import useDetailPropertiesViewModel from "@/features/properties/viewModels/useDe
 import { useParams } from "next/navigation";
 
 const PropertyListView = () => {
+  const params = useParams();
   const viewModel = useDetailPropertiesViewModel();
 
   useEffect(() => {

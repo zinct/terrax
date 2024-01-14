@@ -1,3 +1,17 @@
+![Logo](https://raw.githubusercontent.com/zinct/terrax/main/public/images/pdf/logo.png)
+
+# Terrax: Secure your property, get your e-certificate now!
+
+Introducing TerraX, a groundbreaking solution addressing crucial challenges in the real estate industry, particularly in dealing with land disputes, certificate forgery, and property bubbles. By leveraging cutting-edge blockchain technology, TerraX redefines the property transaction process to be faster, more efficient, and trustworthy. It provides concrete solutions to the current issues faced in the real estate world while ensuring a reliable and streamlined approach to property transactions.
+
+## Tech Stack
+
+**Frontend:** React, NextJS, TailwindCSS
+
+**Server:** Azle SmartContract, Internet Identity
+
+**Storage:** Firebase Storage
+
 ## HOW TO RUN (Locally)
 
 You will need:
@@ -44,3 +58,11 @@ To run this project, you will need to add the following environment variables to
 ## Access Your App
 
 You can access the frontend via http://localhost:3000 for default port
+
+## Authors
+
+- [@indrmhesa](https://www.instagram.com/indrmhesa) Backend Development and Integration Maestro, with an expertise in Blockchain.
+- [@haululazkiyaa](https://www.instagram.com/haululazkiyaa) Frontend App Slicing Virtuoso.
+- [@whoisgalih](https://www.instagram.com/whoisgalih) Architectural Visionary - Documenting the Blueprint.
+- [@nazwatk](https://www.instagram.com/nazwatk) Interface Design Wizard.
+- [@satriadhm](https://www.instagram.com/satriadhm) Business Ideation and Analysis Maestro.

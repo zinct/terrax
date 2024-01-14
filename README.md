@@ -59,6 +59,14 @@ To run this project, you will need to add the following environment variables to
 
 You can access the frontend via http://localhost:3000 for default port
 
+## Generate Dummy Properties
+
+- Open command terminal: Enter the commands to generate dummies in canister:
+
+```bash
+ dfx canister call terrax generateDummyProperties
+```
+
 ## Authors
 
 - [@indrmhesa](https://www.instagram.com/indrmhesa) Backend Development and Integration Maestro, with an expertise in Blockchain.

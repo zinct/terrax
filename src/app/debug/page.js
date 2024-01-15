@@ -1,15 +1,11 @@
 "use client";
 
 import { makeTerraxActor } from "@/core/services/actorLocatorService";
-import {
-  fileToCanisterBinaryStoreFormat,
-  resizeImage,
-} from "@/core/utils/imageUtilS";
+import { fileToCanisterBinaryStoreFormat, resizeImage } from "@/core/utils/imageUtilS";
 import { AuthClient } from "@dfinity/auth-client";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
-import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const images = [
   "https://firebasestorage.googleapis.com/v0/b/terrax-de163.appspot.com/o/files%2Fproperties%2Fdummies%2F1.png?alt=media&token=34513744-e2d2-4c7e-99d2-b95d5da77e0b",
@@ -26,18 +22,12 @@ const images = [
   "https://firebasestorage.googleapis.com/v0/b/terrax-de163.appspot.com/o/files%2Fproperties%2Fdummies%2F12.png?alt=media&token=26be7594-14a7-4e72-ad3a-a4d3522f8fd4",
 ];
 
-const rooms = [
-  "https://firebasestorage.googleapis.com/v0/b/terrax-de163.appspot.com/o/files%2Fproperties%2Fdummies%2Froom1.png?alt=media&token=687faeb6-84e7-41dd-b997-ad350ebca234",
-  "https://firebasestorage.googleapis.com/v0/b/terrax-de163.appspot.com/o/files%2Fproperties%2Fdummies%2Froom2.png?alt=media&token=2265dc8e-ee32-492f-87f2-1e58b11908b8",
-  "https://firebasestorage.googleapis.com/v0/b/terrax-de163.appspot.com/o/files%2Fproperties%2Fdummies%2Froom3.png?alt=media&token=f792d78d-ed7c-4cdf-8e1c-78ff10428c93",
-  "https://firebasestorage.googleapis.com/v0/b/terrax-de163.appspot.com/o/files%2Fproperties%2Fdummies%2Froom4.png?alt=media&token=fb9aff97-8a94-4789-bf77-00d7a474ce7a",
-];
+const rooms = ["https://firebasestorage.googleapis.com/v0/b/terrax-de163.appspot.com/o/files%2Fproperties%2Fdummies%2Froom1.png?alt=media&token=687faeb6-84e7-41dd-b997-ad350ebca234", "https://firebasestorage.googleapis.com/v0/b/terrax-de163.appspot.com/o/files%2Fproperties%2Fdummies%2Froom2.png?alt=media&token=2265dc8e-ee32-492f-87f2-1e58b11908b8", "https://firebasestorage.googleapis.com/v0/b/terrax-de163.appspot.com/o/files%2Fproperties%2Fdummies%2Froom3.png?alt=media&token=f792d78d-ed7c-4cdf-8e1c-78ff10428c93", "https://firebasestorage.googleapis.com/v0/b/terrax-de163.appspot.com/o/files%2Fproperties%2Fdummies%2Froom4.png?alt=media&token=fb9aff97-8a94-4789-bf77-00d7a474ce7a"];
 
 const dummyProperties = [
   {
     name: "Modern Oasis Residence",
-    description:
-      "Experience contemporary living at its finest with this 4-bedroom masterpiece. This property boasts sleek architecture, a gourmet kitchen, and a lush backyard retreat. The spacious master suite offers a private sanctuary, while the open-concept design creates an inviting atmosphere. Conveniently located near schools and parks, this residence promises a harmonious lifestyle for families. Your dream home awaits - schedule a tour today!",
+    description: "Experience contemporary living at its finest with this 4-bedroom masterpiece. This property boasts sleek architecture, a gourmet kitchen, and a lush backyard retreat. The spacious master suite offers a private sanctuary, while the open-concept design creates an inviting atmosphere. Conveniently located near schools and parks, this residence promises a harmonious lifestyle for families. Your dream home awaits - schedule a tour today!",
     price: Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000,
     image: [images[0], ...rooms],
     category: {
@@ -57,8 +47,7 @@ const dummyProperties = [
   },
   {
     name: "Sunset View Apartments",
-    description:
-      "Enjoy breathtaking sunset views from this stylish 2-bedroom apartment. With modern amenities and an open floor plan, this residence is perfect for those seeking comfort and convenience. The master bedroom features panoramic windows, providing a picturesque backdrop. Nestled in a vibrant neighborhood with easy access to dining and entertainment, this is urban living at its best.",
+    description: "Enjoy breathtaking sunset views from this stylish 2-bedroom apartment. With modern amenities and an open floor plan, this residence is perfect for those seeking comfort and convenience. The master bedroom features panoramic windows, providing a picturesque backdrop. Nestled in a vibrant neighborhood with easy access to dining and entertainment, this is urban living at its best.",
     price: Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000,
     image: [images[1], ...rooms],
     category: {
@@ -78,8 +67,7 @@ const dummyProperties = [
   },
   {
     name: "Tranquil Haven Villa",
-    description:
-      "Escape to tranquility in this charming 3-bedroom villa surrounded by lush greenery. The property features a private pool, a gourmet kitchen, and a spacious living area. Each bedroom is designed for comfort, creating a perfect retreat. Located away from the hustle and bustle, this villa offers serenity without compromising on luxury. Your private oasis awaits!",
+    description: "Escape to tranquility in this charming 3-bedroom villa surrounded by lush greenery. The property features a private pool, a gourmet kitchen, and a spacious living area. Each bedroom is designed for comfort, creating a perfect retreat. Located away from the hustle and bustle, this villa offers serenity without compromising on luxury. Your private oasis awaits!",
     price: Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000,
     image: [images[2], ...rooms],
     category: {
@@ -99,8 +87,7 @@ const dummyProperties = [
   },
   {
     name: "Downtown Loft Retreat",
-    description:
-      "Immerse yourself in city living with this trendy downtown loft. The industrial-chic design includes exposed brick walls, high ceilings, and large windows, providing an abundance of natural light. The open-layout kitchen and living space make it perfect for entertaining. Live in the heart of the city's vibrant energy - this loft is your stylish urban escape.",
+    description: "Immerse yourself in city living with this trendy downtown loft. The industrial-chic design includes exposed brick walls, high ceilings, and large windows, providing an abundance of natural light. The open-layout kitchen and living space make it perfect for entertaining. Live in the heart of the city's vibrant energy - this loft is your stylish urban escape.",
     price: Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000,
     image: [images[3], ...rooms],
     category: {
@@ -120,8 +107,7 @@ const dummyProperties = [
   },
   {
     name: "Seaside Sanctuary Residence",
-    description:
-      "Wake up to the sound of waves in this coastal 3-bedroom residence. With panoramic ocean views, this home offers a seamless blend of indoor and outdoor living. The master suite features a private balcony, inviting you to unwind with breathtaking sunsets. Located steps away from the beach, this property embodies the essence of coastal living.",
+    description: "Wake up to the sound of waves in this coastal 3-bedroom residence. With panoramic ocean views, this home offers a seamless blend of indoor and outdoor living. The master suite features a private balcony, inviting you to unwind with breathtaking sunsets. Located steps away from the beach, this property embodies the essence of coastal living.",
     price: Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000,
     image: [images[4], ...rooms],
     category: {
@@ -141,8 +127,7 @@ const dummyProperties = [
   },
   {
     name: "Elegant Garden Estate",
-    description:
-      "Step into luxury with this 5-bedroom garden estate. The meticulously landscaped grounds surround a stately home with timeless elegance. The interior showcases high-end finishes, a gourmet kitchen, and a grand staircase. Perfect for hosting gatherings, this estate offers sophistication and charm in every detail.",
+    description: "Step into luxury with this 5-bedroom garden estate. The meticulously landscaped grounds surround a stately home with timeless elegance. The interior showcases high-end finishes, a gourmet kitchen, and a grand staircase. Perfect for hosting gatherings, this estate offers sophistication and charm in every detail.",
     price: Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000,
     image: [images[5], ...rooms],
     category: {
@@ -162,8 +147,7 @@ const dummyProperties = [
   },
   {
     name: "Urban Retreat Penthouse",
-    description:
-      "Indulge in luxury with this exquisite 3-bedroom penthouse in the heart of the city. The panoramic city views create a stunning backdrop for the contemporary design and high-end finishes. The expansive living space, private terrace, and upscale amenities make this penthouse a true urban retreat for those who appreciate the finest things in life.",
+    description: "Indulge in luxury with this exquisite 3-bedroom penthouse in the heart of the city. The panoramic city views create a stunning backdrop for the contemporary design and high-end finishes. The expansive living space, private terrace, and upscale amenities make this penthouse a true urban retreat for those who appreciate the finest things in life.",
     price: Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000,
     image: [images[6], ...rooms],
     category: {
@@ -183,8 +167,7 @@ const dummyProperties = [
   },
   {
     name: "Serenity Heights Condominium",
-    description:
-      "Discover a tranquil lifestyle in this 2-bedroom condominium offering breathtaking mountain views. The thoughtfully designed interior features modern furnishings, a state-of-the-art kitchen, and a cozy living area. With proximity to hiking trails and nature reserves, this condominium is perfect for those seeking a balance between luxury and the great outdoors.",
+    description: "Discover a tranquil lifestyle in this 2-bedroom condominium offering breathtaking mountain views. The thoughtfully designed interior features modern furnishings, a state-of-the-art kitchen, and a cozy living area. With proximity to hiking trails and nature reserves, this condominium is perfect for those seeking a balance between luxury and the great outdoors.",
     price: Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000,
     image: [images[7], ...rooms],
     category: {
@@ -204,8 +187,7 @@ const dummyProperties = [
   },
   {
     name: "Chic City Center Loft",
-    description:
-      "Live in style with this chic 1-bedroom loft located in the vibrant city center. The loft's industrial aesthetic is complemented by modern furnishings and exposed brick walls. Ideal for urban professionals, this residence offers a unique blend of sophistication and convenience, with trendy cafes, boutiques, and cultural hotspots just steps away.",
+    description: "Live in style with this chic 1-bedroom loft located in the vibrant city center. The loft's industrial aesthetic is complemented by modern furnishings and exposed brick walls. Ideal for urban professionals, this residence offers a unique blend of sophistication and convenience, with trendy cafes, boutiques, and cultural hotspots just steps away.",
     price: Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000,
     image: [images[8], ...rooms],
     category: {
@@ -225,8 +207,7 @@ const dummyProperties = [
   },
   {
     name: "Tranquility Lakeside Retreat",
-    description:
-      "Escape to tranquility in this lakeside 4-bedroom retreat. The property features a private dock, offering direct access to the serene lake. Inside, the home exudes warmth and comfort with a rustic-chic design. Enjoy picturesque views from the expansive deck or take a leisurely stroll along the lakeside path. This retreat is a perfect blend of nature and luxury living.",
+    description: "Escape to tranquility in this lakeside 4-bedroom retreat. The property features a private dock, offering direct access to the serene lake. Inside, the home exudes warmth and comfort with a rustic-chic design. Enjoy picturesque views from the expansive deck or take a leisurely stroll along the lakeside path. This retreat is a perfect blend of nature and luxury living.",
     price: Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000,
     image: [images[9], ...rooms],
     category: {
@@ -246,8 +227,7 @@ const dummyProperties = [
   },
   {
     name: "Metropolitan Vue Apartments",
-    description:
-      "Experience city living at its best in these modern 1-bedroom apartments. The sleek design is complemented by upscale finishes and panoramic city views. With a prime location near public transportation and trendy urban hotspots, these apartments offer a stylish and convenient lifestyle for the modern city dweller.",
+    description: "Experience city living at its best in these modern 1-bedroom apartments. The sleek design is complemented by upscale finishes and panoramic city views. With a prime location near public transportation and trendy urban hotspots, these apartments offer a stylish and convenient lifestyle for the modern city dweller.",
     price: Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000,
     image: [images[10], ...rooms],
     category: {
@@ -267,8 +247,7 @@ const dummyProperties = [
   },
   {
     name: "Harmony Hills Townhomes",
-    description:
-      "Embrace the charm of community living with these spacious 3-bedroom townhomes. Nestled in the picturesque Harmony Hills neighborhood, each townhome features a private backyard and easy access to communal green spaces. The classic architecture and modern interiors make these townhomes a perfect choice for families seeking a harmonious blend of comfort and connection.",
+    description: "Embrace the charm of community living with these spacious 3-bedroom townhomes. Nestled in the picturesque Harmony Hills neighborhood, each townhome features a private backyard and easy access to communal green spaces. The classic architecture and modern interiors make these townhomes a perfect choice for families seeking a harmonious blend of comfort and connection.",
     price: Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000,
     image: [images[11], ...rooms],
     category: {
@@ -374,8 +353,7 @@ const Page = () => {
 
   async function login() {
     await authClient.login({
-      identityProvider:
-        "http://127.0.0.1:4943/?canisterId=bkyz2-fmaaa-aaaaa-qaaaq-cai",
+      identityProvider: "http://127.0.0.1:4943/?canisterId=bkyz2-fmaaa-aaaaa-qaaaq-cai",
       onSuccess: () => {
         console.log("Auth Success");
       },
@@ -448,9 +426,7 @@ const Page = () => {
           <h2>Image</h2>
           <div>
             <label htmlFor="name">Upload Image: &nbsp;</label>
-            <button
-              {...getRootProps({ className: "dropzone border border-sky-500" })}
-            >
+            <button {...getRootProps({ className: "dropzone border border-sky-500" })}>
               Pick a Image
               <input {...getInputProps()} />
             </button>

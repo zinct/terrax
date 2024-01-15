@@ -48,9 +48,9 @@ To run this project, you will need to add the following environment variables to
 
 `NEXT_PUBLIC_IC_HOST`: You can obtain this value by running 'dfx start,' and it will appear as shown in the console for example "http://localhost:56691."
 
-`NEXT_PUBLIC_TERRAX_CANISTER_ID`: You can obtain this after running 'dfx deploy', and it will appear as shown in the console for example: `be2us-64aaa-aaaaa-qaabq-cai`.
+`NEXT_PUBLIC_TERRAX_CANISTER_ID`: You can obtain this after running 'dfx deploy', and it will appear as shown in the console for example: `bd3sg-teaaa-aaaaa-qaaba-cai`.
 
-`NEXT_PUBLIC_INTERNET_IDENTITY_CANISTER_ID`: You can obtain this after running 'dfx deploy', and it will appear like the terrax example: `bd3sg-teaaa-aaaaa-qaaba-cai`.
+`NEXT_PUBLIC_INTERNET_IDENTITY_CANISTER_ID`: You can obtain this after running 'dfx deploy', and it will appear in the console for example: `bkyz2-fmaaa-aaaaa-qaaaq-cai`.
 
 `NEXT_PUBLIC_MAPS_API_KEY`: To obtain this, you can register on https://console.developers.google.com or use my API key for testing purposes only\
 (Google Maps API key: `AIzaSyCdRzRUfbYXGhOLvo3f5KQLQOvupPY3FUA`).
@@ -66,6 +66,16 @@ You can access the frontend via http://localhost:3000 for default port
 ```bash
  dfx canister call terrax generateDummyProperties
 ```
+
+## Screenshoot
+
+![Logo](https://raw.githubusercontent.com/zinct/terrax/main/public/images/screenshot1.png)
+
+![Logo](https://raw.githubusercontent.com/zinct/terrax/main/public/images/screenshot2.png)
+
+![Logo](https://raw.githubusercontent.com/zinct/terrax/main/public/images/screenshot3.png)
+
+![Logo](https://raw.githubusercontent.com/zinct/terrax/main/public/images/screenshot4.png)
 
 ## Authors
 

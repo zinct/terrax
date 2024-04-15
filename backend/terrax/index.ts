@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { Canister, ic, None, query, Result, Some, StableBTreeMap, text, update, Vec } from "azle";
+import { Canister, ic, None, query, Result, Some, bool,StableBTreeMap, text, update, Vec } from "azle";
 
 import { ErrorResponse, Property, PropertyHistory, PropertyParams, PropertyPayload, User, UserPayload } from "./types";
 import { dummyProperties } from "./dummy";
@@ -22,36 +22,31 @@ export default Canister({
    */
   connectUser: update([], Result(User, ErrorResponse), () => {
     try {
-      if (ic.caller().isAnonymous()) {
-        return Result.Err({
-          code: 400,
-          message: "Anonymous is not allowed",
-        });
+      if (isAnonymous()) {
+        return Result.Err(generateAnonymousError());
       }
 
-      const user: User = usersStore.values().filter((c: User) => c.principal.toString() === ic.caller().toString())[0];
-
-      if (user) {
-        return Result.Ok(user);
+      const userOpt = usersStore.get(ic.caller().toString());
+      if ("None" in userOpt) {
+        const newUser: User = {
+          id: ic.caller().toString(),
+          principal: ic.caller(),
+          isRegistered: false,
+          createdAt: Some(ic.time()),
+          updatedAt: Some(ic.time()),
+          name: None,
+          email: None,
+          address: None,
+          birth: None,
+          phone: None,
+          idCardImageURL: None,
+          profileImageURL: None,
+        };
+  
+        usersStore.insert(newUser.id, newUser);
+        return Result.Ok(newUser);
       }
-
-      const newUser: User = {
-        id: uuidv4(),
-        principal: ic.caller(),
-        isRegistered: false,
-        createdAt: Some(ic.time()),
-        updatedAt: Some(ic.time()),
-        name: None,
-        email: None,
-        address: None,
-        birth: None,
-        phone: None,
-        idCardImageURL: None,
-        profileImageURL: None,
-      };
-
-      usersStore.insert(newUser.id, newUser);
-      return Result.Ok(newUser);
+      return Result.Ok(userOpt.Some);
     } catch (err) {
       return Result.Err({
         code: 500,
@@ -67,25 +62,22 @@ export default Canister({
    */
   registerUser: update([UserPayload], Result(User, ErrorResponse), (payload) => {
     try {
-      if (ic.caller().isAnonymous()) {
-        return Result.Err({
-          code: 400,
-          message: "Anonymous is not allowed",
-        });
+      if (isAnonymous()) {
+        return Result.Err(generateAnonymousError());
       }
 
-      const user: User = usersStore.values().filter((c: User) => c.principal.toString() === ic.caller().toString())[0];
+      const userOpt = usersStore.get(ic.caller().toString());
 
-      if (!user) {
+      if ("None" in userOpt) {
         return Result.Err({
-          code: 400,
+          code: 404,
           message: "Principal not registered",
         });
       }
-
-      if (user?.isRegistered) {
+      const user = userOpt.Some;
+      if (user.isRegistered) {
         return Result.Err({
-          code: 400,
+          code: 409,
           message: "User already registered",
         });
       }
@@ -123,16 +115,16 @@ export default Canister({
    */
   getUserByPrincipal: query([], Result(User, ErrorResponse), () => {
     try {
-      const user: User = usersStore.values().filter((user) => user.principal.toString() === ic.caller().toString())[0];
+      const userOpt = usersStore.get(ic.caller().toString());
 
-      if (!user) {
+      if ("None" in userOpt) {
         return Result.Err({
           code: 404,
-          message: "User not registered on this principal",
+          message: "User not found",
         });
       }
 
-      return Result.Ok(user);
+      return Result.Ok(userOpt.Some);
     } catch (err) {
       return Result.Err({
         code: 500,
@@ -148,22 +140,19 @@ export default Canister({
    */
   createProperty: update([PropertyPayload], Result(Property, ErrorResponse), (payload) => {
     try {
-      if (ic.caller().isAnonymous()) {
-        return Result.Err({
-          code: 400,
-          message: "Anonymous is not allowed",
-        });
+      if (isAnonymous()) {
+        return Result.Err(generateAnonymousError());
       }
 
-      const user: User = usersStore.values().filter((user) => user.principal.toString() === ic.caller().toString())[0];
+      const userOpt = usersStore.get(ic.caller().toString());
 
-      if (!user) {
+      if ("None" in userOpt) {
         return Result.Err({
           code: 404,
-          message: "User not registered",
+          message: "User not found",
         });
       }
-
+      const user = userOpt.Some;
       const newHistory: PropertyHistory = {
         user: user,
         startDate: ic.time(),
@@ -218,11 +207,8 @@ export default Canister({
    */
   getCurrentProperties: query([], Result(Vec(Property), ErrorResponse), () => {
     try {
-      if (ic.caller().isAnonymous()) {
-        return Result.Err({
-          code: 400,
-          message: "Anonymous is not allowed",
-        });
+      if (isAnonymous()) {
+        return Result.Err(generateAnonymousError());
       }
       
       const properties = propertiesStore.values().filter((property) => property.owner.principal.toString() === ic.caller().toString());
@@ -243,7 +229,7 @@ export default Canister({
    */
   getProperty: query([text], Result(Property, ErrorResponse), (id) => {
     try {
-      if(!id) {
+      if(!isValidUuid(id)) {
         return Result.Err({
           code: 400,
           message: "Invalid property id",
@@ -268,52 +254,48 @@ export default Canister({
     }
   }),
 
-  /**
+    /**
    * Function to validate the certificate of a property.
    * @param id - Property ID.
    * @returns Result<Property, ErrorResponse> - Returns the property information if the certificate is valid, else returns an error response.
    */
-  validateCertificate: query([text], Result(Property, ErrorResponse), (id) => {
-    try {
-      if (ic.caller().isAnonymous()) {
+    validateCertificate: query([text], Result(Property, ErrorResponse), (id) => {
+      try {
+        if (isAnonymous()) {
+          return Result.Err(generateAnonymousError());
+        }
+        
+        if(!isValidUuid(id)) {
+          return Result.Err({
+            code: 400,
+            message: "Invalid property id",
+          });
+        }
+  
+        const property = propertiesStore.get(id);
+  
+        if('None' in property) {
+          return Result.Err({
+            code: 404,
+            message: `Property not found`,
+          });
+        }
+  
+        if(property.Some.owner.principal.toString() !== ic.caller().toString()) {
+          return Result.Err({
+            code: 403,
+            message: `Caller isn't the property's principal`,
+          });
+        }
+  
+        return Result.Ok(property.Some);
+      } catch (err) {
         return Result.Err({
-          code: 400,
-          message: "Anonymous is not allowed",
+          code: 500,
+          message: "Internal server error with message " + err,
         });
       }
-      
-      if(!id) {
-        return Result.Err({
-          code: 400,
-          message: "Invalid property id",
-        });
-      }
-
-      const property = propertiesStore.get(id);
-
-      if('None' in property) {
-        return Result.Err({
-          code: 400,
-          message: `Property certificate invalid`,
-        });
-      }
-
-      if(property.Some.owner.principal.toString() !== ic.caller().toString()) {
-        return Result.Err({
-          code: 400,
-          message: `Property certificate invalid`,
-        });
-      }
-
-      return Result.Ok(property.Some);
-    } catch (err) {
-      return Result.Err({
-        code: 500,
-        message: "Internal server error with message " + err,
-      });
-    }
-  }),
-
+    }),
 
   // This is for development testing only
   generateDummyProperties: update([], text, () => {
@@ -373,3 +355,20 @@ export default Canister({
     return "Success";
   }),
 });
+
+
+function isAnonymous() : bool {
+  return ic.caller().isAnonymous()
+}
+function generateAnonymousError() : ErrorResponse {
+  return {
+    code: 403,
+    message: "Anonymous is not allowed",
+  };
+}
+
+// Helper function to ensure the input id meets the format used for ids generated by uuid
+function isValidUuid(id: string): boolean {
+  const regexExp = /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi;
+  return regexExp.test(id);
+}

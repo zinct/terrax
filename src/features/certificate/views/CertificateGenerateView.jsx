@@ -15,6 +15,8 @@ const CertificateGenerateView = () => {
   const { authClient } = useContext(AuthContext);
   const router = useRouter();
 
+  // return <div></div>;
+
   useEffect(() => {
     if (authClient) {
       viewModel.validateCertificate(params.id);

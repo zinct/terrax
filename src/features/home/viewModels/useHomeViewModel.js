@@ -1,6 +1,5 @@
 "use client";
 
-import AuthContext from "@/core/contexts/AuthContext";
 import { makeTerraxActor } from "@/core/services/actorLocatorService";
 import { calculateDistance } from "@/core/utils/locationUtils";
 import { useContext, useEffect, useState } from "react";

@@ -16,8 +16,17 @@
         "id": {
           "ic": "rdmx6-jaaaa-aaaaa-aaadq-cai"
         }
-      },
-      "frontend": {}
-    }
+      }
+    },
+    "frontend": {
+        "type": "assets",
+        "dependencies": [
+          "terrax",
+          "internet_identity"
+        ],
+        "source": [
+          "out"
+        ]
+      }
   }
 }

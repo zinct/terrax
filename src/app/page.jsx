@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import PrimaryLoading from "@/core/components/loading/PrimaryLoading";
 import PrimaryNavbar from "@/core/components/navbar/PrimaryNavbar";

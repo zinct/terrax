@@ -5,11 +5,8 @@ import { createContext, useEffect, useState } from "react";
 import { makeTerraxActor } from "../services/actorLocatorService";
 import { useRouter } from "next/navigation";
 
-const development = process.env.DFX_NETWORK !== "ic";
 const AuthContext = createContext();
-const identityProvider = development
-  ? `http://127.0.0.1:4943/?canisterId=${process.env.NEXT_PUBLIC_INTERNET_IDENTITY_CANISTER_ID}`
-  : "https://identity.ic0.app";
+const identityProvider = "https://identity.ic0.app";
 
 export const AuthProvider = ({ children }) => {
   const router = useRouter();
